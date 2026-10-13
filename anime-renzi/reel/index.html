@@ -58,19 +58,31 @@
       .btn { flex: 1; text-align: center; padding: 16px 0 18px; border-radius: 18px; font-weight: 800; font-size: 34px; }
       .follow { background: #3d8bfd; color: #fff; }
       .msg { background: #ececf1; color: #111; }
+      .screen.dark { background: #0b0e17; }
+      .feed { position: absolute; left: 0; top: 0; width: 808px; }
+      .crop-wrap { position: relative; }
+      .crop { position: relative; width: 808px; overflow: hidden; }
+      .crop img { display: block; width: 808px; }
+      .cover { position: absolute; background: #0b0e17; }
+      .ig-avatar { position: absolute; border-radius: 50%; overflow: hidden; background: #fff; box-shadow: 0 0 0 5px #0b0e17, 0 0 0 9px #3a3f4a; }
+      .ig-avatar img { width: 100%; height: 100%; display: block; }
+      .vbtns { display: flex; gap: 12px; padding: 18px 32px 26px; background: #0b0e17; }
+      .vb { flex: 1; text-align: center; padding: 18px 0 20px; border-radius: 16px; background: #262a33; color: #fff; font-weight: 800; font-size: 32px; }
+      .vb.follow { background: #4a5df9; }
       .grid-wrap { position: absolute; left: 0; right: 0; top: 560px; bottom: 0; overflow: hidden; }
       .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
       .tile { position: relative; aspect-ratio: 1 / 1; overflow: hidden; background: #ddd; }
       .tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
       .zoomtile { position: absolute; left: 110px; top: 330px; width: 860px; height: 860px; border-radius: 40px; overflow: hidden; border: 8px solid #3b2a3f; box-shadow: 0 30px 80px rgba(0,0,0,.35); }
       .zoomtile img { width: 100%; height: 100%; object-fit: cover; display: block; }
-      .bigheart { position: absolute; width: 360px; height: 330px; left: 360px; top: 760px; opacity: 0; filter: drop-shadow(0 10px 30px rgba(0,0,0,.35)); }
+      .bigheart { position: absolute; width: 360px; height: 330px; left: 360px; top: 1369px; opacity: 0; filter: drop-shadow(0 10px 30px rgba(0,0,0,.35)); }
       .bigheart svg { width: 100%; height: 100%; }
       .ripple { position: absolute; width: 120px; height: 120px; border-radius: 50%; border: 8px solid rgba(61,139,253,.9); opacity: 0; }
       /* end card */
       .end-bg { position: absolute; inset: 0; background: linear-gradient(180deg, #fde3ee, #e3d4fb); }
-      .end-box { position: absolute; left: 0; right: 0; top: 560px; display: flex; flex-direction: column; align-items: center; gap: 24px; text-align: center; color: #3b2a3f; }
-      .end-logo { font-family: "Caveat", cursive; font-weight: 700; font-size: 250px; line-height: .9; color: #2b2340; }
+      .end-box { position: absolute; left: 0; right: 0; top: 380px; display: flex; flex-direction: column; align-items: center; gap: 24px; text-align: center; color: #3b2a3f; }
+      .end-logo { width: 440px; height: 440px; border-radius: 50%; overflow: hidden; background: #fff; border: 8px solid #3b2a3f; box-shadow: 0 12px 0 #3b2a3f; }
+      .end-logo img { width: 100%; height: 100%; display: block; }
       .end-sub { font-weight: 500; font-size: 50px; }
       .end-ig { font-weight: 800; font-size: 58px; background: #fff; border: 6px solid #3b2a3f; border-radius: 999px; padding: 14px 40px 18px; box-shadow: 0 8px 0 #3b2a3f; }
       .end-wa { display: flex; align-items: center; gap: 20px; background: #1f9e55; color: #fff; font-weight: 800; font-size: 70px; padding: 18px 46px 22px 34px; border-radius: 999px; border: 6px solid #3b2a3f; box-shadow: 0 8px 0 #3b2a3f; }
@@ -218,15 +230,17 @@
       <div id="s2" class="scene clip" data-start="3" data-duration="5" data-track-index="0">
         <div class="room"></div>
         <div class="phone" id="p1">
-      <div class="screen">
-        <div class="statusbar"><span>9:41</span><span class="sb-icons"><i></i><i></i><i></i></span></div>
-        <div class="ig-head"><span class="ig-user">renzi.librosusados</span><span class="chev">⌄</span></div>
-        <div class="ig-profile">
-          <div class="ring"><div class="avatar">Renzi</div></div>
-          <div class="ig-bio"><b>Renzi</b><span>Libros usados y cuadernos</span><span>hechos a mano, con amor</span></div>
+      <div class="screen dark">
+        <div class="feed" id="p1-grid">
+          <div class="crop-wrap">
+            <div class="crop" style="height:736.8px"><img src="assets/img/ig_perfil.jpg" style="margin-top:0.0px" alt=""/></div>
+            <div class="cover" style="left:11.0px;top:230.1px;width:219.1px;height:246.5px"></div>
+            <div class="ig-avatar" style="left:17.8px;top:264.3px;width:205.4px;height:205.4px"><img src="assets/img/logo_renzi.png" alt=""/></div>
+          </div>
+          <div class="vbtns"><span class="vb follow">Seguir</span><span class="vb" id="p1-msg">Mensaje</span><span class="vb">Contacto</span></div>
+          <div class="crop" style="height:328.7px"><img src="assets/img/ig_perfil.jpg" style="margin-top:-1024.4px" alt=""/></div>
+          <div class="crop" style="height:1265.4px"><img src="assets/img/ig_grilla.jpg" style="margin-top:-309.5px" alt=""/></div>
         </div>
-        <div class="ig-btns"><span class="btn follow">Seguir</span><span class="btn msg" id="p1-msg">Mensaje</span></div>
-        <div class="grid-wrap"><div class="grid" id="p1-grid"><div class="tile" id="p1-tile0"><img src="assets/img/t1_pila.jpg" alt=""/></div><div class="tile" id="p1-tile1"><img src="assets/img/t2_jirafa.jpg" alt=""/></div><div class="tile" id="p1-tile2"><img src="assets/img/t3_floral.jpg" alt=""/></div><div class="tile" id="p1-tile3"><img src="assets/img/t4_cosiendo.jpg" alt=""/></div><div class="tile" id="p1-tile4"><img src="assets/img/t10_paquete.jpg" alt=""/></div><div class="tile" id="p1-tile5"><img src="assets/img/t6_corte.jpg" alt=""/></div><div class="tile" id="p1-tile6"><img src="assets/img/t7_pagina.jpg" alt=""/></div><div class="tile" id="p1-tile7"><img src="assets/img/t8_sonrisa.jpg" alt=""/></div><div class="tile" id="p1-tile8"><img src="assets/img/t5_mama.jpg" alt=""/></div><div class="tile" id="p1-tile9"><img src="assets/img/t9_tapa.jpg" alt=""/></div><div class="tile" id="p1-tile10"><img src="assets/img/t3_floral.jpg" alt=""/></div><div class="tile" id="p1-tile11"><img src="assets/img/t10_paquete.jpg" alt=""/></div><div class="tile" id="p1-tile12"><img src="assets/img/t6_corte.jpg" alt=""/></div><div class="tile" id="p1-tile13"><img src="assets/img/t1_pila.jpg" alt=""/></div><div class="tile" id="p1-tile14"><img src="assets/img/t7_pagina.jpg" alt=""/></div><div class="tile" id="p1-tile15"><img src="assets/img/t2_jirafa.jpg" alt=""/></div><div class="tile" id="p1-tile16"><img src="assets/img/t4_cosiendo.jpg" alt=""/></div><div class="tile" id="p1-tile17"><img src="assets/img/t8_sonrisa.jpg" alt=""/></div></div></div>
       </div>
     </div>
         <div class="eh" id="eh"><span class="es" style="font-size:150px">¿EH?</span></div>
@@ -371,20 +385,22 @@
       <div id="s5a" class="scene clip" data-start="15" data-duration="1.6" data-track-index="0">
         <div class="room"></div>
         <div class="phone" id="p2">
-      <div class="screen">
-        <div class="statusbar"><span>9:41</span><span class="sb-icons"><i></i><i></i><i></i></span></div>
-        <div class="ig-head"><span class="ig-user">renzi.librosusados</span><span class="chev">⌄</span></div>
-        <div class="ig-profile">
-          <div class="ring"><div class="avatar">Renzi</div></div>
-          <div class="ig-bio"><b>Renzi</b><span>Libros usados y cuadernos</span><span>hechos a mano, con amor</span></div>
+      <div class="screen dark">
+        <div class="feed" id="p2-grid">
+          <div class="crop-wrap">
+            <div class="crop" style="height:736.8px"><img src="assets/img/ig_perfil.jpg" style="margin-top:0.0px" alt=""/></div>
+            <div class="cover" style="left:11.0px;top:230.1px;width:219.1px;height:246.5px"></div>
+            <div class="ig-avatar" style="left:17.8px;top:264.3px;width:205.4px;height:205.4px"><img src="assets/img/logo_renzi.png" alt=""/></div>
+          </div>
+          <div class="vbtns"><span class="vb follow">Seguir</span><span class="vb" id="p2-msg">Mensaje</span><span class="vb">Contacto</span></div>
+          <div class="crop" style="height:328.7px"><img src="assets/img/ig_perfil.jpg" style="margin-top:-1024.4px" alt=""/></div>
+          <div class="crop" style="height:1265.4px"><img src="assets/img/ig_grilla.jpg" style="margin-top:-309.5px" alt=""/></div>
         </div>
-        <div class="ig-btns"><span class="btn follow">Seguir</span><span class="btn msg" id="p2-msg">Mensaje</span></div>
-        <div class="grid-wrap"><div class="grid" id="p2-grid"><div class="tile" id="p2-tile0"><img src="assets/img/t1_pila.jpg" alt=""/></div><div class="tile" id="p2-tile1"><img src="assets/img/t2_jirafa.jpg" alt=""/></div><div class="tile" id="p2-tile2"><img src="assets/img/t3_floral.jpg" alt=""/></div><div class="tile" id="p2-tile3"><img src="assets/img/t4_cosiendo.jpg" alt=""/></div><div class="tile" id="p2-tile4"><img src="assets/img/t10_paquete.jpg" alt=""/></div><div class="tile" id="p2-tile5"><img src="assets/img/t6_corte.jpg" alt=""/></div><div class="tile" id="p2-tile6"><img src="assets/img/t7_pagina.jpg" alt=""/></div><div class="tile" id="p2-tile7"><img src="assets/img/t8_sonrisa.jpg" alt=""/></div><div class="tile" id="p2-tile8"><img src="assets/img/t5_mama.jpg" alt=""/></div><div class="tile" id="p2-tile9"><img src="assets/img/t9_tapa.jpg" alt=""/></div><div class="tile" id="p2-tile10"><img src="assets/img/t3_floral.jpg" alt=""/></div><div class="tile" id="p2-tile11"><img src="assets/img/t10_paquete.jpg" alt=""/></div><div class="tile" id="p2-tile12"><img src="assets/img/t6_corte.jpg" alt=""/></div><div class="tile" id="p2-tile13"><img src="assets/img/t1_pila.jpg" alt=""/></div><div class="tile" id="p2-tile14"><img src="assets/img/t7_pagina.jpg" alt=""/></div><div class="tile" id="p2-tile15"><img src="assets/img/t2_jirafa.jpg" alt=""/></div><div class="tile" id="p2-tile16"><img src="assets/img/t4_cosiendo.jpg" alt=""/></div><div class="tile" id="p2-tile17"><img src="assets/img/t8_sonrisa.jpg" alt=""/></div></div></div>
       </div>
     </div>
         <div class="bigheart" id="bigheart"><svg viewBox="0 0 100 90"><path d="M50,85 C20,60 0,42 0,24 C0,10 12,0 26,0 C38,0 46,8 50,16 C54,8 62,0 74,0 C88,0 100,10 100,24 C100,42 80,60 50,85 Z" fill="#ff4d7d" stroke="#fff" stroke-width="5"/></svg></div>
-        <div class="ripple" id="rip1" style="left:470px;top:250px"></div>
-        <div class="ripple" id="rip2" style="left:640px;top:610px"></div>
+        <div class="ripple" id="rip1" style="left:480px;top:1474px"></div>
+        <div class="ripple" id="rip2" style="left:480px;top:906px"></div>
       </div>
 
       <!-- S5b 16.6-18.6: yatta! -->
@@ -508,16 +524,17 @@
       <circle cx="110" cy="318" r="34" fill="#ffe6d6" stroke="#3b2a3f" stroke-width="4"/><circle cx="490" cy="318" r="34" fill="#ffe6d6" stroke="#3b2a3f" stroke-width="4"/>
     </g></svg></div>
         </div>
+        <div id="confetti" style="position:absolute;inset:0"><div class="conf" style="left:631px;top:-80px;width:24px;height:31px;background:#ff6f91"></div><div class="conf" style="left:384px;top:-80px;width:21px;height:29px;background:#6fb7ff"></div><div class="conf" style="left:128px;top:-80px;width:25px;height:27px;background:#6fb7ff"></div><div class="conf" style="left:421px;top:-80px;width:23px;height:43px;background:#c48ad8"></div><div class="conf" style="left:643px;top:-80px;width:23px;height:44px;background:#c48ad8"></div><div class="conf" style="left:740px;top:-80px;width:20px;height:33px;background:#ffd84d"></div><div class="conf" style="left:499px;top:-80px;width:17px;height:44px;background:#7fd1c7"></div><div class="conf" style="left:1013px;top:-80px;width:30px;height:36px;background:#ff9f43"></div><div class="conf" style="left:919px;top:-80px;width:20px;height:45px;background:#ff6f91"></div><div class="conf" style="left:241px;top:-80px;width:24px;height:39px;background:#ffd84d"></div><div class="conf" style="left:700px;top:-80px;width:18px;height:41px;background:#c48ad8"></div><div class="conf" style="left:80px;top:-80px;width:26px;height:28px;background:#6fb7ff"></div><div class="conf" style="left:642px;top:-80px;width:21px;height:37px;background:#6fb7ff"></div><div class="conf" style="left:1017px;top:-80px;width:25px;height:40px;background:#ff6f91"></div><div class="conf" style="left:191px;top:-80px;width:20px;height:41px;background:#ff9f43"></div><div class="conf" style="left:133px;top:-80px;width:16px;height:35px;background:#ff9f43"></div><div class="conf" style="left:912px;top:-80px;width:20px;height:38px;background:#ff9f43"></div><div class="conf" style="left:710px;top:-80px;width:16px;height:40px;background:#7fd1c7"></div><div class="conf" style="left:344px;top:-80px;width:25px;height:29px;background:#c48ad8"></div><div class="conf" style="left:120px;top:-80px;width:19px;height:35px;background:#ffd84d"></div><div class="conf" style="left:507px;top:-80px;width:22px;height:38px;background:#c48ad8"></div><div class="conf" style="left:165px;top:-80px;width:18px;height:40px;background:#c48ad8"></div><div class="conf" style="left:569px;top:-80px;width:30px;height:30px;background:#c48ad8"></div><div class="conf" style="left:570px;top:-80px;width:27px;height:39px;background:#7fd1c7"></div><div class="conf" style="left:779px;top:-80px;width:19px;height:30px;background:#ff6f91"></div><div class="conf" style="left:360px;top:-80px;width:18px;height:33px;background:#ff9f43"></div><div class="conf" style="left:477px;top:-80px;width:16px;height:41px;background:#6fb7ff"></div><div class="conf" style="left:373px;top:-80px;width:20px;height:35px;background:#ff6f91"></div><div class="conf" style="left:298px;top:-80px;width:22px;height:43px;background:#7fd1c7"></div><div class="conf" style="left:652px;top:-80px;width:18px;height:42px;background:#6fb7ff"></div><div class="conf" style="left:110px;top:-80px;width:23px;height:43px;background:#c48ad8"></div><div class="conf" style="left:815px;top:-80px;width:22px;height:38px;background:#ff6f91"></div><div class="conf" style="left:986px;top:-80px;width:26px;height:38px;background:#ff6f91"></div><div class="conf" style="left:390px;top:-80px;width:17px;height:32px;background:#c48ad8"></div><div class="conf" style="left:332px;top:-80px;width:17px;height:36px;background:#6fb7ff"></div><div class="conf" style="left:107px;top:-80px;width:17px;height:26px;background:#6fb7ff"></div><div class="conf" style="left:309px;top:-80px;width:24px;height:29px;background:#7fd1c7"></div><div class="conf" style="left:52px;top:-80px;width:17px;height:32px;background:#6fb7ff"></div><div class="conf" style="left:770px;top:-80px;width:18px;height:46px;background:#7fd1c7"></div><div class="conf" style="left:711px;top:-80px;width:25px;height:37px;background:#c48ad8"></div><div class="conf" style="left:251px;top:-80px;width:17px;height:41px;background:#c48ad8"></div><div class="conf" style="left:983px;top:-80px;width:23px;height:35px;background:#ff6f91"></div><div class="conf" style="left:295px;top:-80px;width:17px;height:36px;background:#ff9f43"></div><div class="conf" style="left:542px;top:-80px;width:23px;height:31px;background:#6fb7ff"></div><div class="conf" style="left:47px;top:-80px;width:19px;height:42px;background:#7fd1c7"></div><div class="conf" style="left:300px;top:-80px;width:27px;height:43px;background:#ff6f91"></div></div>
         <div class="burst"><span class="es es2">¡BIEEEN!</span></div>
         <div class="bubble" id="s5-bub">¡Ya le escribimos a Renzi!</div>
-        <div id="confetti" style="position:absolute;inset:0"><div class="conf" style="left:631px;top:-80px;width:24px;height:31px;background:#ff6f91"></div><div class="conf" style="left:384px;top:-80px;width:21px;height:29px;background:#6fb7ff"></div><div class="conf" style="left:128px;top:-80px;width:25px;height:27px;background:#6fb7ff"></div><div class="conf" style="left:421px;top:-80px;width:23px;height:43px;background:#c48ad8"></div><div class="conf" style="left:643px;top:-80px;width:23px;height:44px;background:#c48ad8"></div><div class="conf" style="left:740px;top:-80px;width:20px;height:33px;background:#ffd84d"></div><div class="conf" style="left:499px;top:-80px;width:17px;height:44px;background:#7fd1c7"></div><div class="conf" style="left:1013px;top:-80px;width:30px;height:36px;background:#ff9f43"></div><div class="conf" style="left:919px;top:-80px;width:20px;height:45px;background:#ff6f91"></div><div class="conf" style="left:241px;top:-80px;width:24px;height:39px;background:#ffd84d"></div><div class="conf" style="left:700px;top:-80px;width:18px;height:41px;background:#c48ad8"></div><div class="conf" style="left:80px;top:-80px;width:26px;height:28px;background:#6fb7ff"></div><div class="conf" style="left:642px;top:-80px;width:21px;height:37px;background:#6fb7ff"></div><div class="conf" style="left:1017px;top:-80px;width:25px;height:40px;background:#ff6f91"></div><div class="conf" style="left:191px;top:-80px;width:20px;height:41px;background:#ff9f43"></div><div class="conf" style="left:133px;top:-80px;width:16px;height:35px;background:#ff9f43"></div><div class="conf" style="left:912px;top:-80px;width:20px;height:38px;background:#ff9f43"></div><div class="conf" style="left:710px;top:-80px;width:16px;height:40px;background:#7fd1c7"></div><div class="conf" style="left:344px;top:-80px;width:25px;height:29px;background:#c48ad8"></div><div class="conf" style="left:120px;top:-80px;width:19px;height:35px;background:#ffd84d"></div><div class="conf" style="left:507px;top:-80px;width:22px;height:38px;background:#c48ad8"></div><div class="conf" style="left:165px;top:-80px;width:18px;height:40px;background:#c48ad8"></div><div class="conf" style="left:569px;top:-80px;width:30px;height:30px;background:#c48ad8"></div><div class="conf" style="left:570px;top:-80px;width:27px;height:39px;background:#7fd1c7"></div><div class="conf" style="left:779px;top:-80px;width:19px;height:30px;background:#ff6f91"></div><div class="conf" style="left:360px;top:-80px;width:18px;height:33px;background:#ff9f43"></div><div class="conf" style="left:477px;top:-80px;width:16px;height:41px;background:#6fb7ff"></div><div class="conf" style="left:373px;top:-80px;width:20px;height:35px;background:#ff6f91"></div><div class="conf" style="left:298px;top:-80px;width:22px;height:43px;background:#7fd1c7"></div><div class="conf" style="left:652px;top:-80px;width:18px;height:42px;background:#6fb7ff"></div><div class="conf" style="left:110px;top:-80px;width:23px;height:43px;background:#c48ad8"></div><div class="conf" style="left:815px;top:-80px;width:22px;height:38px;background:#ff6f91"></div><div class="conf" style="left:986px;top:-80px;width:26px;height:38px;background:#ff6f91"></div><div class="conf" style="left:390px;top:-80px;width:17px;height:32px;background:#c48ad8"></div><div class="conf" style="left:332px;top:-80px;width:17px;height:36px;background:#6fb7ff"></div><div class="conf" style="left:107px;top:-80px;width:17px;height:26px;background:#6fb7ff"></div><div class="conf" style="left:309px;top:-80px;width:24px;height:29px;background:#7fd1c7"></div><div class="conf" style="left:52px;top:-80px;width:17px;height:32px;background:#6fb7ff"></div><div class="conf" style="left:770px;top:-80px;width:18px;height:46px;background:#7fd1c7"></div><div class="conf" style="left:711px;top:-80px;width:25px;height:37px;background:#c48ad8"></div><div class="conf" style="left:251px;top:-80px;width:17px;height:41px;background:#c48ad8"></div><div class="conf" style="left:983px;top:-80px;width:23px;height:35px;background:#ff6f91"></div><div class="conf" style="left:295px;top:-80px;width:17px;height:36px;background:#ff9f43"></div><div class="conf" style="left:542px;top:-80px;width:23px;height:31px;background:#6fb7ff"></div><div class="conf" style="left:47px;top:-80px;width:19px;height:42px;background:#7fd1c7"></div><div class="conf" style="left:300px;top:-80px;width:27px;height:43px;background:#ff6f91"></div></div>
+
       </div>
 
       <!-- S6 18.6-21: end card -->
       <div id="s6" class="scene clip" data-start="18.6" data-duration="3.4" data-track-index="0">
         <div class="end-bg"></div>
         <div class="end-box">
-          <div class="end-logo">Renzi</div>
+          <div class="end-logo"><img src="assets/img/logo_renzi.png" alt="Renzi" /></div>
           <div class="end-sub">libros usados y cuadernos hechos a mano</div>
           <div class="end-ig">@renzi.librosusados</div>
           <div class="end-wa"><svg class="wa-ico" viewBox="0 0 32 32" aria-hidden="true"><path fill="#fff" d="M16 3C8.8 3 3 8.6 3 15.6c0 2.5.7 4.8 2 6.8L3.6 29l6.8-1.8c1.7.9 3.6 1.4 5.6 1.4 7.2 0 13-5.6 13-12.6S23.2 3 16 3zm0 23c-1.8 0-3.5-.5-5-1.3l-.4-.2-4 1 1.1-3.8-.3-.4c-1-1.6-1.6-3.5-1.6-5.5C5.8 10.2 10.4 5.7 16 5.7s10.2 4.5 10.2 10S21.6 26 16 26zm5.6-7.5c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6l-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.2 1.4 3.4c.2.2 2.4 3.6 5.8 5 .8.3 1.4.5 1.9.7.8.2 1.5.2 2.1.1.6-.1 1.8-.7 2.1-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.4z"/></svg><span>221 591-8671</span></div>
@@ -563,8 +580,7 @@
 
       // ---------- S2 phone: pop in + scroll the grid
       tl.fromTo("#p1", { scale: 0.85, y: 120, opacity: 0 }, { scale: 1, y: 0, opacity: 1, duration: 0.45, ease: "back.out(1.5)" }, 3.0);
-      tl.fromTo("#p1-grid", { y: 0 }, { y: -560, duration: 3.6, ease: "power1.inOut" }, 3.7);
-      tl.fromTo("#p1-tile1", { scale: 1 }, { scale: 1.06, duration: 0.3, yoyo: true, repeat: 1 }, 7.2);
+      tl.fromTo("#p1-grid", { y: 0 }, { y: -830, duration: 3.4, ease: "power1.inOut" }, 3.8);
       tl.fromTo("#eh", { scale: 0.2, opacity: 0, rotation: -15 }, { scale: 1, opacity: 1, rotation: 6, duration: 0.3, ease: "back.out(3)" }, 7.3);
 
       // ---------- S3 Hana: normal -> star eyes
@@ -601,7 +617,7 @@
       tl.to(".kc-all", { rotation: 3, transformOrigin: "50% 100%", duration: 0.3, yoyo: true, repeat: 4, ease: "sine.inOut" }, 13.2);
 
       // ---------- S5a like + message
-      tl.set("#p2-grid", { y: -560 }, 15.0);
+      tl.set("#p2-grid", { y: 0 }, 15.0);
       tl.fromTo("#p2", { scale: 1.04 }, { scale: 1, duration: 0.3, ease: "power2.out" }, 15.0);
       tl.fromTo("#rip1", { scale: 0.3, opacity: 1 }, { scale: 1.6, opacity: 0, duration: 0.35 }, 15.25);
       tl.set("#rip1", { x: 0 }, 15.4);
@@ -609,7 +625,7 @@
       tl.to("#bigheart", { scale: 1, duration: 0.15 }, 15.7);
       tl.to("#bigheart", { opacity: 0, scale: 1.3, duration: 0.25 }, 15.95);
       tl.fromTo("#rip2", { scale: 0.3, opacity: 1 }, { scale: 1.8, opacity: 0, duration: 0.35 }, 16.15);
-      tl.to("#p2-msg", { backgroundColor: "#c9c9d3", duration: 0.08, yoyo: true, repeat: 1 }, 16.15);
+      tl.to("#p2-msg", { backgroundColor: "#4a4f5c", duration: 0.08, yoyo: true, repeat: 1 }, 16.15);
 
       // ---------- S5b yatta: jump + confetti
       ["hj", "kj"].forEach((p) => { hide(`.${p}-eyes-n`, 16.6); show(`.${p}-eyes-happy`, 16.6); hide(`.${p}-m-flat`, 16.6); show(`.${p}-m-big`, 16.6); show(`.${p}-blush`, 16.6); });

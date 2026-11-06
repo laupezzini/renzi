@@ -24,14 +24,14 @@
       .ital { font-family: "Playfair Display", serif; font-style: italic; font-weight: 500; color: #5b4a45; }
       .pill { display: inline-block; border-radius: 999px; padding: 14px 34px 16px; font-weight: 800; font-size: 34px; }
       .kicker { position: absolute; left: 0; right: 0; top: 250px; text-align: center; color: #5b4a45; font-weight: 500; font-size: 32px; letter-spacing: 6px; text-transform: uppercase; }
-      .frame { position: absolute; left: 235px; top: 300px; width: 610px; height: 880px; background: #fff; border-radius: 26px; padding: 14px; box-shadow: 0 30px 60px rgba(90, 60, 40, .18), 0 4px 10px rgba(90, 60, 40, .08); }
+      .frame { position: absolute; left: 290px; top: 285px; width: 500px; height: 715px; background: #fff; border-radius: 26px; padding: 14px; box-shadow: 0 30px 60px rgba(90, 60, 40, .18), 0 4px 10px rgba(90, 60, 40, .08); }
       .frame-in { width: 100%; height: 100%; border-radius: 16px; overflow: hidden; }
       .frame-in { position: relative; background: #fff; }
       .frame-in img { width: 100%; height: 100%; object-fit: contain; display: block; }
       .stitch { position: absolute; left: -2px; top: 40px; bottom: 40px; width: 5px; border-radius: 3px; background: repeating-linear-gradient(180deg, #b98b6e 0 22px, transparent 22px 40px); }
       .spine { position: absolute; left: -16px; top: 0; bottom: 0; width: 16px; border-radius: 16px 0 0 16px; background: linear-gradient(90deg, #e9dccb, #f6eee3); }
-      .iname { position: absolute; left: 0; right: 0; top: 1225px; text-align: center; font-family: "Dancing Script", cursive; font-weight: 700; color: #d6456b; font-size: 170px; line-height: 1; }
-      .idesc { position: absolute; left: 90px; right: 90px; top: 1430px; text-wrap: balance; text-align: center; font-family: "Playfair Display", serif; font-style: italic; font-weight: 500; color: #5b4a45; font-size: 52px; line-height: 1.25; }
+      .iname { position: absolute; left: 0; right: 0; top: 1015px; text-align: center; font-family: "Dancing Script", cursive; font-weight: 700; color: #d6456b; font-size: 140px; line-height: 1; }
+      .idesc { position: absolute; left: 140px; right: 140px; top: 1170px; text-wrap: balance; text-align: center; font-family: "Playfair Display", serif; font-style: italic; font-weight: 500; color: #5b4a45; font-size: 44px; line-height: 1.25; }
       .tapa { position: absolute; left: 230px; top: 280px; width: 620px; height: 860px; background: #fff; border-radius: 26px; padding: 14px; box-shadow: 0 30px 60px rgba(90, 60, 40, .2); transform: rotate(-2deg); }
       .tapa div { width: 100%; height: 100%; border-radius: 16px; overflow: hidden; }
       .tapa img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -39,7 +39,12 @@
       .opts .pill { background: #e3f1e6; color: #2f5d46; font-size: 32px; }
       .logo { width: 280px; height: 280px; border-radius: 50%; overflow: hidden; background: #fff; box-shadow: 0 16px 40px rgba(90, 60, 40, .18); }
       .logo img { width: 100%; height: 100%; display: block; }
-      .footer { position: absolute; left: 0; right: 0; bottom: 300px; height: 150px; background: #2f5d46; display: flex; align-items: center; justify-content: center; gap: 26px; color: #fff; }
+      .chars { position: absolute; inset: 0; pointer-events: none; }
+      .chr { position: absolute; display: block; }
+      .thought { position: absolute; left: 230px; top: 1255px; width: 620px; height: 260px; }
+      .thought .cloud { position: absolute; inset: 0; width: 620px; height: 260px; filter: drop-shadow(0 10px 18px rgba(90, 60, 40, .15)); }
+      .thought span { position: absolute; left: 80px; right: 80px; top: 44px; height: 120px; display: flex; align-items: center; justify-content: center; text-align: center; text-wrap: balance; font-family: "Playfair Display", serif; font-style: italic; font-weight: 500; font-size: 41px; line-height: 1.15; color: #5b4a45; }
+      .footer { position: absolute; left: 0; right: 0; bottom: 240px; height: 150px; background: #2f5d46; display: flex; align-items: center; justify-content: center; gap: 26px; color: #fff; }
       .footer .wa { display: flex; align-items: center; gap: 16px; font-weight: 800; font-size: 54px; }
       .footer .ig { font-weight: 500; font-size: 36px; opacity: .9; }
       .footer .sep { width: 2px; height: 70px; background: rgba(255,255,255,.4); }
@@ -86,25 +91,35 @@
         <div class="frame" id="i1-f"><div class="spine"></div><div class="frame-in"><img id="i1-img" src="assets/img/pag_clasica.jpg" alt=""/></div><div class="stitch"></div></div>
         <div class="iname" id="i1-n">Clásica</div>
         <div class="idesc" id="i1-d">un día por página, renglones y notas</div>
+        <div class="thought" id="i1-t"><svg viewBox="0 0 620 260" class="cloud"><path d="M90,120 C40,120 30,60 85,52 C90,15 150,5 180,30 C210,0 280,0 300,28 C330,0 400,5 415,35 C460,15 530,30 525,70 C580,80 585,140 530,148 C540,185 480,200 450,180 C420,205 360,205 340,182 C310,205 240,205 215,180 C180,200 120,190 125,160 C80,165 60,135 90,120 Z" fill="#fff" stroke="#e3d3c3" stroke-width="4"/><circle cx="190" cy="218" r="16" fill="#fff" stroke="#e3d3c3" stroke-width="3"/><circle cx="150" cy="244" r="10" fill="#fff" stroke="#e3d3c3" stroke-width="3"/></svg><span>renglones para escribir todo… me gusta</span></div>
       </div>
       <div id="i2" class="scene clip" data-start="6.2" data-duration="3.0" data-track-index="1">
         <div class="kicker" id="i2-k">Interior n.º 2</div>
         <div class="frame" id="i2-f"><div class="spine"></div><div class="frame-in"><img id="i2-img" src="assets/img/pag_botanica.jpg" alt=""/></div><div class="stitch"></div></div>
         <div class="iname" id="i2-n">Botánica</div>
         <div class="idesc" id="i2-d">horarios, puntitos y un toque de hojas</div>
+        <div class="thought" id="i2-t"><svg viewBox="0 0 620 260" class="cloud"><path d="M90,120 C40,120 30,60 85,52 C90,15 150,5 180,30 C210,0 280,0 300,28 C330,0 400,5 415,35 C460,15 530,30 525,70 C580,80 585,140 530,148 C540,185 480,200 450,180 C420,205 360,205 340,182 C310,205 240,205 215,180 C180,200 120,190 125,160 C80,165 60,135 90,120 Z" fill="#fff" stroke="#e3d3c3" stroke-width="4"/><circle cx="430" cy="218" r="16" fill="#fff" stroke="#e3d3c3" stroke-width="3"/><circle cx="470" cy="244" r="10" fill="#fff" stroke="#e3d3c3" stroke-width="3"/></svg><span>¡esa tiene hojitas!</span></div>
       </div>
       <div id="i3" class="scene clip" data-start="9.2" data-duration="3.0" data-track-index="1">
         <div class="kicker" id="i3-k">Interior n.º 3</div>
         <div class="frame" id="i3-f"><div class="spine"></div><div class="frame-in"><img id="i3-img" src="assets/img/pag_minimal.jpg" alt=""/></div><div class="stitch"></div></div>
         <div class="iname" id="i3-n">Minimal</div>
-        <div class="idesc" id="i3-d">horarios de 8 a 21 y lo importante a mano</div>
+        <div class="idesc" id="i3-d">horarios de 8 a 21 y lo importante</div>
+        <div class="thought" id="i3-t"><svg viewBox="0 0 620 260" class="cloud"><path d="M90,120 C40,120 30,60 85,52 C90,15 150,5 180,30 C210,0 280,0 300,28 C330,0 400,5 415,35 C460,15 530,30 525,70 C580,80 585,140 530,148 C540,185 480,200 450,180 C420,205 360,205 340,182 C310,205 240,205 215,180 C180,200 120,190 125,160 C80,165 60,135 90,120 Z" fill="#fff" stroke="#e3d3c3" stroke-width="4"/><circle cx="190" cy="218" r="16" fill="#fff" stroke="#e3d3c3" stroke-width="3"/><circle cx="150" cy="244" r="10" fill="#fff" stroke="#e3d3c3" stroke-width="3"/></svg><span>¿o la Minimal, con horarios…?</span></div>
       </div>
       <div id="i4" class="scene clip" data-start="12.2" data-duration="3.0" data-track-index="1">
         <div class="kicker" id="i4-k">Interior n.º 4</div>
         <div class="frame" id="i4-f"><div class="spine"></div><div class="frame-in"><img id="i4-img" src="assets/img/pag_estrellas.jpg" alt=""/></div><div class="stitch"></div></div>
         <div class="iname" id="i4-n">Estrellas</div>
-        <div class="idesc" id="i4-d">notas, prioridades y una lluvia de estrellas</div>
+        <div class="idesc" id="i4-d">notas y una lluvia de estrellas</div>
+        <div class="thought" id="i4-t"><svg viewBox="0 0 620 260" class="cloud"><path d="M90,120 C40,120 30,60 85,52 C90,15 150,5 180,30 C210,0 280,0 300,28 C330,0 400,5 415,35 C460,15 530,30 525,70 C580,80 585,140 530,148 C540,185 480,200 450,180 C420,205 360,205 340,182 C310,205 240,205 215,180 C180,200 120,190 125,160 C80,165 60,135 90,120 Z" fill="#fff" stroke="#e3d3c3" stroke-width="4"/><circle cx="430" cy="218" r="16" fill="#fff" stroke="#e3d3c3" stroke-width="3"/><circle cx="470" cy="244" r="10" fill="#fff" stroke="#e3d3c3" stroke-width="3"/></svg><span>¡yo quiero la de estrellas!</span></div>
       </div>
+
+      <div id="chars" class="scene clip" data-start="1.6" data-duration="13.6" data-track-index="2">
+        <img id="ch-ella" class="chr" src="assets/img/ella_sorpresa.png" style="left:-10px;top:1480px;width:430px" alt="" />
+        <img id="ch-el" class="chr" src="assets/img/el_enamorado.png" style="left:670px;top:1480px;width:430px" alt="" />
+      </div>
+      <div id="intro-t" class="scene clip" data-start="1.8" data-duration="1.4" data-track-index="3"><div class="thought" id="t0"><svg viewBox="0 0 620 260" class="cloud"><path d="M90,120 C40,120 30,60 85,52 C90,15 150,5 180,30 C210,0 280,0 300,28 C330,0 400,5 415,35 C460,15 530,30 525,70 C580,80 585,140 530,148 C540,185 480,200 450,180 C420,205 360,205 340,182 C310,205 240,205 215,180 C180,200 120,190 125,160 C80,165 60,135 90,120 Z" fill="#fff" stroke="#e3d3c3" stroke-width="4"/><circle cx="210" cy="218" r="14" fill="#fff" stroke="#e3d3c3" stroke-width="3"/><circle cx="180" cy="244" r="9" fill="#fff" stroke="#e3d3c3" stroke-width="3"/><circle cx="410" cy="218" r="14" fill="#fff" stroke="#e3d3c3" stroke-width="3"/><circle cx="440" cy="244" r="9" fill="#fff" stroke="#e3d3c3" stroke-width="3"/></svg><span>¿cuál elegimos…?</span></div></div>
 
       <!-- S3 15.2-18.6 the handmade cover -->
       <div id="s3" class="scene clip" data-start="15.2" data-duration="3.4" data-track-index="1">
@@ -124,6 +139,7 @@
           <div class="script" id="e3" style="font-size:110px;margin-top:10px">encargá la tuya</div>
           <div class="pill" id="e4" style="background:#fbe1e8;color:#d6456b;margin-top:36px">hechas a mano en Renzi</div>
         </div>
+        <img id="e-jump" class="chr" src="assets/img/saltando.png" style="left:330px;top:1060px;width:420px" alt="" />
         <div class="footer" id="e5"><span class="wa"><svg class="wa-ico" viewBox="0 0 32 32" aria-hidden="true"><path fill="#fff" d="M16 3C8.8 3 3 8.6 3 15.6c0 2.5.7 4.8 2 6.8L3.6 29l6.8-1.8c1.7.9 3.6 1.4 5.6 1.4 7.2 0 13-5.6 13-12.6S23.2 3 16 3zm0 23c-1.8 0-3.5-.5-5-1.3l-.4-.2-4 1 1.1-3.8-.3-.4c-1-1.6-1.6-3.5-1.6-5.5C5.8 10.2 10.4 5.7 16 5.7s10.2 4.5 10.2 10S21.6 26 16 26zm5.6-7.5c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6l-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.2 1.4 3.4c.2.2 2.4 3.6 5.8 5 .8.3 1.4.5 1.9.7.8.2 1.5.2 2.1.1.6-.1 1.8-.7 2.1-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.4z"/></svg>221 577-0018</span><span class="sep"></span><span class="ig">@renzi.librosusados</span></div>
       </div>
 
@@ -147,6 +163,13 @@
       tl.fromTo(".h1", { opacity: 0, y: 20 }, { opacity: 0.9, y: -20, duration: 1.6, stagger: 0.25, ease: "sine.out" }, 0.9);
       tl.to(["#t1", "#t2", "#t3", "#t4", ".h1"], { opacity: 0, duration: 0.35, ease: "power1.in" }, 2.85);
 
+      // characters peek up, idle bob, intro thought, leave before the cover
+      tl.fromTo("#ch-ella", { y: 600 }, { y: 0, duration: 0.6, ease: "back.out(1.4)" }, 1.6);
+      tl.fromTo("#ch-el", { y: 600 }, { y: 0, duration: 0.6, ease: "back.out(1.4)" }, 1.75);
+      tl.fromTo("#t0", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, transformOrigin: "50% 100%", duration: 0.45, ease: "back.out(1.8)" }, 2.0);
+      tl.to("#t0", { opacity: 0, duration: 0.3 }, 2.85);
+      tl.to(["#ch-ella", "#ch-el"], { y: 600, duration: 0.45, ease: "power2.in" }, 14.7);
+
       // S2 interiors
       
       tl.fromTo("#i1-k", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 3.25);
@@ -154,25 +177,33 @@
       tl.fromTo("#i1-img", { scale: 1 }, { scale: 1.05, transformOrigin: "50% 30%", duration: 3.0, ease: "none" }, 3.2);
       tl.fromTo("#i1-n", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 3.5500000000000003);
       tl.fromTo("#i1-d", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.out" }, 3.8000000000000003);
-      tl.to(["#i1-k", "#i1-f", "#i1-n", "#i1-d"], { opacity: 0, duration: 0.35, ease: "power1.in" }, 5.8500000000000005);
+      tl.fromTo("#i1-t", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, transformOrigin: "25% 100%", duration: 0.45, ease: "back.out(1.8)" }, 3.95);
+      tl.fromTo("#ch-ella", { y: 0 }, { y: -26, duration: 0.22, yoyo: true, repeat: 1, ease: "sine.inOut" }, 3.95);
+      tl.to(["#i1-k", "#i1-f", "#i1-n", "#i1-d", "#i1-t"], { opacity: 0, duration: 0.35, ease: "power1.in" }, 5.8500000000000005);
       tl.fromTo("#i2-k", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 6.25);
       tl.fromTo("#i2-f", { opacity: 0, y: 40, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "power2.out" }, 6.2);
       tl.fromTo("#i2-img", { scale: 1 }, { scale: 1.05, transformOrigin: "50% 30%", duration: 3.0, ease: "none" }, 6.2);
       tl.fromTo("#i2-n", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 6.55);
       tl.fromTo("#i2-d", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.out" }, 6.8);
-      tl.to(["#i2-k", "#i2-f", "#i2-n", "#i2-d"], { opacity: 0, duration: 0.35, ease: "power1.in" }, 8.85);
+      tl.fromTo("#i2-t", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, transformOrigin: "75% 100%", duration: 0.45, ease: "back.out(1.8)" }, 6.95);
+      tl.fromTo("#ch-el", { y: 0 }, { y: -26, duration: 0.22, yoyo: true, repeat: 1, ease: "sine.inOut" }, 6.95);
+      tl.to(["#i2-k", "#i2-f", "#i2-n", "#i2-d", "#i2-t"], { opacity: 0, duration: 0.35, ease: "power1.in" }, 8.85);
       tl.fromTo("#i3-k", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 9.25);
       tl.fromTo("#i3-f", { opacity: 0, y: 40, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "power2.out" }, 9.2);
       tl.fromTo("#i3-img", { scale: 1 }, { scale: 1.05, transformOrigin: "50% 30%", duration: 3.0, ease: "none" }, 9.2);
       tl.fromTo("#i3-n", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 9.549999999999999);
       tl.fromTo("#i3-d", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.out" }, 9.799999999999999);
-      tl.to(["#i3-k", "#i3-f", "#i3-n", "#i3-d"], { opacity: 0, duration: 0.35, ease: "power1.in" }, 11.85);
+      tl.fromTo("#i3-t", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, transformOrigin: "25% 100%", duration: 0.45, ease: "back.out(1.8)" }, 9.95);
+      tl.fromTo("#ch-ella", { y: 0 }, { y: -26, duration: 0.22, yoyo: true, repeat: 1, ease: "sine.inOut" }, 9.95);
+      tl.to(["#i3-k", "#i3-f", "#i3-n", "#i3-d", "#i3-t"], { opacity: 0, duration: 0.35, ease: "power1.in" }, 11.85);
       tl.fromTo("#i4-k", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 12.25);
       tl.fromTo("#i4-f", { opacity: 0, y: 40, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "power2.out" }, 12.2);
       tl.fromTo("#i4-img", { scale: 1 }, { scale: 1.05, transformOrigin: "50% 30%", duration: 3.0, ease: "none" }, 12.2);
       tl.fromTo("#i4-n", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 12.549999999999999);
       tl.fromTo("#i4-d", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.out" }, 12.799999999999999);
-      tl.to(["#i4-k", "#i4-f", "#i4-n", "#i4-d"], { opacity: 0, duration: 0.35, ease: "power1.in" }, 14.85);
+      tl.fromTo("#i4-t", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, transformOrigin: "75% 100%", duration: 0.45, ease: "back.out(1.8)" }, 12.95);
+      tl.fromTo("#ch-el", { y: 0 }, { y: -26, duration: 0.22, yoyo: true, repeat: 1, ease: "sine.inOut" }, 12.95);
+      tl.to(["#i4-k", "#i4-f", "#i4-n", "#i4-d", "#i4-t"], { opacity: 0, duration: 0.35, ease: "power1.in" }, 14.85);
 
       // S3 cover
       tl.fromTo("#tapa", { opacity: 0, y: 40, rotation: -5 }, { opacity: 1, y: 0, rotation: -2, duration: 0.8, ease: "power2.out" }, 15.2);
@@ -187,7 +218,9 @@
       tl.fromTo("#e2", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 18.95);
       tl.fromTo("#e3", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 19.2);
       tl.fromTo("#e4", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 19.5);
-      tl.fromTo("#e5", { y: 220 }, { y: 0, duration: 0.7, ease: "power3.out" }, 19.6);
+      tl.fromTo("#e5", { y: 260 }, { y: 0, duration: 0.7, ease: "power3.out" }, 19.6);
+      tl.fromTo("#e-jump", { y: 500, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "back.out(1.6)" }, 19.3);
+      tl.to("#e-jump", { y: -40, duration: 0.3, yoyo: true, repeat: 5, ease: "power2.out" }, 19.8);
 
       window.__timelines["main"] = tl;
     </script>

@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "DM Sans"; src: url("assets/fonts/dmsans-500.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "DM Sans"; src: url("assets/fonts/dmsans-800.woff2") format("woff2"); font-weight: 800; }
+      @font-face { font-family: "Caveat"; src: url("assets/fonts/caveat-700.woff2") format("woff2"); font-weight: 700; }
+      @font-face { font-family: "Bangers"; src: url("assets/fonts/bangers.woff2") format("woff2"); }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #1b1626; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "DM Sans", sans-serif; }
+      .scene { position: absolute; inset: 0; overflow: hidden; }
+      .bg { position: absolute; inset: 0; }
+      .dots { position: absolute; inset: 0; background-size: 38px 38px; }
+      .rays { position: absolute; left: -600px; top: -500px; width: 2280px; height: 2900px; }
+      .char { position: absolute; display: block; }
+      .es { display: block; font-family: "Bangers", sans-serif; font-size: 150px; line-height: 1.1; letter-spacing: 4px; color: #fff; -webkit-text-stroke: 12px #2a2230; paint-order: stroke fill; text-shadow: 0 12px 0 #2a2230; text-align: center; }
+      .es2 { color: #ffd23f; }
+      .burst { position: absolute; left: 30px; right: 30px; top: 120px; }
+      .title-mini { position: absolute; left: 0; right: 0; top: 120px; text-align: center; font-family: "Bangers", sans-serif; font-size: 112px; letter-spacing: 3px; color: #fff; -webkit-text-stroke: 10px #2a2230; paint-order: stroke fill; text-shadow: 0 9px 0 #2a2230; }
+      .card { position: absolute; left: 80px; top: 330px; width: 920px; height: 785px; background: #fff; border: 8px solid #2a2230; border-radius: 40px; box-shadow: 0 16px 0 #2a2230; padding: 18px; }
+      .card-img { width: 100%; height: 100%; border-radius: 26px; overflow: hidden; }
+      .card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .num { position: absolute; left: -36px; top: -40px; width: 130px; height: 130px; border-radius: 50%; background: #ff4d7d; color: #fff; border: 8px solid #2a2230; display: flex; align-items: center; justify-content: center; font-family: "Bangers", sans-serif; font-size: 84px; box-shadow: 0 8px 0 #2a2230; }
+      .name { position: absolute; left: 60px; right: 60px; top: 1200px; display: flex; flex-direction: column; align-items: center; gap: 26px; }
+      .nm { display: block; background: #ffd23f; color: #2a2230; font-family: "Bangers", sans-serif; font-size: 150px; letter-spacing: 4px; line-height: 1; padding: 18px 56px 10px; border: 8px solid #2a2230; border-radius: 28px; box-shadow: 0 12px 0 #2a2230; }
+      .ln { display: block; background: #fff; color: #2a2230; font-weight: 800; font-size: 50px; line-height: 1.15; text-align: center; padding: 18px 34px 22px; border: 6px solid #2a2230; border-radius: 26px; max-width: 900px; }
+      .bubble { position: absolute; left: 70px; right: 70px; background: #fff; border: 7px solid #2a2230; border-radius: 56px; padding: 26px 36px 32px; text-align: center; font-weight: 800; font-size: 58px; line-height: 1.12; color: #2a2230; box-shadow: 0 12px 0 #2a2230; }
+      .spk, .heart { position: absolute; opacity: 0; }
+      .conf { position: absolute; border-radius: 4px; border: 3px solid #2a2230; }
+      .mini { position: absolute; width: 300px; height: 256px; border: 7px solid #2a2230; border-radius: 22px; overflow: hidden; background: #fff; box-shadow: 0 10px 0 #2a2230; }
+      .mini img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .tapa { position: absolute; left: 70px; top: 330px; width: 600px; height: 990px; border: 8px solid #2a2230; border-radius: 36px; overflow: hidden; box-shadow: 0 16px 0 #2a2230; background: #fff; }
+      .tapa img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .end-box { position: absolute; left: 0; right: 0; top: 140px; display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center; color: #2a2230; }
+      .end-logo { width: 300px; height: 300px; border-radius: 50%; overflow: hidden; background: #fff; border: 8px solid #2a2230; box-shadow: 0 12px 0 #2a2230; }
+      .end-logo img { width: 100%; height: 100%; display: block; }
+      .end-title { font-family: "Bangers", sans-serif; font-size: 150px; line-height: .95; color: #fff; -webkit-text-stroke: 11px #2a2230; paint-order: stroke fill; text-shadow: 0 10px 0 #2a2230; letter-spacing: 3px; margin-top: 8px; }
+      .end-sub { font-weight: 800; font-size: 46px; }
+      .end-ig { font-weight: 800; font-size: 54px; background: #fff; border: 6px solid #2a2230; border-radius: 999px; padding: 14px 38px 18px; box-shadow: 0 8px 0 #2a2230; }
+      .end-wa { display: flex; align-items: center; gap: 18px; background: #1f9e55; color: #fff; font-weight: 800; font-size: 66px; padding: 16px 44px 20px 32px; border-radius: 999px; border: 6px solid #2a2230; box-shadow: 0 8px 0 #2a2230; }
+      .wa-ico { display: block; width: 74px; height: 74px; }
+      .flash { position: absolute; inset: 0; background: #fff; opacity: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-width="1080" data-height="1920" data-duration="22">
+
+      <!-- S1 0-3 hook -->
+      <div id="s1" class="scene clip" data-start="0" data-duration="3" data-track-index="0">
+        <div class="rays" style="background: repeating-conic-gradient(from 0deg at 50% 60%, #ffd23f 0deg 9deg, #ffbf1f 9deg 18deg);"></div>
+        <img id="s1-char" class="char" src="assets/img/ella_sorpresa.png" style="left:250px;top:640px;width:620px" alt="" />
+        <svg class="spk s1spk" style="left:724px;top:1091px;width:94px;height:94px" viewBox="-50 -50 100 100"><path d="M0,-48 Q10.56,-10.56 48,0 Q10.56,10.56 0,48 Q-10.56,10.56 -48,0 Q-10.56,-10.56 0,-48 Z" fill="#fff" stroke="#2a2230" stroke-width="4"/></svg><svg class="spk s1spk" style="left:343px;top:892px;width:62px;height:62px" viewBox="-50 -50 100 100"><path d="M0,-48 Q10.56,-10.56 48,0 Q10.56,10.56 0,48 Q-10.56,10.56 -48,0 Q-10.56,-10.56 0,-48 Z" fill="#fff" stroke="#2a2230" stroke-width="4"/></svg><svg class="spk s1spk" style="left:135px;top:666px;width:66px;height:66px" viewBox="-50 -50 100 100"><path d="M0,-48 Q10.56,-10.56 48,0 Q10.56,10.56 0,48 Q-10.56,10.56 -48,0 Q-10.56,-10.56 0,-48 Z" fill="#fff" stroke="#2a2230" stroke-width="4"/></svg><svg class="spk s1spk" style="left:904px;top:1152px;width:71px;height:71px" viewBox="-50 -50 100 100"><path d="M0,-48 Q10.56,-10.56 48,0 Q10.56,10.56 0,48 Q-10.56,10.56 -48,0 Q-10.56,-10.56 0,-48 Z" fill="#fff" stroke="#2a2230" stroke-width="4"/></svg><svg class="spk s1spk" style="left:318px;top:981px;width:75px;height:75px" viewBox="-50 -50 100 100"><path d="M0,-48 Q10.56,-10.56 48,0 Q10.56,10.56 0,48 Q-10.56,10.56 -48,0 Q-10.56,-10.56 0,-48 Z" fill="#fff" stroke="#2a2230" stroke-width="4"/></svg><svg class="spk s1spk" style="left:247px;top:853px;width:65px;height:65px" viewBox="-50 -50 100 100"><path d="M0,-48 Q10.56,-10.56 48,0 Q10.56,10.56 0,48 Q-10.56,10.56 -48,0 Q-10.56,-10.56 0,-48 Z" fill="#fff" stroke="#2a2230" stroke-width="4"/></svg><svg class="spk s1spk" style="left:562px;top:1441px;width:54px;height:54px" viewBox="-50 -50 100 100"><path d="M0,-48 Q10.56,-10.56 48,0 Q10.56,10.56 0,48 Q-10.56,10.56 -48,0 Q-10.56,-10.56 0,-48 Z" fill="#fff" stroke="#2a2230" stroke-width="4"/></svg><svg class="spk s1spk" style="left:807px;top:1252px;width:86px;height:86px" viewBox="-50 -50 100 100"><path d="M0,-48 Q10.56,-10.56 48,0 Q10.56,10.56 0,48 Q-10.56,10.56 -48,0 Q-10.56,-10.56 0,-48 Z" fill="#fff" stroke="#2a2230" stroke-width="4"/></svg>
+        <div class="burst"><span class="es">¿YA TENÉS</span><span class="es es2">TU AGENDA 2027?</span></div>
+      </div>
+
+      <!-- S2 3-4 title -->
+      <div id="s2" class="scene clip" data-start="3" data-duration="1" data-track-index="0">
+        <div class="rays" style="background: repeating-conic-gradient(from 0deg at 50% 50%, #ff8fb1 0deg 9deg, #ff6f9b 9deg 18deg);"></div>
+        <div class="mini" id="m1" style="left:60px;top:300px;transform:rotate(-8deg)"><img src="assets/img/int_clasica.jpg" alt="" /></div>
+        <div class="mini" id="m2" style="left:720px;top:280px;transform:rotate(7deg)"><img src="assets/img/int_botanica.jpg" alt="" /></div>
+        <div class="mini" id="m3" style="left:60px;top:1330px;transform:rotate(6deg)"><img src="assets/img/int_minimal.jpg" alt="" /></div>
+        <div class="mini" id="m4" style="left:720px;top:1350px;transform:rotate(-7deg)"><img src="assets/img/int_estrellas.jpg" alt="" /></div>
+        <div class="burst" style="top:700px"><span class="es">¡ELEGÍ TU</span><span class="es es2">INTERIOR!</span></div>
+      </div>
+
+      <!-- S3 4-14 the four interiors -->
+      
+      <div id="i1" class="scene clip" data-start="4.0" data-duration="3.0" data-track-index="0">
+        <div class="bg" style="background:#bfeee3"></div><div class="dots" style="background-image: radial-gradient(#a5e3d5 22%, transparent 24%);"></div>
+        <div class="title-mini">ELEGÍ TU INTERIOR</div>
+        <div class="card" id="i1-card"><div class="card-img"><img id="i1-img" src="assets/img/int_clasica.jpg" alt=""/></div><span class="num">1</span></div>
+        <div class="name" id="i1-name"><span class="nm">Clásica</span><span class="ln">Un día por página, renglones y notas</span></div>
+      </div>
+      <div id="i2" class="scene clip" data-start="7.0" data-duration="3.0" data-track-index="0">
+        <div class="bg" style="background:#e6dcff"></div><div class="dots" style="background-image: radial-gradient(#d6c8fb 22%, transparent 24%);"></div>
+        <div class="title-mini">ELEGÍ TU INTERIOR</div>
+        <div class="card" id="i2-card"><div class="card-img"><img id="i2-img" src="assets/img/int_botanica.jpg" alt=""/></div><span class="num">2</span></div>
+        <div class="name" id="i2-name"><span class="nm">Botánica</span><span class="ln">Horarios, puntitos y un toque de hojas</span></div>
+      </div>
+      <div id="i3" class="scene clip" data-start="10.0" data-duration="3.0" data-track-index="0">
+        <div class="bg" style="background:#ffe0c7"></div><div class="dots" style="background-image: radial-gradient(#ffd0a8 22%, transparent 24%);"></div>
+        <div class="title-mini">ELEGÍ TU INTERIOR</div>
+        <div class="card" id="i3-card"><div class="card-img"><img id="i3-img" src="assets/img/int_minimal.jpg" alt=""/></div><span class="num">3</span></div>
+        <div class="name" id="i3-name"><span class="nm">Minimal</span><span class="ln">Horarios de 8 a 21 y espacio para lo importante</span></div>
+      </div>
+      <div id="i4" class="scene clip" data-start="13.0" data-duration="3.0" data-track-index="0">
+        <div class="bg" style="background:#cfe7ff"></div><div class="dots" style="background-image: radial-gradient(#b6d9ff 22%, transparent 24%);"></div>
+        <div class="title-mini">ELEGÍ TU INTERIOR</div>
+        <div class="card" id="i4-card"><div class="card-img"><img id="i4-img" src="assets/img/int_estrellas.jpg" alt=""/></div><span class="num">4</span></div>
+        <div class="name" id="i4-name"><span class="nm">Estrellas</span><span class="ln">Notas, lo importante y una lluvia de estrellas</span></div>
+      </div>
+
+      <!-- S5 16-18.6 handmade cover -->
+      <div id="s5" class="scene clip" data-start="16" data-duration="2.6" data-track-index="0">
+        <div class="rays" style="background: repeating-conic-gradient(from 0deg at 50% 40%, #ff8fb1 0deg 9deg, #ff6f9b 9deg 18deg);"></div>
+        <div class="title-mini">¡Y LA TAPA…!</div>
+        <div class="tapa" id="tapa"><img id="tapa-img" src="assets/img/tapa_floral.jpg" alt="" /></div>
+        <img id="s5-char" class="char" src="assets/img/el_enamorado.png" style="left:560px;top:930px;width:520px" alt="" />
+        <svg class="heart s5h" style="left:850px;top:1700px;width:99px;height:99px" viewBox="0 0 100 90"><path d="M50,85 C20,60 0,42 0,24 C0,10 12,0 26,0 C38,0 46,8 50,16 C54,8 62,0 74,0 C88,0 100,10 100,24 C100,42 80,60 50,85 Z" fill="#ff4d7d" stroke="#2a2230" stroke-width="5"/></svg><svg class="heart s5h" style="left:668px;top:1700px;width:109px;height:109px" viewBox="0 0 100 90"><path d="M50,85 C20,60 0,42 0,24 C0,10 12,0 26,0 C38,0 46,8 50,16 C54,8 62,0 74,0 C88,0 100,10 100,24 C100,42 80,60 50,85 Z" fill="#ff4d7d" stroke="#2a2230" stroke-width="5"/></svg><svg class="heart s5h" style="left:936px;top:1700px;width:107px;height:107px" viewBox="0 0 100 90"><path d="M50,85 C20,60 0,42 0,24 C0,10 12,0 26,0 C38,0 46,8 50,16 C54,8 62,0 74,0 C88,0 100,10 100,24 C100,42 80,60 50,85 Z" fill="#ff4d7d" stroke="#2a2230" stroke-width="5"/></svg><svg class="heart s5h" style="left:573px;top:1700px;width:102px;height:102px" viewBox="0 0 100 90"><path d="M50,85 C20,60 0,42 0,24 C0,10 12,0 26,0 C38,0 46,8 50,16 C54,8 62,0 74,0 C88,0 100,10 100,24 C100,42 80,60 50,85 Z" fill="#ff4d7d" stroke="#2a2230" stroke-width="5"/></svg><svg class="heart s5h" style="left:942px;top:1700px;width:82px;height:82px" viewBox="0 0 100 90"><path d="M50,85 C20,60 0,42 0,24 C0,10 12,0 26,0 C38,0 46,8 50,16 C54,8 62,0 74,0 C88,0 100,10 100,24 C100,42 80,60 50,85 Z" fill="#ff4d7d" stroke="#2a2230" stroke-width="5"/></svg><svg class="heart s5h" style="left:563px;top:1700px;width:101px;height:101px" viewBox="0 0 100 90"><path d="M50,85 C20,60 0,42 0,24 C0,10 12,0 26,0 C38,0 46,8 50,16 C54,8 62,0 74,0 C88,0 100,10 100,24 C100,42 80,60 50,85 Z" fill="#ff4d7d" stroke="#2a2230" stroke-width="5"/></svg><svg class="heart s5h" style="left:952px;top:1700px;width:76px;height:76px" viewBox="0 0 100 90"><path d="M50,85 C20,60 0,42 0,24 C0,10 12,0 26,0 C38,0 46,8 50,16 C54,8 62,0 74,0 C88,0 100,10 100,24 C100,42 80,60 50,85 Z" fill="#ff4d7d" stroke="#2a2230" stroke-width="5"/></svg><svg class="heart s5h" style="left:595px;top:1700px;width:99px;height:99px" viewBox="0 0 100 90"><path d="M50,85 C20,60 0,42 0,24 C0,10 12,0 26,0 C38,0 46,8 50,16 C54,8 62,0 74,0 C88,0 100,10 100,24 C100,42 80,60 50,85 Z" fill="#ff4d7d" stroke="#2a2230" stroke-width="5"/></svg>
+        <div class="bubble" id="s5-bub" style="top:1480px">hecha a mano, de tela, ¡la elegís vos!</div>
+      </div>
+
+      <!-- S6 18.6-22 end card -->
+      <div id="s6" class="scene clip" data-start="18.6" data-duration="3.4" data-track-index="0">
+        <div class="bg" style="background:#ffd23f"></div><div class="dots" style="background-image: radial-gradient(rgba(0,0,0,.08) 22%, transparent 24%);"></div>
+        <div id="confetti" style="position:absolute;inset:0"><div class="conf" style="left:691px;top:-80px;width:27px;height:48px;background:#ffd23f"></div><div class="conf" style="left:288px;top:-80px;width:19px;height:40px;background:#2ec4b6"></div><div class="conf" style="left:76px;top:-80px;width:30px;height:44px;background:#ff4d7d"></div><div class="conf" style="left:348px;top:-80px;width:25px;height:32px;background:#2ec4b6"></div><div class="conf" style="left:104px;top:-80px;width:20px;height:48px;background:#ff4d7d"></div><div class="conf" style="left:925px;top:-80px;width:30px;height:32px;background:#2ec4b6"></div><div class="conf" style="left:851px;top:-80px;width:19px;height:37px;background:#8e7cc3"></div><div class="conf" style="left:957px;top:-80px;width:23px;height:28px;background:#2ec4b6"></div><div class="conf" style="left:321px;top:-80px;width:30px;height:36px;background:#ffd23f"></div><div class="conf" style="left:989px;top:-80px;width:23px;height:44px;background:#ff4d7d"></div><div class="conf" style="left:1059px;top:-80px;width:21px;height:33px;background:#ffd23f"></div><div class="conf" style="left:1001px;top:-80px;width:26px;height:30px;background:#2ec4b6"></div><div class="conf" style="left:692px;top:-80px;width:30px;height:29px;background:#8e7cc3"></div><div class="conf" style="left:703px;top:-80px;width:28px;height:31px;background:#2ec4b6"></div><div class="conf" style="left:520px;top:-80px;width:30px;height:45px;background:#ff8a3d"></div><div class="conf" style="left:168px;top:-80px;width:22px;height:42px;background:#8e7cc3"></div><div class="conf" style="left:583px;top:-80px;width:26px;height:31px;background:#4a9dff"></div><div class="conf" style="left:46px;top:-80px;width:32px;height:37px;background:#ffd23f"></div><div class="conf" style="left:978px;top:-80px;width:26px;height:45px;background:#ff8a3d"></div><div class="conf" style="left:247px;top:-80px;width:18px;height:46px;background:#ff4d7d"></div><div class="conf" style="left:763px;top:-80px;width:30px;height:34px;background:#2ec4b6"></div><div class="conf" style="left:198px;top:-80px;width:18px;height:45px;background:#8e7cc3"></div><div class="conf" style="left:840px;top:-80px;width:29px;height:42px;background:#ff8a3d"></div><div class="conf" style="left:7px;top:-80px;width:20px;height:39px;background:#ff8a3d"></div><div class="conf" style="left:29px;top:-80px;width:27px;height:34px;background:#ffd23f"></div><div class="conf" style="left:780px;top:-80px;width:21px;height:38px;background:#8e7cc3"></div><div class="conf" style="left:128px;top:-80px;width:23px;height:29px;background:#ffd23f"></div><div class="conf" style="left:128px;top:-80px;width:31px;height:30px;background:#2ec4b6"></div><div class="conf" style="left:476px;top:-80px;width:20px;height:42px;background:#4a9dff"></div><div class="conf" style="left:977px;top:-80px;width:19px;height:35px;background:#4a9dff"></div><div class="conf" style="left:754px;top:-80px;width:31px;height:36px;background:#ff4d7d"></div><div class="conf" style="left:1005px;top:-80px;width:20px;height:37px;background:#4a9dff"></div><div class="conf" style="left:957px;top:-80px;width:21px;height:41px;background:#2ec4b6"></div><div class="conf" style="left:416px;top:-80px;width:26px;height:32px;background:#ff8a3d"></div><div class="conf" style="left:680px;top:-80px;width:27px;height:29px;background:#ffd23f"></div><div class="conf" style="left:255px;top:-80px;width:25px;height:47px;background:#4a9dff"></div><div class="conf" style="left:162px;top:-80px;width:21px;height:41px;background:#2ec4b6"></div><div class="conf" style="left:627px;top:-80px;width:18px;height:32px;background:#ff4d7d"></div><div class="conf" style="left:820px;top:-80px;width:32px;height:30px;background:#2ec4b6"></div><div class="conf" style="left:418px;top:-80px;width:20px;height:45px;background:#ff8a3d"></div><div class="conf" style="left:41px;top:-80px;width:20px;height:42px;background:#ff4d7d"></div><div class="conf" style="left:909px;top:-80px;width:27px;height:29px;background:#ffd23f"></div><div class="conf" style="left:574px;top:-80px;width:32px;height:45px;background:#ffd23f"></div><div class="conf" style="left:193px;top:-80px;width:26px;height:47px;background:#4a9dff"></div><div class="conf" style="left:908px;top:-80px;width:23px;height:38px;background:#ff8a3d"></div><div class="conf" style="left:1029px;top:-80px;width:21px;height:40px;background:#ff8a3d"></div></div>
+        <div class="end-box">
+          <div class="end-logo"><img src="assets/img/logo_renzi.png" alt="Renzi" /></div>
+          <div class="end-title">AGENDAS 2027</div>
+          <div class="end-sub">hechas a mano · interior a elección</div>
+          <div class="end-ig">@renzi.librosusados</div>
+          <div class="end-wa"><svg class="wa-ico" viewBox="0 0 32 32" aria-hidden="true"><path fill="#fff" d="M16 3C8.8 3 3 8.6 3 15.6c0 2.5.7 4.8 2 6.8L3.6 29l6.8-1.8c1.7.9 3.6 1.4 5.6 1.4 7.2 0 13-5.6 13-12.6S23.2 3 16 3zm0 23c-1.8 0-3.5-.5-5-1.3l-.4-.2-4 1 1.1-3.8-.3-.4c-1-1.6-1.6-3.5-1.6-5.5C5.8 10.2 10.4 5.7 16 5.7s10.2 4.5 10.2 10S21.6 26 16 26zm5.6-7.5c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6l-1-2.3c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.2 1.4 3.4c.2.2 2.4 3.6 5.8 5 .8.3 1.4.5 1.9.7.8.2 1.5.2 2.1.1.6-.1 1.8-.7 2.1-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.6-.4z"/></svg><span>221 591-8671</span></div>
+        </div>
+        <img id="s6-char" class="char" src="assets/img/saltando.png" style="left:230px;top:1290px;width:620px" alt="" />
+      </div>
+
+      <div id="fx-flash" class="scene clip" data-start="2.9" data-duration="0.3" data-track-index="5"><div class="flash"></div></div>
+
+      <audio id="music" src="assets/audio/musica.wav" data-start="0" data-duration="22" data-track-index="10" data-volume="1"></audio>
+      <audio id="x-whoosh0" src="assets/audio/sfx_whoosh.wav" data-start="2.75" data-duration="0.5" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="x-pop0" src="assets/audio/sfx_pop.wav" data-start="3.15" data-duration="0.23" data-track-index="12" data-volume="0.8"></audio>
+      <audio id="x-wh-i1" src="assets/audio/sfx_whoosh.wav" data-start="3.95" data-duration="0.5" data-track-index="12" data-volume="0.6"></audio>
+      <audio id="x-pop-i1" src="assets/audio/sfx_pop.wav" data-start="4.38" data-duration="0.23" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="x-wh-i2" src="assets/audio/sfx_whoosh.wav" data-start="6.95" data-duration="0.5" data-track-index="12" data-volume="0.6"></audio>
+      <audio id="x-pop-i2" src="assets/audio/sfx_pop.wav" data-start="7.38" data-duration="0.23" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="x-wh-i3" src="assets/audio/sfx_whoosh.wav" data-start="9.95" data-duration="0.5" data-track-index="12" data-volume="0.6"></audio>
+      <audio id="x-pop-i3" src="assets/audio/sfx_pop.wav" data-start="10.38" data-duration="0.23" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="x-wh-i4" src="assets/audio/sfx_whoosh.wav" data-start="12.95" data-duration="0.5" data-track-index="12" data-volume="0.6"></audio>
+      <audio id="x-pop-i4" src="assets/audio/sfx_pop.wav" data-start="13.38" data-duration="0.23" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="x-wh-t" src="assets/audio/sfx_whoosh.wav" data-start="15.95" data-duration="0.5" data-track-index="12" data-volume="0.6"></audio>
+      <audio id="x-boing" src="assets/audio/sfx_boing.wav" data-start="16.5" data-duration="0.6" data-track-index="12" data-volume="0.7"></audio>
+      <audio id="x-pop-h" src="assets/audio/sfx_pop.wav" data-start="16.9" data-duration="0.23" data-track-index="12" data-volume="0.6"></audio>
+      <audio id="x-confetti" src="assets/audio/sfx_confetti.wav" data-start="18.6" data-duration="1.4" data-track-index="12" data-volume="0.8"></audio>
+      <audio id="x-sparkle0" src="assets/audio/sfx_sparkle.wav" data-start="0.25" data-duration="1.2" data-track-index="12" data-volume="0.6"></audio>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+
+      // S1 hook
+      tl.fromTo("#s1-char", { y: 400 }, { y: 0, duration: 0.5, ease: "back.out(1.6)" }, 0.1);
+      tl.fromTo("#s1-char", { rotation: -2 }, { rotation: 2, transformOrigin: "50% 100%", duration: 0.07, yoyo: true, repeat: 7, ease: "none" }, 0.7);
+      tl.to("#s1 .rays", { rotation: 20, duration: 3, ease: "none" }, 0);
+      tl.fromTo("#s1 .burst .es", { scale: 0.3, opacity: 0, rotation: -10 }, { scale: 1, opacity: 1, rotation: -3, duration: 0.35, stagger: 0.25, ease: "back.out(2.5)" }, 0.3);
+      tl.to(".s1spk", { opacity: 1, scale: 1.25, duration: 0.25, stagger: 0.1, yoyo: true, repeat: 3, ease: "sine.inOut" }, 0.5);
+      tl.fromTo("#fx-flash .flash", { opacity: 0 }, { opacity: 0.9, duration: 0.08, ease: "none" }, 2.92);
+      tl.to("#fx-flash .flash", { opacity: 0, duration: 0.18 }, 3.0);
+
+      // S2 title
+      tl.to("#s2 .rays", { rotation: -15, duration: 1, ease: "none" }, 3);
+      tl.fromTo("#s2 .burst .es", { scale: 0.3, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, stagger: 0.12, ease: "back.out(2.5)" }, 3.05);
+      tl.fromTo("#s2 .mini", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, stagger: 0.08, ease: "back.out(2)" }, 3.2);
+
+      // S3 interiors
+      
+      tl.fromTo("#i1-card", { x: 900, rotation: 12 }, { x: 0, rotation: -3, duration: 0.45, ease: "back.out(1.4)" }, 4.0);
+      tl.fromTo("#i1-img", { scale: 1.0 }, { scale: 1.12, transformOrigin: "100% 100%", duration: 3.0, ease: "none" }, 4.0);
+      tl.fromTo("#i1-name .nm", { scale: 0.3, opacity: 0, rotation: -8 }, { scale: 1, opacity: 1, rotation: -3, duration: 0.35, ease: "back.out(2.4)" }, 4.35);
+      tl.fromTo("#i1-name .ln", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "power2.out" }, 4.6);
+      tl.fromTo("#i1 .num", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(3)" }, 4.3);
+      tl.fromTo("#i2-card", { x: 900, rotation: 12 }, { x: 0, rotation: 3, duration: 0.45, ease: "back.out(1.4)" }, 7.0);
+      tl.fromTo("#i2-img", { scale: 1.0 }, { scale: 1.12, transformOrigin: "100% 100%", duration: 3.0, ease: "none" }, 7.0);
+      tl.fromTo("#i2-name .nm", { scale: 0.3, opacity: 0, rotation: -8 }, { scale: 1, opacity: 1, rotation: -3, duration: 0.35, ease: "back.out(2.4)" }, 7.35);
+      tl.fromTo("#i2-name .ln", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "power2.out" }, 7.6);
+      tl.fromTo("#i2 .num", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(3)" }, 7.3);
+      tl.fromTo("#i3-card", { x: 900, rotation: 12 }, { x: 0, rotation: -3, duration: 0.45, ease: "back.out(1.4)" }, 10.0);
+      tl.fromTo("#i3-img", { scale: 1.0 }, { scale: 1.12, transformOrigin: "100% 100%", duration: 3.0, ease: "none" }, 10.0);
+      tl.fromTo("#i3-name .nm", { scale: 0.3, opacity: 0, rotation: -8 }, { scale: 1, opacity: 1, rotation: -3, duration: 0.35, ease: "back.out(2.4)" }, 10.35);
+      tl.fromTo("#i3-name .ln", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "power2.out" }, 10.6);
+      tl.fromTo("#i3 .num", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(3)" }, 10.3);
+      tl.fromTo("#i4-card", { x: 900, rotation: 12 }, { x: 0, rotation: 3, duration: 0.45, ease: "back.out(1.4)" }, 13.0);
+      tl.fromTo("#i4-img", { scale: 1.0 }, { scale: 1.12, transformOrigin: "100% 100%", duration: 3.0, ease: "none" }, 13.0);
+      tl.fromTo("#i4-name .nm", { scale: 0.3, opacity: 0, rotation: -8 }, { scale: 1, opacity: 1, rotation: -3, duration: 0.35, ease: "back.out(2.4)" }, 13.35);
+      tl.fromTo("#i4-name .ln", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: "power2.out" }, 13.6);
+      tl.fromTo("#i4 .num", { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(3)" }, 13.3);
+
+      // S5 cover + in love
+      tl.fromTo("#tapa", { x: -800, rotation: -12 }, { x: 0, rotation: -3, duration: 0.45, ease: "back.out(1.4)" }, 16.0);
+      tl.fromTo("#tapa-img", { scale: 1 }, { scale: 1.1, duration: 2.6, ease: "none" }, 16.0);
+      tl.to("#s5 .rays", { rotation: 15, duration: 2.6, ease: "none" }, 16.0);
+      tl.fromTo("#s5-char", { x: 500 }, { x: 0, duration: 0.45, ease: "back.out(1.6)" }, 16.35);
+      tl.to("#s5-char", { rotation: 3, transformOrigin: "50% 100%", duration: 0.4, yoyo: true, repeat: 3, ease: "sine.inOut" }, 16.8);
+      tl.fromTo(".s5h", { y: 0, opacity: 0, scale: 0.6 }, { y: -900, opacity: 1, scale: 1.1, duration: 1.6, stagger: 0.12, ease: "power1.out" }, 16.8);
+      tl.fromTo("#s5-bub", { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2)" }, 16.95);
+      tl.fromTo("#s5 .title-mini", { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2.4)" }, 16.05);
+
+      // S6 end card
+      tl.fromTo("#s6 .end-logo", { scale: 0.5, opacity: 0, rotation: -20 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.5, ease: "back.out(2)" }, 18.7);
+      tl.fromTo("#s6 .end-title", { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2.5)" }, 19.0);
+      tl.fromTo("#s6 .end-sub", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.35 }, 19.25);
+      tl.fromTo("#s6 .end-ig", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, 19.45);
+      tl.fromTo("#s6 .end-wa", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, 19.65);
+      tl.fromTo("#s6-char", { y: 700 }, { y: 0, duration: 0.45, ease: "back.out(1.5)" }, 18.8);
+      tl.to("#s6-char", { y: -60, duration: 0.28, yoyo: true, repeat: 7, ease: "power2.out" }, 19.3);
+      document.querySelectorAll("#confetti .conf").forEach((el, i) => {
+        const d = 1.4 + (i % 5) * 0.12;
+        tl.fromTo(el, { y: 0, rotation: 0 }, { y: 2100, rotation: (i % 2 ? 1 : -1) * (300 + (i % 7) * 60), x: ((i % 9) - 4) * 30, duration: d, ease: "power1.in" }, 18.62 + (i % 11) * 0.03);
+      });
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

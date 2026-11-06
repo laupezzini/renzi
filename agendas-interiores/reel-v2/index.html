@@ -32,6 +32,9 @@
       .spine { position: absolute; left: -16px; top: 0; bottom: 0; width: 16px; border-radius: 16px 0 0 16px; background: linear-gradient(90deg, #e9dccb, #f6eee3); }
       .iname { position: absolute; left: 0; right: 0; top: 1015px; text-align: center; font-family: "Dancing Script", cursive; font-weight: 700; color: #d6456b; font-size: 140px; line-height: 1; }
       .idesc { position: absolute; left: 140px; right: 140px; top: 1170px; text-wrap: balance; text-align: center; font-family: "Playfair Display", serif; font-style: italic; font-weight: 500; color: #5b4a45; font-size: 44px; line-height: 1.25; }
+      .pol { position: absolute; background: #fff; border-radius: 14px; padding: 12px; box-shadow: 0 24px 50px rgba(90, 60, 40, .2), 0 3px 8px rgba(90, 60, 40, .1); }
+      .pol div { width: 100%; height: 100%; border-radius: 8px; overflow: hidden; }
+      .pol img { width: 100%; height: 100%; object-fit: cover; display: block; }
       .tapa { position: absolute; left: 230px; top: 280px; width: 620px; height: 860px; background: #fff; border-radius: 26px; padding: 14px; box-shadow: 0 30px 60px rgba(90, 60, 40, .2); transform: rotate(-2deg); }
       .tapa div { width: 100%; height: 100%; border-radius: 16px; overflow: hidden; }
       .tapa img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -123,7 +126,10 @@
 
       <!-- S3 15.2-18.6 the handmade cover -->
       <div id="s3" class="scene clip" data-start="15.2" data-duration="3.4" data-track-index="1">
-        <div class="tapa" id="tapa"><div><img id="tapa-img" src="assets/img/tapa_floral.jpg" alt="" /></div></div>
+        <div class="pol" id="p1" style="left:80px;top:255px;width:440px;height:565px"><div><img id="p1-img" src="assets/img/tapa_jirafa.jpg" alt="" /></div></div>
+        <div class="pol" id="p2" style="left:560px;top:240px;width:440px;height:590px"><div><img id="p2-img" src="assets/img/tapa_verde.jpg" alt="" /></div></div>
+        <div class="pol" id="p3" style="left:85px;top:825px;width:480px;height:330px"><div><img id="p3-img" src="assets/img/tapa_varias.jpg" alt="" /></div></div>
+        <div class="pol" id="p4" style="left:600px;top:850px;width:390px;height:300px"><div><img id="p4-img" src="assets/img/tapa_lomo.jpg" alt="" /></div></div>
         <div class="center" style="top:1180px">
           <div class="script" id="c1" style="font-size:118px">cosida a mano,</div>
           <div class="serif" id="c2" style="font-size:72px;margin-top:8px">de la tapa a la última hoja</div>
@@ -206,12 +212,18 @@
       tl.to(["#i4-k", "#i4-f", "#i4-n", "#i4-d", "#i4-t"], { opacity: 0, duration: 0.35, ease: "power1.in" }, 14.85);
 
       // S3 cover
-      tl.fromTo("#tapa", { opacity: 0, y: 40, rotation: -5 }, { opacity: 1, y: 0, rotation: -2, duration: 0.8, ease: "power2.out" }, 15.2);
-      tl.fromTo("#tapa-img", { scale: 1 }, { scale: 1.07, duration: 3.4, ease: "none" }, 15.2);
+      tl.fromTo("#p1", { opacity: 0, y: 50, scale: 0.9, rotation: -10 }, { opacity: 1, y: 0, scale: 1, rotation: -5, duration: 0.6, ease: "back.out(1.5)" }, 15.20);
+      tl.fromTo("#p1-img", { scale: 1 }, { scale: 1.06, duration: 3.2, ease: "none" }, 15.2);
+      tl.fromTo("#p2", { opacity: 0, y: 50, scale: 0.9, rotation: 8 }, { opacity: 1, y: 0, scale: 1, rotation: 4, duration: 0.6, ease: "back.out(1.5)" }, 15.38);
+      tl.fromTo("#p2-img", { scale: 1 }, { scale: 1.06, duration: 3.2, ease: "none" }, 15.2);
+      tl.fromTo("#p3", { opacity: 0, y: 50, scale: 0.9, rotation: 6 }, { opacity: 1, y: 0, scale: 1, rotation: 3, duration: 0.6, ease: "back.out(1.5)" }, 15.56);
+      tl.fromTo("#p3-img", { scale: 1 }, { scale: 1.06, duration: 3.2, ease: "none" }, 15.2);
+      tl.fromTo("#p4", { opacity: 0, y: 50, scale: 0.9, rotation: -6 }, { opacity: 1, y: 0, scale: 1, rotation: -3, duration: 0.6, ease: "back.out(1.5)" }, 15.74);
+      tl.fromTo("#p4-img", { scale: 1 }, { scale: 1.06, duration: 3.2, ease: "none" }, 15.2);
       tl.fromTo("#c1", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 15.6);
       tl.fromTo("#c2", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 15.85);
       tl.fromTo("#c3 .pill", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.15, ease: "power2.out" }, 16.3);
-      tl.to(["#tapa", "#c1", "#c2", "#c3"], { opacity: 0, duration: 0.35, ease: "power1.in" }, 18.25);
+      tl.to(["#p1", "#p2", "#p3", "#p4", "#c1", "#c2", "#c3"], { opacity: 0, duration: 0.35, ease: "power1.in" }, 18.25);
 
       // S4 close
       tl.fromTo("#e1", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.7, ease: "power2.out" }, 18.65);

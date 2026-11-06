@@ -24,11 +24,14 @@
       .ital { font-family: "Playfair Display", serif; font-style: italic; font-weight: 500; color: #5b4a45; }
       .pill { display: inline-block; border-radius: 999px; padding: 14px 34px 16px; font-weight: 800; font-size: 34px; }
       .kicker { position: absolute; left: 0; right: 0; top: 250px; text-align: center; color: #5b4a45; font-weight: 500; font-size: 32px; letter-spacing: 6px; text-transform: uppercase; }
-      .frame { position: absolute; left: 100px; top: 330px; width: 880px; height: 770px; background: #fff; border-radius: 26px; padding: 14px; box-shadow: 0 30px 60px rgba(90, 60, 40, .18), 0 4px 10px rgba(90, 60, 40, .08); }
+      .frame { position: absolute; left: 235px; top: 300px; width: 610px; height: 880px; background: #fff; border-radius: 26px; padding: 14px; box-shadow: 0 30px 60px rgba(90, 60, 40, .18), 0 4px 10px rgba(90, 60, 40, .08); }
       .frame-in { width: 100%; height: 100%; border-radius: 16px; overflow: hidden; }
-      .frame-in img { width: 100%; height: 100%; object-fit: cover; display: block; }
-      .iname { position: absolute; left: 0; right: 0; top: 1150px; text-align: center; font-family: "Dancing Script", cursive; font-weight: 700; color: #d6456b; font-size: 170px; line-height: 1; }
-      .idesc { position: absolute; left: 90px; right: 90px; top: 1360px; text-wrap: balance; text-align: center; font-family: "Playfair Display", serif; font-style: italic; font-weight: 500; color: #5b4a45; font-size: 52px; line-height: 1.25; }
+      .frame-in { position: relative; background: #fff; }
+      .frame-in img { width: 100%; height: 100%; object-fit: contain; display: block; }
+      .stitch { position: absolute; left: -2px; top: 40px; bottom: 40px; width: 5px; border-radius: 3px; background: repeating-linear-gradient(180deg, #b98b6e 0 22px, transparent 22px 40px); }
+      .spine { position: absolute; left: -16px; top: 0; bottom: 0; width: 16px; border-radius: 16px 0 0 16px; background: linear-gradient(90deg, #e9dccb, #f6eee3); }
+      .iname { position: absolute; left: 0; right: 0; top: 1225px; text-align: center; font-family: "Dancing Script", cursive; font-weight: 700; color: #d6456b; font-size: 170px; line-height: 1; }
+      .idesc { position: absolute; left: 90px; right: 90px; top: 1430px; text-wrap: balance; text-align: center; font-family: "Playfair Display", serif; font-style: italic; font-weight: 500; color: #5b4a45; font-size: 52px; line-height: 1.25; }
       .tapa { position: absolute; left: 230px; top: 280px; width: 620px; height: 860px; background: #fff; border-radius: 26px; padding: 14px; box-shadow: 0 30px 60px rgba(90, 60, 40, .2); transform: rotate(-2deg); }
       .tapa div { width: 100%; height: 100%; border-radius: 16px; overflow: hidden; }
       .tapa img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -80,25 +83,25 @@
       
       <div id="i1" class="scene clip" data-start="3.2" data-duration="3.0" data-track-index="1">
         <div class="kicker" id="i1-k">Interior n.º 1</div>
-        <div class="frame" id="i1-f"><div class="frame-in"><img id="i1-img" src="assets/img/int_clasica.jpg" alt=""/></div></div>
+        <div class="frame" id="i1-f"><div class="spine"></div><div class="frame-in"><img id="i1-img" src="assets/img/pag_clasica.jpg" alt=""/></div><div class="stitch"></div></div>
         <div class="iname" id="i1-n">Clásica</div>
         <div class="idesc" id="i1-d">un día por página, renglones y notas</div>
       </div>
       <div id="i2" class="scene clip" data-start="6.2" data-duration="3.0" data-track-index="1">
         <div class="kicker" id="i2-k">Interior n.º 2</div>
-        <div class="frame" id="i2-f"><div class="frame-in"><img id="i2-img" src="assets/img/int_botanica.jpg" alt=""/></div></div>
+        <div class="frame" id="i2-f"><div class="spine"></div><div class="frame-in"><img id="i2-img" src="assets/img/pag_botanica.jpg" alt=""/></div><div class="stitch"></div></div>
         <div class="iname" id="i2-n">Botánica</div>
         <div class="idesc" id="i2-d">horarios, puntitos y un toque de hojas</div>
       </div>
       <div id="i3" class="scene clip" data-start="9.2" data-duration="3.0" data-track-index="1">
         <div class="kicker" id="i3-k">Interior n.º 3</div>
-        <div class="frame" id="i3-f"><div class="frame-in"><img id="i3-img" src="assets/img/int_minimal.jpg" alt=""/></div></div>
+        <div class="frame" id="i3-f"><div class="spine"></div><div class="frame-in"><img id="i3-img" src="assets/img/pag_minimal.jpg" alt=""/></div><div class="stitch"></div></div>
         <div class="iname" id="i3-n">Minimal</div>
         <div class="idesc" id="i3-d">horarios de 8 a 21 y lo importante a mano</div>
       </div>
       <div id="i4" class="scene clip" data-start="12.2" data-duration="3.0" data-track-index="1">
         <div class="kicker" id="i4-k">Interior n.º 4</div>
-        <div class="frame" id="i4-f"><div class="frame-in"><img id="i4-img" src="assets/img/int_estrellas.jpg" alt=""/></div></div>
+        <div class="frame" id="i4-f"><div class="spine"></div><div class="frame-in"><img id="i4-img" src="assets/img/pag_estrellas.jpg" alt=""/></div><div class="stitch"></div></div>
         <div class="iname" id="i4-n">Estrellas</div>
         <div class="idesc" id="i4-d">notas, prioridades y una lluvia de estrellas</div>
       </div>
@@ -148,25 +151,25 @@
       
       tl.fromTo("#i1-k", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 3.25);
       tl.fromTo("#i1-f", { opacity: 0, y: 40, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "power2.out" }, 3.2);
-      tl.fromTo("#i1-img", { scale: 1 }, { scale: 1.06, transformOrigin: "100% 100%", duration: 3.0, ease: "none" }, 3.2);
+      tl.fromTo("#i1-img", { scale: 1 }, { scale: 1.05, transformOrigin: "50% 30%", duration: 3.0, ease: "none" }, 3.2);
       tl.fromTo("#i1-n", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 3.5500000000000003);
       tl.fromTo("#i1-d", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.out" }, 3.8000000000000003);
       tl.to(["#i1-k", "#i1-f", "#i1-n", "#i1-d"], { opacity: 0, duration: 0.35, ease: "power1.in" }, 5.8500000000000005);
       tl.fromTo("#i2-k", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 6.25);
       tl.fromTo("#i2-f", { opacity: 0, y: 40, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "power2.out" }, 6.2);
-      tl.fromTo("#i2-img", { scale: 1 }, { scale: 1.06, transformOrigin: "100% 100%", duration: 3.0, ease: "none" }, 6.2);
+      tl.fromTo("#i2-img", { scale: 1 }, { scale: 1.05, transformOrigin: "50% 30%", duration: 3.0, ease: "none" }, 6.2);
       tl.fromTo("#i2-n", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 6.55);
       tl.fromTo("#i2-d", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.out" }, 6.8);
       tl.to(["#i2-k", "#i2-f", "#i2-n", "#i2-d"], { opacity: 0, duration: 0.35, ease: "power1.in" }, 8.85);
       tl.fromTo("#i3-k", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 9.25);
       tl.fromTo("#i3-f", { opacity: 0, y: 40, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "power2.out" }, 9.2);
-      tl.fromTo("#i3-img", { scale: 1 }, { scale: 1.06, transformOrigin: "100% 100%", duration: 3.0, ease: "none" }, 9.2);
+      tl.fromTo("#i3-img", { scale: 1 }, { scale: 1.05, transformOrigin: "50% 30%", duration: 3.0, ease: "none" }, 9.2);
       tl.fromTo("#i3-n", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 9.549999999999999);
       tl.fromTo("#i3-d", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.out" }, 9.799999999999999);
       tl.to(["#i3-k", "#i3-f", "#i3-n", "#i3-d"], { opacity: 0, duration: 0.35, ease: "power1.in" }, 11.85);
       tl.fromTo("#i4-k", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 12.25);
       tl.fromTo("#i4-f", { opacity: 0, y: 40, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "power2.out" }, 12.2);
-      tl.fromTo("#i4-img", { scale: 1 }, { scale: 1.06, transformOrigin: "100% 100%", duration: 3.0, ease: "none" }, 12.2);
+      tl.fromTo("#i4-img", { scale: 1 }, { scale: 1.05, transformOrigin: "50% 30%", duration: 3.0, ease: "none" }, 12.2);
       tl.fromTo("#i4-n", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 12.549999999999999);
       tl.fromTo("#i4-d", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.out" }, 12.799999999999999);
       tl.to(["#i4-k", "#i4-f", "#i4-n", "#i4-d"], { opacity: 0, duration: 0.35, ease: "power1.in" }, 14.85);

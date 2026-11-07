@@ -39,6 +39,32 @@ while len(pages)<420:
     pages.append(head('Notas')+lines(22))
 assert len(pages)==420, len(pages)
 css=open('estilo.css').read()
+# 1) Versión A5, una página por hoja (para ver en pantalla)
 html='<!doctype html><html lang="es"><head><meta charset="utf-8"><style>'+css+'</style></head><body>'+''.join(f'<section class="pg">{p}</section>' for p in pages)+'</body></html>'
 open('lectora-2027.html','w').write(html)
-print(len(pages),'páginas')
+
+# 2) Versión para imprimir: A4 apaisada, 2 páginas por cara, cuadernillos de 5 hojas (20 páginas)
+HOJAS=5; PP=HOJAS*4
+assert len(pages)%PP==0
+def cell(n):
+    # n: número de página (1 = primera). Impar = página derecha (recto): margen de costura a la izquierda.
+    lado='recto' if n%2 else 'verso'
+    return f'<section class="cell {lado}"><div class="pg">{pages[n-1]}</div></section>'
+caras=[]
+for c in range(len(pages)//PP):
+    base=c*PP
+    for k in range(HOJAS):  # hoja 1 = la de afuera del cuadernillo
+        frente=(base+PP-2*k, base+1+2*k)
+        dorso=(base+2+2*k, base+PP-1-2*k)
+        caras.append((c+1,k+1,'frente',frente)); caras.append((c+1,k+1,'dorso',dorso))
+imp_css=css.replace('@page{size:148mm 210mm;margin:11mm 9mm 10mm 15mm}','').replace('@page :left{margin:11mm 15mm 10mm 9mm}','')
+imp_css+='''
+@page{size:297mm 210mm;margin:0}
+.sheet{width:297mm;height:210mm;display:flex;page-break-after:always;position:relative}
+.cell{width:148.5mm;height:210mm;padding:11mm 9mm 10mm 13mm}
+.cell.verso{padding:11mm 13mm 10mm 9mm}
+.mark{position:absolute;bottom:2.5mm;left:50%;transform:translateX(-50%);font-size:5pt;color:#bbb;letter-spacing:.3mm}
+'''
+body=''.join(f'<div class="sheet">{cell(a)}{cell(b)}<div class="mark">cuadernillo {c} · hoja {k} · {cara}</div></div>' for c,k,cara,(a,b) in caras)
+open('lectora-2027-imprimir-A4.html','w').write('<!doctype html><html lang="es"><head><meta charset="utf-8"><style>'+imp_css+'</style></head><body>'+body+'</body></html>')
+print(len(pages),'páginas ·',len(pages)//PP,'cuadernillos ·',len(caras)//2,'hojas A4')

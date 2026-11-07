@@ -20,14 +20,31 @@ pages.append(head('Libros prestados')+'<table class="tb"><tr><th>Libro</th><th>A
 for k in range(2):
     box='''<div class="find"><div class="row"><span>Libro</span><div class="ln"></div></div><div class="row"><span>Dónde lo conseguí</span><div class="ln"></div></div><div class="row top"><span>Qué encontré adentro</span><div class="area"></div></div></div>'''
     pages.append(head('Hallazgos en libros usados')+('<p class="hint">Dedicatorias, notas al margen, boletos, flores secas… las historias que traen los libros.</p>' if k==0 else '')+box*3)
-d=dt.date(2027,1,1)
-while d.year==2027:
-    if d.day==1:
-        pages.append(head('Lecturas de '+MESES[d.month-1])+'<table class="tb"><tr><th>Título y autor</th><th>Empecé</th><th>Terminé</th><th>★</th></tr>'+''.join('<tr><td></td><td></td><td></td><td class="c">☆☆☆☆☆</td></tr>' for _ in range(13))+'</table><div class="lab">El libro del mes</div><div class="box" style="height:46mm"></div>')
-    pages.append(f'''{head(MESES[d.month-1].upper())}<div class="day"><span class="dl"></span><b>{d.day}</b><span class="dl"></span></div><div class="dn">{DIAS[d.weekday()].upper()}</div>
-{lines(17)}<div class="read"><div class="rt">HOY LEÍ</div><div class="row"><span>Libro</span><div class="ln"></div><span>págs.</span><div class="ln s"></div><span>a</span><div class="ln s"></div></div><div class="row"><span>Una frase</span><div class="ln"></div></div><div class="ln full"></div></div>''')
-    d+=dt.timedelta(days=1)
-for i in range(24):
+# Calendario anual
+def mini(m):
+    first=dt.date(2027,m,1); off=first.weekday()
+    nd=((dt.date(2027+(m==12),(m%12)+1,1))-first).days
+    cells=''.join('<i></i>' for _ in range(off))+''.join(f'<i>{x}</i>' for x in range(1,nd+1))
+    return f'<div class="mini"><b>{MESES[m-1]}</b><div class="mg"><u>L</u><u>M</u><u>M</u><u>J</u><u>V</u><u>S</u><u>D</u>{cells}</div></div>'
+pages.insert(1, head('2027')+'<div class="year">'+''.join(mini(m) for m in range(1,13))+'</div>')
+# Semanas (lunes a domingo), ubicadas en el mes en que empiezan
+MC=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic']
+lun=dt.date(2026,12,28); n=1; mes_actual=0
+while lun.year<=2027 and not (lun.year==2027 and lun.month==12 and lun.day>31):
+    m=lun.month if lun.year==2027 else 1
+    if m!=mes_actual:
+        mes_actual=m
+        pages.append(head('Lecturas de '+MESES[m-1])+'<table class="tb"><tr><th>Título y autor</th><th>Empecé</th><th>Terminé</th><th>★</th></tr>'+''.join('<tr><td></td><td></td><td></td><td class="c">☆☆☆☆☆</td></tr>' for _ in range(13))+'</table><div class="lab">El libro del mes</div><div class="box" style="height:46mm"></div>')
+    dom=lun+dt.timedelta(days=6)
+    rango=f'{lun.day} {MC[lun.month-1]} – {dom.day} {MC[dom.month-1]}'
+    filas=''
+    for i in range(7):
+        d=lun+dt.timedelta(days=i)
+        filas+=f'<div class="wd"><div class="wl"><b>{d.day}</b><span>{DIAS[i][:3].upper()}</span></div><div class="wls">{lines(2,"ln w")}</div></div>'
+    pages.append(f'<div class="mh"><i></i><span>{MESES[m-1].upper()}</span><i></i></div><div class="wk">Semana {n} · {rango}</div>{filas}<div class="read"><div class="rt">ESTA SEMANA LEÍ</div><div class="row"><span>Libro</span><div class="ln"></div><span>págs.</span><div class="ln s"></div><span>a</span><div class="ln s"></div></div><div class="row"><span>Una frase</span><div class="ln"></div></div></div>')
+    lun+=dt.timedelta(days=7); n+=1
+    if lun.year>2027: break
+for i in range(18):
     pages.append(head(f'Ficha de lectura n.º {i+1}')+'''<div class="row"><span>Título</span><div class="ln"></div></div><div class="row"><span>Autor/a</span><div class="ln"></div></div>
 <div class="row"><span>Empecé</span><div class="ln s2"></div><span>Terminé</span><div class="ln s2"></div><span>Págs.</span><div class="ln s"></div></div>
 <div class="row"><span>Llegó a mí</span><span class="opt">○ comprado nuevo &nbsp; ○ usado &nbsp; ○ regalo &nbsp; ○ prestado</span></div>
@@ -35,9 +52,9 @@ for i in range(24):
 <div class="lab">De qué se trata</div>'''+lines(5)+'<div class="lab">Lo que me dejó</div>'+lines(6)+'<div class="lab">Una cita</div><div class="box q" style="height:24mm"></div>')
 for k in range(4):
     pages.append(head('Citas favoritas')+''.join('<div class="quote"><div class="qm">“</div>'+lines(4)+'<div class="src">— libro y página <div class="ln s2"></div></div></div>' for _ in range(4)))
-while len(pages)<420:
+while len(pages)<100:
     pages.append(head('Notas')+lines(22))
-assert len(pages)==420, len(pages)
+assert len(pages)==100, len(pages)
 css=open('estilo.css').read()
 # 1) Versión A5, una página por hoja (para ver en pantalla)
 html='<!doctype html><html lang="es"><head><meta charset="utf-8"><style>'+css+'</style></head><body>'+''.join(f'<section class="pg">{p}</section>' for p in pages)+'</body></html>'

@@ -50,3 +50,12 @@ body{font-family:"DM Sans",sans-serif;color:#222;font-size:9pt}
 .quote{margin-bottom:3mm}.qm{font-family:"Playfair";font-weight:700;font-size:22pt;line-height:.6;margin-top:3mm}
 .src{display:flex;justify-content:flex-end;align-items:flex-end;gap:2mm;font-family:"Playfair";font-style:italic;font-size:8pt;color:#555}
 .box.q{background:none}
+
+.year{display:grid;grid-template-columns:repeat(3,1fr);gap:9mm 5mm;margin-top:6mm}
+.mini b{display:block;font-family:"Playfair";font-weight:700;font-size:11pt;text-align:center;margin-bottom:1mm}
+.mg{display:grid;grid-template-columns:repeat(7,1fr);font-size:7.5pt;text-align:center;row-gap:1.6mm}
+.mg u{text-decoration:none;font-weight:800;font-size:6pt}.mg i{font-style:normal}
+.wk{text-align:center;font-family:"Playfair";font-style:italic;font-size:9pt;margin:-2mm 0 2mm}
+.wd{display:flex;gap:3mm;border-top:.35mm solid #222;padding-top:.8mm;height:21.4mm}
+.wl{width:9mm;text-align:center;padding-top:1mm}.wl b{display:block;font-family:"Playfair";font-size:13pt;line-height:1}.wl span{font-size:5.5pt;font-weight:800;letter-spacing:.3mm}
+.wls{flex:1}.ln.w{height:7.6mm}

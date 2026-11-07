@@ -59,3 +59,7 @@ body{font-family:"DM Sans",sans-serif;color:#222;font-size:9pt}
 .wd{display:flex;gap:3mm;border-top:.35mm solid #222;padding-top:.8mm;height:21.4mm}
 .wl{width:9mm;text-align:center;padding-top:1mm}.wl b{display:block;font-family:"Playfair";font-size:13pt;line-height:1}.wl span{font-size:5.5pt;font-weight:800;letter-spacing:.3mm}
 .wls{flex:1}.ln.w{height:7.6mm}
+
+.nr{display:flex;align-items:flex-end}.pgref{width:9mm;height:7.6mm;border-right:.25mm solid #bbb;margin-right:2mm}.nr .ln{flex:1}
+.nh{position:absolute;top:8.5mm;left:1.5mm;font-size:5.5pt;font-weight:800;letter-spacing:.3mm;color:#777}
+.tb.idx td{height:7.9mm}.tb .n{color:#222;font-weight:800;font-size:7pt;width:9mm}

@@ -1,0 +1,52 @@
+@font-face{font-family:"Playfair";src:url(fonts/playfair-700.woff2);font-weight:700}
+@font-face{font-family:"Playfair";src:url(fonts/playfair-500i.woff2);font-weight:500;font-style:italic}
+@font-face{font-family:"Dancing";src:url(fonts/dancing-700.woff2);font-weight:700}
+@font-face{font-family:"DM Sans";src:url(fonts/dmsans-500.woff2);font-weight:500}
+@font-face{font-family:"DM Sans";src:url(fonts/dmsans-800.woff2);font-weight:800}
+@page{size:148mm 210mm;margin:11mm 9mm 10mm 15mm}
+@page :left{margin:11mm 15mm 10mm 9mm}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"DM Sans",sans-serif;color:#222;font-size:9pt}
+.pg{height:189mm;page-break-after:always;position:relative;overflow:hidden}
+.mh{display:flex;align-items:center;gap:4mm;margin-bottom:4mm}
+.mh i{flex:1;height:.5mm;background:#222}
+.mh span{font-family:"Playfair";font-weight:700;font-size:14pt;letter-spacing:.5mm;white-space:nowrap}
+.day{display:flex;align-items:center;justify-content:center;gap:2mm}
+.day b{font-family:"Playfair";font-size:16pt}
+.dl{width:11mm;height:.3mm;background:#222;position:relative}
+.dn{text-align:center;font-weight:800;font-size:6.5pt;letter-spacing:.6mm;margin:-.5mm 0 1mm}
+.ln{border-bottom:.25mm solid #9a9a9a;height:7.6mm}
+.row .ln.s,.ln.s{flex:0 0 11mm}.row .ln.s2,.ln.s2{flex:0 0 20mm}.ln.full{width:100%}
+.read{margin-top:3mm;border:.35mm solid #222;border-radius:2mm;padding:2.5mm 3mm 2mm;position:relative}
+.rt{position:absolute;top:-2.2mm;right:4mm;background:#fff;padding:0 2mm;font-weight:800;font-size:7pt;letter-spacing:.6mm}
+.row{display:flex;align-items:flex-end;gap:2mm}
+.row span{font-family:"Playfair";font-style:italic;font-weight:500;font-size:9pt;white-space:nowrap;padding-bottom:1mm}
+.row .ln{flex:1}
+.row.top{align-items:flex-start}
+.row .opt{font-family:"DM Sans";font-style:normal;font-size:8pt}
+.row .opt.big{font-size:13pt;letter-spacing:1mm}
+.hint{font-family:"Playfair";font-style:italic;font-weight:500;font-size:9pt;text-align:center;color:#555;margin-bottom:4mm}
+.lab{margin-top:4mm;font-weight:800;font-size:7pt;letter-spacing:.6mm;text-transform:uppercase}
+.box{border:.35mm solid #222;border-radius:2mm;margin-top:1.5mm}
+.cover{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.cover .small{font-weight:800;letter-spacing:1.5mm;font-size:9pt}
+.cover .big{font-family:"Dancing";font-weight:700;font-size:58pt;line-height:1;margin-top:3mm}
+.cover .orn{margin:4mm 0;font-size:12pt}
+.cover .sub{font-family:"Playfair";font-style:italic;font-weight:500;font-size:11pt}
+.cover .owner{margin-top:28mm;width:85%}.cover .owner span{font-family:"Playfair";font-style:italic;font-size:10pt}
+.cover .brand{position:absolute;bottom:0;font-size:7pt;letter-spacing:.8mm;color:#666;text-transform:uppercase}
+.goal{text-align:center;font-family:"Playfair";font-style:italic;font-size:11pt;margin-bottom:8mm}
+.blank{display:inline-block;width:16mm;border-bottom:.3mm solid #222}
+.shelf{display:flex;flex-wrap:wrap;align-items:flex-end;gap:1.6mm 1mm;justify-content:center}
+.sp{width:8mm;border:.3mm solid #222;border-radius:.6mm;display:flex;align-items:flex-end;justify-content:center;padding-bottom:.8mm;font-size:5.5pt;border-bottom-width:.8mm}
+.chk{display:flex;align-items:flex-end;gap:2mm}.chk b{width:3.2mm;height:3.2mm;border:.3mm solid #222;border-radius:.6mm;margin-bottom:1.2mm}.chk .ln{flex:1}
+.tb{width:100%;border-collapse:collapse}
+.tb th{font-weight:800;font-size:6.5pt;letter-spacing:.4mm;text-transform:uppercase;text-align:left;border-bottom:.4mm solid #222;padding:1mm}
+.tb td{border-bottom:.25mm solid #9a9a9a;height:8.4mm}
+.tb td:not(:last-child){border-right:.25mm dotted #bbb}
+.tb .c{text-align:center;font-size:8pt;color:#555}
+.find{border:.35mm solid #222;border-radius:2mm;padding:1mm 3mm 3mm;margin-bottom:4mm}
+.find .area{flex:1;height:28mm;border-bottom:.25mm solid #9a9a9a;background:repeating-linear-gradient(transparent 0 6.75mm,#9a9a9a 6.75mm 7mm)}
+.quote{margin-bottom:3mm}.qm{font-family:"Playfair";font-weight:700;font-size:22pt;line-height:.6;margin-top:3mm}
+.src{display:flex;justify-content:flex-end;align-items:flex-end;gap:2mm;font-family:"Playfair";font-style:italic;font-size:8pt;color:#555}
+.box.q{background:none}

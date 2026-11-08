@@ -9,6 +9,7 @@ caps = {
  "c7": ("low", None, "cuadernillos listos para coser"),
  "c8": ("low", None, "y el sello de la casa"),
  "c9": ("low", None, "¡ya casi está!"),
+ "c10": ("low", None, "Próximamente · Parte 2: la costura 🧵"),
 }
 css = '''@font-face{font-family:P;src:url(playfair-700.woff2);font-weight:700}
 @font-face{font-family:Pi;src:url(playfair-500i.woff2)}
@@ -37,7 +38,7 @@ for k,(kind,kick,txt) in caps.items():
     else:
         body=f'<div class="low"><span>{txt}</span></div>'
     html[k]=body
-html["end"]='''<div class="end"><div class="box"><div class="k">PRÓXIMAMENTE · PARTE 2: LA COSTURA</div>
+html["end"]='''<div class="end"><div class="box"><div class="k">HECHAS A MANO, UNA POR UNA</div>
 <div class="t">Agendas 2027</div><div class="p">preventa desde <em>$40.000</em></div>
 <div class="ig" style="font-family:Pi;font-size:40px;margin-top:10px">papel · tela · cuero — hasta el 20/11</div>
 <div class="w">WhatsApp 221 577-0018</div><div class="ig">@renzi.librosusados</div></div></div>'''

@@ -27,11 +27,18 @@ for s in "${SEGS[@]}"; do set -- $s
     -map "[vo]" -map "[ao]" -t $3 -c:v libx264 -crf 17 -preset medium -r 30 -c:a pcm_s16le $TMP/s$i.mov
   echo "file '$TMP/s$i.mov'" >> $LIST; i=$((i+1))
 done
-# foto final con zoom lento + placa de cierre
-ffmpeg -v error -y -loop 1 -t 4 -i "$FINAL" -loop 1 -t 4 -i overlays/end.png -f lavfi -t 4 -i anullsrc=r=48000:cl=stereo \
-  -filter_complex "[0:v]scale=1350:2400,zoompan=z='1+0.0009*on':x='(iw-iw/zoom)/2':y='(ih-ih/zoom)/3':d=120:s=1080x1920:fps=30,setsar=1[v];[1:v]format=rgba,fade=in:st=0.3:d=0.5:alpha=1[o];[v][o]overlay=0:0,format=yuv420p" \
-  -map 2:a -t 4 -c:v libx264 -crf 17 -preset medium -r 30 -c:a pcm_s16le $TMP/s$i.mov
-echo "file '$TMP/s$i.mov'" >> $LIST
+# foto de cierre (limpia, con zoom lento)
+ffmpeg -v error -y -loop 1 -t 2.5 -i "$FINAL" -f lavfi -t 2.5 -i anullsrc=r=48000:cl=stereo \
+  -filter_complex "[0:v]scale=1350:2400,zoompan=z='1+0.0012*on':x='(iw-iw/zoom)/2':y='(ih-ih/zoom)/3':d=75:s=1080x1920:fps=30,setsar=1,format=yuv420p[v]" \
+  -map "[v]" -map 1:a -t 2.5 -c:v libx264 -crf 17 -preset medium -r 30 -c:a pcm_s16le $TMP/s$i.mov
+echo "file '$TMP/s$i.mov'" >> $LIST; i=$((i+1))
+# final: avance de la parte 2 y placa de contacto sobre video
+for s in "IMG_7379.MOV 0.0 2.8 c10" "IMG_7377.MOV 48.0 4.2 end"; do set -- $s
+  ffmpeg -v error -y -ss $2 -t $3 -i "$SRC/$1" -loop 1 -t $3 -i overlays/$4.png \
+    -filter_complex "[0:v]$VF[v];[1:v]format=rgba,fade=in:st=0.15:d=0.4:alpha=1[o];[v][o]overlay=0:0:shortest=1,format=yuv420p[vo];[0:a]aresample=48000,aformat=channel_layouts=stereo,afade=t=in:d=0.08,afade=t=out:st=$(python3 -c "print($3-0.12)"):d=0.12[ao]" \
+    -map "[vo]" -map "[ao]" -t $3 -c:v libx264 -crf 17 -preset medium -r 30 -c:a pcm_s16le $TMP/s$i.mov
+  echo "file '$TMP/s$i.mov'" >> $LIST; i=$((i+1))
+done
 ffmpeg -v error -y -f concat -safe 0 -i $LIST -c copy $TMP/video.mov
 D=$(ffprobe -v error -show_entries format=duration -of csv=p=0 $TMP/video.mov)
 case $AUDIO in

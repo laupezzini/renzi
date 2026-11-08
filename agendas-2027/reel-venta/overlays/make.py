@@ -36,7 +36,7 @@ pages = {k: f'<div class="low"><span>{t}</span></div>' for k,t in low.items()}
 pages["v1"] = '<div class="hook"><div class="a">Tu agenda 2027<br>todavía no existe 👀</div><div class="b">y eso es lo mejor</div></div>'
 for k,(img,name,price,sub) in {"tapa1":("tapa_papel.jpg","Papel","$40.000","estampada, liviana y colorida"),
                                "tapa2":("tapa_jirafa.jpg","Tela","$45.000","más resistente, con ilustración"),
-                               "tapa3":("tapa_cuero.jpg","Cuero","$55.000","cuero natural, cosido a la vista")}.items():
+                               "tapa3":("tapa_cuero.jpg","Cuero","$65.000","cuero natural, cosido a la vista")}.items():
     pages[k] = f'''<div class="cover"><div class="bg" style="background-image:url({img})"></div><div class="k">Elegí tu <i>tapa</i></div>
 <div class="ph"><div style="background-image:url({img})"></div></div><div class="n">{name}</div><div class="p">{price}</div><div class="s">{sub}</div></div>'''
 pages["end"] = '''<div class="end"><div class="box"><div class="k">PREVENTA HASTA EL 20/11</div>

@@ -20,11 +20,11 @@ SEGS=(
 )
 VF="scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30,setsar=1,eq=saturation=1.08:contrast=1.03"
 i=0; LIST=$TMP/list.txt; : > $LIST
-for s in "${SEGS[@]}"; do set -- $s
+for s in "${SEGS[@]}"; do set -- $s; T=$3
   ffmpeg -v error -y -ss $2 -t $3 -i "$SRC/$1" -loop 1 -t $3 -i overlays/$4.png \
     -f lavfi -t $3 -i anullsrc=r=48000:cl=stereo \
-    -filter_complex "[0:v]$VF[v];[1:v]format=rgba,fade=in:st=0.1:d=0.25:alpha=1[o];[v][o]overlay=0:0:shortest=1,format=yuv420p[vo];[0:a]aresample=48000,aformat=channel_layouts=stereo,afade=t=in:d=0.08,afade=t=out:st=$(python3 -c "print($3-0.12)"):d=0.12[ao]" \
-    -map "[vo]" -map "[ao]" -t $3 -c:v libx264 -crf 17 -preset medium -r 30 -c:a pcm_s16le $TMP/s$i.mov
+    -filter_complex "[0:v]$VF[v];[1:v]format=rgba,fade=in:st=0.1:d=0.25:alpha=1[o];[v][o]overlay=0:0:shortest=1,format=yuv420p[vo];[0:a]aresample=48000,aformat=channel_layouts=stereo,afade=t=in:d=0.08,afade=t=out:st=$(python3 -c "print($3-0.12)"):d=0.12,apad[ao]" \
+    -map "[vo]" -map "[ao]" -t $T -c:v libx264 -crf 17 -preset medium -r 30 -c:a pcm_s16le $TMP/s$i.mov
   echo "file '$TMP/s$i.mov'" >> $LIST; i=$((i+1))
 done
 # foto de cierre (limpia, con zoom lento)
@@ -33,10 +33,12 @@ ffmpeg -v error -y -loop 1 -t 2.5 -i "$FINAL" -f lavfi -t 2.5 -i anullsrc=r=4800
   -map "[v]" -map 1:a -t 2.5 -c:v libx264 -crf 17 -preset medium -r 30 -c:a pcm_s16le $TMP/s$i.mov
 echo "file '$TMP/s$i.mov'" >> $LIST; i=$((i+1))
 # final: avance de la parte 2 y placa de contacto sobre video
-for s in "IMG_7379.MOV 0.0 2.8 c10" "IMG_7386.MP4 21.3 4.4 end"; do set -- $s
-  ffmpeg -v error -y -ss $2 -t $3 -i "$SRC/$1" -loop 1 -t $3 -i overlays/$4.png \
-    -filter_complex "[0:v]$VF[v];[1:v]format=rgba,fade=in:st=0.15:d=0.4:alpha=1[o];[v][o]overlay=0:0:shortest=1,format=yuv420p[vo];[0:a]aresample=48000,aformat=channel_layouts=stereo,afade=t=in:d=0.08,afade=t=out:st=$(python3 -c "print($3-0.12)"):d=0.12[ao]" \
-    -map "[vo]" -map "[ao]" -t $3 -c:v libx264 -crf 17 -preset medium -r 30 -c:a pcm_s16le $TMP/s$i.mov
+# formato: archivo inicio duración placa congelado(seg al final, cuadro fijo con la placa)
+for s in "IMG_7379.MOV 0.0 2.8 c10 0" "IMG_7386.MP4 21.3 2.2 end 2.4"; do set -- $s
+  T=$(python3 -c "print($3+$5)")
+  ffmpeg -v error -y -ss $2 -t $3 -i "$SRC/$1" -loop 1 -t $T -i overlays/$4.png \
+    -filter_complex "[0:v]$VF,tpad=stop_mode=clone:stop_duration=$5[v];[1:v]format=rgba,fade=in:st=0.15:d=0.4:alpha=1[o];[v][o]overlay=0:0:shortest=1,format=yuv420p[vo];[0:a]aresample=48000,aformat=channel_layouts=stereo,afade=t=in:d=0.08,afade=t=out:st=$(python3 -c "print($3-0.12)"):d=0.12,apad[ao]" \
+    -map "[vo]" -map "[ao]" -t $T -c:v libx264 -crf 17 -preset medium -r 30 -c:a pcm_s16le $TMP/s$i.mov
   echo "file '$TMP/s$i.mov'" >> $LIST; i=$((i+1))
 done
 ffmpeg -v error -y -f concat -safe 0 -i $LIST -c copy $TMP/video.mov

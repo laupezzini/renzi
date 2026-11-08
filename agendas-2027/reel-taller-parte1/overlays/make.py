@@ -1,7 +1,7 @@
 # Genera las placas de texto (PNG transparentes 1080x1920) del reel "Taller parte 1".
 caps = {
  "c1": ("top", "PARTE 1", "Así nace tu<br><b>agenda 2027</b>"),
- "c2": ("low", None, "¡ese olor a papel nuevo! 🤍"),
+ "c2": ("low", None, "abrimos el paquete…"),
  "c3": ("low", None, "revisamos cada hoja"),
  "c4": ("low", None, "un día por página"),
  "c5": ("low", None, "doblamos a mano, hoja por hoja"),

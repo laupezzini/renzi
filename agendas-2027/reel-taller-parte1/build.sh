@@ -9,7 +9,7 @@ TMP=$(mktemp -d)
 # archivo inicio duración placa
 SEGS=(
 "IMG_7374.MOV 0.2 2.4 c1"
-"IMG_7374.MOV 9.6 2.2 c2"
+"IMG_7374.MOV 8.9 1.7 c2"
 "IMG_7377.MOV 11.5 3.0 c3"
 "IMG_7379.MOV 11.8 2.2 c4"
 "IMG_7377.MOV 32.5 3.0 c5"

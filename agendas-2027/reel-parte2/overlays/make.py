@@ -32,7 +32,7 @@ for k,t in low.items():
     if k in speed: b+=f'<div class="spd">⏩ {speed[k]}</div>'
     pages[k]=b
 pages["p1"]='<div class="hook"><div class="k">PARTE 2</div><div class="a">Así cosemos<br>tu agenda 2027 🧵</div></div>'
-pages["end"]='''<div class="end"><div class="box"><div class="k">PRÓXIMAMENTE · PARTE 3: LA TAPA</div>
+pages["end"]='''<div class="end"><div class="box"><div class="k">PRÓXIMAMENTE · PARTE 3</div>
 <div class="t">Agendas 2027<br>cosidas a mano</div>
 <div class="pr">Papel <em>$40.000</em> · Tela <em>$45.000</em> · Cuero <em>$65.000</em></div>
 <div class="cta">Escribí AGENDA por DM</div>

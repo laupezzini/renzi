@@ -25,6 +25,7 @@ TRAMOS = [
  (535.2,540.3, 1, [(535.2,537.0,"Nos vemos en el próximo video,"),(537.0,540.3,"cuando llegue la agenda a la prensa")], None),
 ]
 FIN = 3.8  # segundos del cuadro final con precios
+FIN_T = 539.6  # fotograma del cierre (Federico mirando a cámara, ojos abiertos)
 VF = "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,setsar=1,eq=saturation=1.08:contrast=1.04"
 tmp = tempfile.mkdtemp(); lst = open(f"{tmp}/l.txt","w"); t_out = 0.0; ass_lines = []
 def ts(t): h=int(t//3600); m=int(t%3600//60); s=t%60; return f"{h}:{m:02d}:{s:05.2f}"
@@ -48,7 +49,7 @@ for n,(a,b,sp,subs,label) in enumerate(TRAMOS):
         ass_lines.append(f"Dialogue: 1,{ts(t_out)},{ts(t_out+dur)},{style},,0,0,0,,{label}")
     t_out += dur
 # cuadro final: último fotograma + placa
-run(["ffmpeg","-v","error","-y","-sseof","-0.2","-i",f"{tmp}/s{len(TRAMOS)-1}.mov","-frames:v","1","-update","1",f"{tmp}/last.png"])
+run(["ffmpeg","-v","error","-y","-ss",str(FIN_T),"-i",SRC,"-frames:v","1","-vf",VF,f"{tmp}/last.png"])
 run(["ffmpeg","-v","error","-y","-loop","1","-t",str(FIN),"-i",f"{tmp}/last.png","-loop","1","-t",str(FIN),"-i","overlays/end.png",
      "-f","lavfi","-t",str(FIN),"-i","anullsrc=r=48000:cl=stereo","-filter_complex",
      "[1:v]format=rgba,fade=in:st=0.1:d=0.4:alpha=1[o];[0:v][o]overlay=0:0,format=yuv420p[v]","-map","[v]","-map","2:a",

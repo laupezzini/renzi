@@ -21,11 +21,11 @@ TRAMOS = [
  (485.1,490.8, 1, [(485.1,487.7,"Punto alternado,"),(487.7,490.8,"porque ahora no va a ser punto seguido")], None),
  (492.0,525.5, 15,[(492.0,525.5,"…cuadernillo por cuadernillo")], "x15"),
  (526.0,531.6, 1, [(526.0,531.6,"Y así hasta terminar con todos los cuadernillos")], None),
- (531.6,533.9, -1,[(531.7,533.9,"¡Cosida!")], None),   # pulgar arriba, sin la voz
  (535.2,540.3, 1, [(535.2,537.0,"Nos vemos en el próximo video,"),(537.0,540.3,"cuando llegue la agenda a la prensa")], None),
+ (531.6,533.4, -1,[(531.7,533.4,"¡Cosida!")], None),   # pulgar arriba, sin la voz
 ]
 FIN = 3.8  # segundos del cuadro final con precios
-FIN_T = 539.6  # fotograma del cierre (Federico mirando a cámara, ojos abiertos)
+FIN_T = 533.3  # fotograma del cierre: pulgar arriba sobre la agenda cosida
 VF = "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,setsar=1,eq=saturation=1.08:contrast=1.04"
 tmp = tempfile.mkdtemp(); lst = open(f"{tmp}/l.txt","w"); t_out = 0.0; ass_lines = []
 def ts(t): h=int(t//3600); m=int(t%3600//60); s=t%60; return f"{h}:{m:02d}:{s:05.2f}"

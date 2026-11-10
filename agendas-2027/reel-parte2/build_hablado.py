@@ -20,7 +20,8 @@ TRAMOS = [
  (416.0,484.0, 30,[(416.0,484.0,"enganchando con los cuadernillos de abajo…")], "x30"),
  (485.1,490.8, 1, [(485.1,487.7,"Punto alternado,"),(487.7,490.8,"porque ahora no va a ser punto seguido")], None),
  (492.0,525.5, 15,[(492.0,525.5,"…cuadernillo por cuadernillo")], "x15"),
- (526.0,534.4, 1, [(526.0,531.6,"Y así hasta terminar con todos los cuadernillos"),(531.9,534.4,"Espero que les haya servido")], None),
+ (526.0,531.6, 1, [(526.0,531.6,"Y así hasta terminar con todos los cuadernillos")], None),
+ (531.6,533.9, -1,[(531.7,533.9,"¡Cosida!")], None),   # pulgar arriba, sin la voz
  (535.2,540.3, 1, [(535.2,537.0,"Nos vemos en el próximo video,"),(537.0,540.3,"cuando llegue la agenda a la prensa")], None),
 ]
 FIN = 3.8  # segundos del cuadro final con precios
@@ -29,8 +30,9 @@ tmp = tempfile.mkdtemp(); lst = open(f"{tmp}/l.txt","w"); t_out = 0.0; ass_lines
 def ts(t): h=int(t//3600); m=int(t%3600//60); s=t%60; return f"{h}:{m:02d}:{s:05.2f}"
 def run(c): subprocess.run(c, check=True)
 for n,(a,b,sp,subs,label) in enumerate(TRAMOS):
+    mute = sp < 0; sp = abs(sp)
     dur = (b-a)/sp
-    if sp == 1:
+    if sp == 1 and not mute:
         af = f"aresample=48000,aformat=channel_layouts=stereo,highpass=f=80,afftdn=nf=-25,afade=t=in:d=0.04,afade=t=out:st={dur-0.06:.3f}:d=0.06"
         run(["ffmpeg","-v","error","-y","-ss",str(a),"-t",f"{b-a}","-i",SRC,"-vf",f"fps=30,{VF}","-af",af,
              "-c:v","libx264","-crf","18","-preset","veryfast","-c:a","pcm_s16le","-t",f"{dur:.3f}",f"{tmp}/s{n}.mov"])

@@ -41,6 +41,6 @@ for k,(kind,kick,txt) in caps.items():
 html["end"]='''<div class="end"><div class="box"><div class="k">HECHAS A MANO, UNA POR UNA</div>
 <div class="t">Agendas 2027</div><div class="p">preventa desde <em>$40.000</em></div>
 <div class="ig" style="font-family:Pi;font-size:40px;margin-top:10px">papel · tela · cuero — hasta el 20/11</div>
-<div class="w">WhatsApp 221 577-0018</div><div class="ig">@renzi.librosusados</div></div></div>'''
+<div class="w" style="display:inline-block;background:#d6456b;padding:16px 34px 20px;border-radius:26px;margin-top:26px">Escribí AGENDA por DM</div><div class="ig" style="margin-top:14px">o al WhatsApp 221 577-0018 · @renzi.librosusados</div></div></div>'''
 for k,b in html.items():
     open(f"{k}.html","w").write(f'<!doctype html><html><head><meta charset="utf-8"><style>{css}</style></head><body>{b}</body></html>')

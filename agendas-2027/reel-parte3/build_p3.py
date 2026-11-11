@@ -5,7 +5,7 @@ plano: "general" = toma completa; "cerca" = primer plano del lomo (sin la cara).
 import subprocess, sys, tempfile
 SRC, OUT = sys.argv[1], sys.argv[2]
 TRAMOS = [
- (50.0, 0.0, 7.3, "cerca", [(0.0,2.6,"¿Cómo están? Buenas tardes."),(2.6,7.3,"Les voy a mostrar cómo encolo el lomo de la agenda 2027")], "PARTE 3 · EL LOMO"),
+ (50.0, 2.8, 4.5, "cerca", [(2.8,7.3,"Les voy a mostrar cómo encolo el lomo de la agenda 2027")], "PARTE 3 · EL LOMO"),
  (14.3, 14.3, 5.27, "general", [(14.3,16.5,"Para encolar el lomo"),(16.5,19.57,"uso una prensa que construí con madera")], None),
  (31.58, 31.58, 1.75, "general", [(31.58,33.33,"Ajusto la prensa…")], None),
  (38.2, 38.2, 6.0, "cerca", [(38.2,40.0,"y empiezo a encolar el lomo."),(40.0,44.2,"Lo ajusto no mucho, porque después,")], None),

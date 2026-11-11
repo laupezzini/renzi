@@ -5,19 +5,19 @@ plano: "general" = toma completa; "cerca" = primer plano del lomo (sin la cara).
 import subprocess, sys, tempfile
 SRC, OUT = sys.argv[1], sys.argv[2]
 TRAMOS = [
- (50.0, 2.8, 4.8, "cerca", [(2.8,7.5,"Les voy a mostrar cómo encolo el lomo de la agenda 2027")], "PARTE 3 · EL LOMO"),
- (14.3, 14.3, 5.27, "general", [(14.3,16.5,"Para encolar el lomo"),(16.5,19.57,"uso una prensa que construí con madera")], None),
- (31.58, 31.58, 1.75, "general", [(31.58,33.33,"Ajusto la prensa…")], None),
+ (50.0, 2.8, 8.25, "cerca", [(2.8,7.38,"Les voy a mostrar cómo encolo el lomo de la agenda 2027"),(7.38,11.05,"que ayer les mostré en el video")], "PARTE 3 · EL LOMO"),
+ (14.3, 14.3, 5.42, "general", [(14.3,16.5,"Para encolar el lomo"),(16.5,19.72,"uso una prensa que construí con madera")], None),
+ (31.9, 31.9, 1.7, "general", [(31.9,33.6,"Ajusto la prensa…")], None),
  (38.2, 38.2, 6.0, "cerca", [(38.2,40.0,"y empiezo a encolar el lomo."),(40.0,44.2,"Lo ajusto no mucho, porque después,")], None),
- (44.2, 44.2, 5.7, "general", [(44.2,46.6,"apenas se empieza a secar la cola,"),(46.6,49.9,"lo bajo un poco más y lo ajusto más fuerte")], None),
- (70.8, 70.8, 8.2, "cerca", [(70.8,74.0,"Lo dejamos secando y prensado"),(74.0,79.0,"para después hacer la tapa")], None),
- (79.0, 79.0, 8.1, "general", [(79.0,80.6,"de cartón duro"),(80.6,87.1,"con una lámina hermosa que más tarde van a ver")], None),
- (87.2, 87.2, 4.2, "cerca", [(87.2,89.6,"Muy bien…"),(89.6,91.4,"ahí va quedando el lomo")], None),
- (92.0, 97.9, 1.8, "cerca", [(97.9,99.7,"¡Nos vemos en la próxima!")], None),
+ (44.2, 44.2, 5.9, "general", [(44.2,46.6,"apenas se empieza a secar la cola,"),(46.6,50.1,"lo bajo un poco más y lo ajusto más fuerte")], None),
+ (70.72, 70.72, 8.28, "cerca", [(70.72,74.0,"Lo dejamos secando y prensado"),(74.0,79.0,"para después hacer la tapa")], None),
+ (79.0, 79.0, 8.3, "general", [(79.0,80.6,"de cartón duro"),(80.6,87.3,"con una lámina hermosa que más tarde van a ver")], None),
+ (87.3, 87.3, 4.2, "cerca", [(87.3,89.7,"Muy bien…"),(89.7,91.5,"ahí va quedando el lomo")], None),
+ (92.0, 98.45, 1.37, "cerca", [(98.45,99.82,"¡Nos vemos en la próxima!")], None),
 ]
 FIN, FIN_T = 3.8, 91.0
 # voz cortada antes del final del tramo (segundos de audio que se usan); el resto queda en silencio
-VOZ_HASTA = {0: 4.53}   # "…agenda 2027" termina en 7.33; enseguida dice "que…"   # cuadro final: primer plano del lomo encolado
+VOZ_HASTA = {}   # cuadro final: primer plano del lomo encolado
 GEN = "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,setsar=1,eq=saturation=1.06:contrast=1.04"
 CER = "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,crop=490:872:420:840,scale=1080:1920:flags=lanczos,unsharp=5:5:0.6,setsar=1,eq=saturation=1.06:contrast=1.04"
 def run(c): subprocess.run(c, check=True)
@@ -29,7 +29,7 @@ for n,(v,a,d,plano,subs,label) in enumerate(TRAMOS):
         h = VOZ_HASTA[n]
         af = f"aresample=48000,aformat=channel_layouts=stereo,highpass=f=80,afftdn=nf=-25,afade=t=in:d=0.04,atrim=0:{h},afade=t=out:st={h-0.015:.3f}:d=0.015,apad"
     else:
-        af = f"aresample=48000,aformat=channel_layouts=stereo,highpass=f=80,afftdn=nf=-25,afade=t=in:d=0.04,afade=t=out:st={d-0.06:.3f}:d=0.06"
+        af = f"aresample=48000,aformat=channel_layouts=stereo,highpass=f=80,afftdn=nf=-25,afade=t=in:d=0.04,afade=t=out:st={d-0.03:.3f}:d=0.03"
     run(["ffmpeg","-v","error","-y","-ss",str(v),"-t",str(d),"-i",SRC,"-ss",str(a),"-t",str(d),"-i",SRC,"-map","0:v","-map","1:a",
          "-vf",f"fps=30,{vf}","-af",af,"-c:v","libx264","-crf","18","-preset","veryfast","-c:a","pcm_s16le","-t",str(d),f"{tmp}/s{n}.mov"])
     lst.write(f"file '{tmp}/s{n}.mov'\n")

@@ -6,7 +6,8 @@ import subprocess, sys, tempfile
 SRC, OUT = sys.argv[1], sys.argv[2]
 TRAMOS = [
  (50.0, 2.8, 8.25, "cerca", [(2.8,7.38,"Les voy a mostrar cómo encolo el lomo de la agenda 2027"),(7.38,11.05,"que ayer les mostré en el video")], "PARTE 3 · EL LOMO"),
- (14.3, 14.3, 5.42, "general", [(14.3,16.5,"Para encolar el lomo"),(16.5,19.72,"uso una prensa que construí con madera")], None),
+ (14.3, 14.3, 10.02, "general", [(14.3,16.5,"Para encolar el lomo"),(16.5,19.72,"uso una prensa que construí con madera"),(19.72,22.78,"Fíjense que en otro video les voy a mostrar"),(22.78,24.32,"todas sus características")], None),
+ (24.32, 24.32, 5.1, "cerca", [(24.32,26.12,"y alternativas de trabajo,"),(26.12,29.42,"que próximamente va a salir a la venta por pedido")], None),
  (31.9, 31.9, 1.7, "general", [(31.9,33.6,"Ajusto la prensa…")], None),
  (38.2, 38.2, 6.0, "cerca", [(38.2,40.0,"y empiezo a encolar el lomo."),(40.0,44.2,"Lo ajusto no mucho, porque después,")], None),
  (44.2, 44.2, 5.9, "general", [(44.2,46.6,"apenas se empieza a secar la cola,"),(46.6,50.1,"lo bajo un poco más y lo ajusto más fuerte")], None),

@@ -12,6 +12,7 @@ pages["end"] = '''<div class="end"><div class="box"><div class="k">ÚLTIMOS DÍA
 pages["end_wa"] = '''<div class="end"><div class="box"><div class="k">ÚLTIMOS DÍAS · PREVENTA HASTA EL 20/11</div>
 <div class="t">Agendas 2027<br>hechas a mano</div>
 <div class="pr">Papel <em>$40.000</em> · Tela <em>$45.000</em></div>
+<div class="w" style="font-family:Pi;font-size:34px;margin-top:12px">por día con horarios · también sin horario, semanal o perpetua</div>
 <div class="cta">Respondé y <b>pedí la tuya</b></div>
 <div class="w">Renzi · cuadernos hechos a mano · 221 577-0018</div></div></div>'''
 pages["formatos"] = '''<div style="position:absolute;left:60px;right:60px;top:330px;background:rgba(20,30,25,.86);border-radius:40px;padding:44px 40px 48px;text-align:center;color:#fff;box-shadow:0 20px 50px rgba(0,0,0,.3)">

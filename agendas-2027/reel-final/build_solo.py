@@ -13,7 +13,7 @@ T = [
  ("fin2.mp4",       11.5, 4.0, 1.2, False, "gen",  [(11.5,15.5,"un día por página, con horarios")], None),
  ("fin1.mp4",       31.9, 3.5, 1,   False, "gen",  [(31.9,35.4,"420 hojas cosidas a mano")], None),
 ]
-FOTO, FIN = "fotos/abierta1.jpg", 4.5
+FOTO, FIN = "fotos/mejoradas/abierta1.jpg", 4.5
 GEN = "scale=1080:1920:force_original_aspect_ratio=increase:flags=lanczos,crop=1080:1920,setsar=1,eq=saturation=1.06:contrast=1.03"
 CER = "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,crop=490:872:420:840,scale=1080:1920:flags=lanczos,setsar=1,eq=saturation=1.06:contrast=1.03"
 ZOOM = "crop=380:676:90:170,scale=1080:1920:flags=lanczos,setsar=1,eq=saturation=1.06:contrast=1.03"

@@ -13,7 +13,7 @@ T = [
  ("fin2.mp4",  2.5,  5.5,  1.6, False, "gen", [(2.5,8.0,"guardas azules por dentro")], None),
  ("foto_cintas.mp4", 0.0, 2.2, 1, False, "gen", [(0.0,2.2,"dos cintas para marcar tus días")], None),
  ("formatos.mp4", 0.0, 5.5, 1, False, "gen", [], None),   # aclara formato y opciones a medida
- ("fin1.mp4", 46.6,  5.6,  1, True,  "gen", [(46.8,50.3,"Este es un papel con motivo, unos pajaritos,"),(50.3,52.2,"pero también puede ser tela")], "Papel $40.000 · Tela $45.000 · Cuero $65.000"),
+ ("fin1.mp4", 46.6,  5.6,  1, True,  "gen", [(46.8,50.3,"Este es un papel con motivo, unos pajaritos,"),(50.3,52.2,"pero también puede ser tela")], "Papel $40.000 · Tela $45.000"),
 ]
 FOTO, FIN = "fotos/abierta1.jpg", 4.0
 GEN = "scale=1080:1920:force_original_aspect_ratio=increase:flags=lanczos,crop=1080:1920,setsar=1,eq=saturation=1.06:contrast=1.03"

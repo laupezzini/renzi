@@ -6,11 +6,10 @@ Tramo: (archivo, ini_video, duración_original, velocidad, con_voz, plano, [(ini
 import subprocess, sys, tempfile
 RAW, OUT = sys.argv[1], sys.argv[2]
 T = [
- ("p1_hojas.mov",   11.8, 1.3, 1, False, "gen", [(11.8,13.1,"De hojas sueltas…")], None),
- ("p1_doblado.mov", 32.5, 1.3, 1, False, "gen", [(32.5,33.8,"dobladas a mano,")], None),
- ("p2.mp4",        196.0, 2.6, 2, False, "gen", [(196.0,198.6,"cosidas una por una,")], None),
- ("p3.mp4",         52.0, 1.3, 1, False, "cer", [(52.0,53.3,"encoladas…")], None),
- ("fin1.mp4",  1.25, 5.35, 1, True,  "gen", [(1.4,4.4,"Vamos a ver cómo salieron la agenda y el cuaderno,"),(4.4,6.6,"que los vamos a sacar de la prensa. ¡Mirá!")], "LA AGENDA TERMINADA"),
+ ("p1_hojas.mov",   11.8, 1.3, 1, ("fin1.mp4", 1.25), "gen", [(1.4,3.3,"Vamos a ver cómo salieron")], "LA AGENDA TERMINADA"),
+ ("p1_doblado.mov", 32.5, 1.3, 1, ("fin1.mp4", 2.55), "gen", [(2.55,4.4,"la agenda y el cuaderno,")], "LA AGENDA TERMINADA"),
+ ("p2.mp4",        196.0, 1.3, 1, ("fin1.mp4", 3.85), "gen", [(3.85,5.15,"que los vamos a sacar")], "LA AGENDA TERMINADA"),
+ ("p3.mp4",         52.0, 1.45,1, ("fin1.mp4", 5.15), "cer", [(5.15,6.6,"de la prensa. ¡Mirá!")], "LA AGENDA TERMINADA"),
  ("fin1.mp4",  7.4,  2.8,  1.4, False, "gen", [], None),
  ("fin1.mp4", 24.05, 3.6,  1, True,  "gen", [(24.1,25.7,"¡Mirá la agenda, mirá la agenda!")], None),
  ("fin1.mp4", 31.9, 3.52, 1, True,  "gen", [(32.4,34.1,"420 hojas…"),(34.1,35.42,"¡420 hojas!")], None),
@@ -30,13 +29,15 @@ for n,(f,v,d,sp,voz,plano,subs,label) in enumerate(T):
     if f.startswith("fin"): vf+=",unsharp=5:5:0.5"
     if voz:
         af=f"aresample=48000,aformat=channel_layouts=stereo,highpass=f=80,afftdn=nf=-25,afade=t=in:d=0.03,afade=t=out:st={d-0.03:.3f}:d=0.03"
-        run(["ffmpeg","-v","error","-y","-ss",str(v),"-t",str(d),"-i",f"{RAW}/{f}","-vf",f"fps=30,{vf}","-af",af,
+        asrc, ast = (voz if isinstance(voz, tuple) else (f, v))
+        run(["ffmpeg","-v","error","-y","-ss",str(v),"-t",str(d),"-i",f"{RAW}/{f}","-ss",str(ast),"-t",str(d),"-i",f"{RAW}/{asrc}","-map","0:v","-map","1:a","-vf",f"fps=30,{vf}","-af",af,
              "-c:v","libx264","-crf","18","-preset","veryfast","-c:a","pcm_s16le","-t",f"{od:.3f}",f"{tmp}/s{n}.mov"])
     else:
         run(["ffmpeg","-v","error","-y","-ss",str(v),"-t",str(d),"-i",f"{RAW}/{f}","-f","lavfi","-t",f"{od:.3f}","-i","anullsrc=r=48000:cl=stereo",
              "-map","0:v","-map","1:a","-vf",f"setpts=PTS/{sp},fps=30,{vf}","-c:v","libx264","-crf","18","-preset","veryfast","-c:a","pcm_s16le","-t",f"{od:.3f}",f"{tmp}/s{n}.mov"])
     lst.write(f"file '{tmp}/s{n}.mov'\n")
-    for a,b,tx in subs: ev.append(f"Dialogue: 0,{ts(t+max(0,a-v)/sp)},{ts(t+min(d,b-v)/sp)},Sub,,0,0,0,,{tx}")
+    ref = voz[1] if isinstance(voz, tuple) else v
+    for a,b,tx in subs: ev.append(f"Dialogue: 0,{ts(t+max(0,a-ref)/sp)},{ts(t+min(d,b-ref)/sp)},Sub,,0,0,0,,{tx}")
     if label: ev.append(f"Dialogue: 1,{ts(t)},{ts(t+od)},Top,,0,0,0,,{label}")
     t+=od
 run(["ffmpeg","-v","error","-y","-loop","1","-t",str(FIN),"-i",FOTO,"-loop","1","-t",str(FIN),"-i","overlays/end.png","-f","lavfi","-t",str(FIN),"-i","anullsrc=r=48000:cl=stereo",

@@ -6,12 +6,12 @@ css += '''.pr{font-family:D;font-size:38px;white-space:nowrap;margin-top:16px}.p
 pages = {k: f'<div class="low"><span>{t}</span></div>' for k,t in low.items()}
 pages["end"] = '''<div class="end"><div class="box"><div class="k">ÚLTIMOS DÍAS · PREVENTA HASTA EL 20/11</div>
 <div class="t">Agendas 2027<br>hechas a mano</div>
-<div class="pr">Papel <em>$40.000</em> · Tela <em>$45.000</em> · Cuero <em>$65.000</em></div>
+<div class="pr">Papel <em>$40.000</em> · Tela <em>$45.000</em></div>
 <div class="cta">Escribí <b>AGENDA</b> por DM</div>
 <div class="w">o al WhatsApp 221 577-0018 · @renzi.librosusados</div></div></div>'''
 pages["end_wa"] = '''<div class="end"><div class="box"><div class="k">ÚLTIMOS DÍAS · PREVENTA HASTA EL 20/11</div>
 <div class="t">Agendas 2027<br>hechas a mano</div>
-<div class="pr">Papel <em>$40.000</em> · Tela <em>$45.000</em> · Cuero <em>$65.000</em></div>
+<div class="pr">Papel <em>$40.000</em> · Tela <em>$45.000</em></div>
 <div class="cta">Respondé y <b>pedí la tuya</b></div>
 <div class="w">Renzi · cuadernos hechos a mano · 221 577-0018</div></div></div>'''
 pages["formatos"] = '''<div style="position:absolute;left:60px;right:60px;top:330px;background:rgba(20,30,25,.86);border-radius:40px;padding:44px 40px 48px;text-align:center;color:#fff;box-shadow:0 20px 50px rgba(0,0,0,.3)">

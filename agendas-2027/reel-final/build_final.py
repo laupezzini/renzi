@@ -24,12 +24,27 @@ GEN = "scale=1080:1920:force_original_aspect_ratio=increase:flags=lanczos,crop=1
 CER = "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,crop=490:872:420:840,scale=1080:1920:flags=lanczos,setsar=1,eq=saturation=1.06:contrast=1.03"
 # la parte 3 se filmó con más luz: misma corrección de color que en su reel
 CER3 = CER + ",eq=brightness=-0.04:saturation=0.62:gamma=0.97,selectivecolor=reds=0 0.10 0.16 0:yellows=0 0.08 0.14 0,colorbalance=rs=-0.06:bs=0.05:rm=-0.08:bm=0.07:rh=-0.04:bh=0.04"
+
+# ---- corrección de color (edición) ----
+# piel: menos saturación en rojos/amarillos para que brazos y manos no queden naranjas
+PIEL = "huesaturation=saturation=-0.5:colors=r+y:strength=1,huesaturation=hue=-3:colors=r+y,huesaturation=saturation=-0.08,eq=gamma=1.03"
+# balance de blancos por archivo (medido sobre papel/mesa/pared, que deben verse blancos)
+WB = {"p1_hojas.mov":(0.935,0.989,1.088),"p1_doblado.mov":(0.937,0.998,1.075),"p2.mp4":(1.0,1.0,1.0),"p3.mp4":(1.036,0.987,0.978),
+      "fin1.mp4":(0.981,1.005,1.015),"fin2.mp4":(0.989,1.0,1.013)}
+# las tomas de la parte 1 son HDR (HLG) del iPhone: se convierten a SDR antes de todo
+HDR = {"p1_hojas.mov","p1_doblado.mov"}
+TM = "zscale=t=linear:npl=203,format=gbrpf32le,zscale=p=bt709,tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p"
+def color(f, vf):
+    r,g,b = WB.get(f,(1,1,1))
+    pre = (TM + ",") if f in HDR else ""
+    return f"{pre}{vf},colorchannelmixer=rr={r}:gg={g}:bb={b},{PIEL}"
 def run(c): subprocess.run(c, check=True)
 def ts(t): return f"{int(t//3600)}:{int(t%3600//60):02d}:{t%60:05.2f}"
 tmp=tempfile.mkdtemp(); lst=open(f"{tmp}/l.txt","w"); t=0.0; ev=[]
 for n,(f,v,d,sp,voz,plano,subs,label) in enumerate(T):
     od=d/sp; vf={"cer":CER,"cer3":CER3}.get(plano,GEN)
     if f.startswith("fin"): vf+=",unsharp=5:5:0.5"
+    if not f.startswith("formatos"): vf = color(f, vf)
     if voz:
         af=f"aresample=48000,aformat=channel_layouts=stereo,highpass=f=80,afftdn=nf=-25,afade=t=in:d=0.03,afade=t=out:st={d-0.03:.3f}:d=0.03"
         asrc, ast = (voz if isinstance(voz, tuple) else (f, v))
@@ -44,7 +59,7 @@ for n,(f,v,d,sp,voz,plano,subs,label) in enumerate(T):
     if label: ev.append(f"Dialogue: 1,{ts(t)},{ts(t+od)},Top,,0,0,0,,{label}")
     t+=od
 run(["ffmpeg","-v","error","-y","-loop","1","-t",str(FIN),"-i",FOTO,"-loop","1","-t",str(FIN),"-i","overlays/end.png","-i",f"{RAW}/{VOZ_CIERRE}",
-     "-filter_complex",f"[0:v]zoompan=z='1+0.0007*on':x='(iw-iw/zoom)/2':y='(ih-ih/zoom)/2':d={int(FIN*30)}:s=1080x1920:fps=30,setsar=1[v];[1:v]format=rgba,fade=in:st=0.2:d=0.4:alpha=1[o];[v][o]overlay=0:0,format=yuv420p[vo]",
+     "-filter_complex",f"[0:v]{PIEL},zoompan=z='1+0.0007*on':x='(iw-iw/zoom)/2':y='(ih-ih/zoom)/2':d={int(FIN*30)}:s=1080x1920:fps=30,setsar=1[v];[1:v]format=rgba,fade=in:st=0.2:d=0.4:alpha=1[o];[v][o]overlay=0:0,format=yuv420p[vo]",
      "-map","[vo]","-map","2:a","-c:v","libx264","-crf","18","-preset","veryfast","-r","30","-c:a","pcm_s16le","-t",str(FIN),f"{tmp}/fin.mov"])
 lst.write(f"file '{tmp}/fin.mov'\n"); lst.close()
 ass="""[Script Info]

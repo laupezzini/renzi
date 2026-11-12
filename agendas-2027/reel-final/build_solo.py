@@ -8,26 +8,31 @@ RAW, OUT = sys.argv[1], sys.argv[2]
 T = [
  ("foto_tapa.mp4",   0.0, 2.4, 1,   False, "foto", [(0.0,2.4,"tapa dura ilustrada")], "AGENDA 2027 · HECHA A MANO"),
  ("fin2.mp4",        0.3, 2.2, 1,   False, "zoom", [], None),
- ("fin2.mp4",        2.5, 5.5, 1.4, False, "gen",  [(2.5,8.0,"guardas azules por dentro")], None),
+ ("fin2.mp4",        2.5, 5.5, 1.4, False, "sp235", [(2.5,8.0,"guardas azules por dentro")], None),
  ("foto_cintas.mp4", 0.0, 2.2, 1,   False, "foto", [(0.0,2.2,"dos cintas para marcar las páginas")], None),
- ("fin2.mp4",       11.5, 4.0, 1.2, False, "gen",  [(11.5,15.5,"un día por página, con horarios")], None),
+ ("fin2.mp4",       11.5, 4.0, 1.2, False, "sp280", [(11.5,15.5,"un día por página, con horarios")], None),
  ("fin1.mp4",       31.9, 3.5, 1,   False, "gen",  [(31.9,35.4,"420 hojas cosidas a mano")], None),
 ]
-FOTO, FIN = "fotos/mejoradas/abierta1.jpg", 4.5
+FOTO, FIN = "fotos/sin-prensa/abierta1.jpg", 4.5
 GEN = "scale=1080:1920:force_original_aspect_ratio=increase:flags=lanczos,crop=1080:1920,setsar=1,eq=saturation=1.06:contrast=1.03"
 CER = "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,crop=490:872:420:840,scale=1080:1920:flags=lanczos,setsar=1,eq=saturation=1.06:contrast=1.03"
-ZOOM = "crop=380:676:90:170,scale=1080:1920:flags=lanczos,setsar=1,eq=saturation=1.06:contrast=1.03"
+ZOOM = "crop=350:622:105:232,scale=1080:1920:flags=lanczos,setsar=1,eq=saturation=1.06:contrast=1.03"
 END_PNG = "overlays/end_wa.png"
 PIEL = "huesaturation=saturation=-0.5:colors=r+y:strength=1,huesaturation=hue=-3:colors=r+y,huesaturation=saturation=-0.08,eq=gamma=1.03"
 WB = {"fin1.mp4":(0.981,1.005,1.015),"fin2.mp4":(0.989,1.0,1.013)}
 def color(f, vf):
     r,g,b = WB.get(f,(1,1,1))
     return f"{vf},colorchannelmixer=rr={r}:gg={g}:bb={b},{PIEL}"
+def sin_prensa(y):
+    # recorta desde y (debajo de la prensa) y completa el formato vertical con un fondo desenfocado de la misma toma
+    return (f"crop=480:{854-y}:0:{y},split[a][b];[a]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,boxblur=30:4,eq=brightness=0.04[bg];"
+            f"[b]scale=1080:-2:flags=lanczos[fg];[bg][fg]overlay=0:(H-h)/2,setsar=1")
 def run(c): subprocess.run(c, check=True)
 def ts(t): return f"{int(t//3600)}:{int(t%3600//60):02d}:{t%60:05.2f}"
 tmp=tempfile.mkdtemp(); lst=open(f"{tmp}/l.txt","w"); t=0.0; ev=[]
 for n,(f,v,d,sp,voz,plano,subs,label) in enumerate(T):
     od=d/sp; vf={"cer":CER,"zoom":ZOOM}.get(plano,GEN)
+    if plano.startswith("sp"): vf = sin_prensa(int(plano[2:]))
     if plano != "foto": vf = color(f, vf)
     if f.startswith("fin"): vf+=",unsharp=5:5:0.5"
     if voz:

@@ -14,7 +14,7 @@ T = [
  ("fin2.mp4",  0.3,  7.7,  1.6, False, "gen", [(0.3,3.4,"tapa dura ilustrada"),(3.4,8.0,"guardas azules y dos cintas")], None),
  ("formatos.mp4", 0.0, 8.530000, 1, ("tts_formatos.wav", 0.0), "gen", [], None),   # aclara formato y opciones a medida, con voz en off
 ]
-FOTO, FIN = "fotos/abierta1.jpg", 10.410000
+FOTO, FIN = "fotos/abierta1.jpg", 12.850000
 VOZ_CIERRE = "tts_cierre.wav"   # voz en off grabada por Laura (limpiada y ecualizada): otras opciones y preventa
 GEN = "scale=1080:1920:force_original_aspect_ratio=increase:flags=lanczos,crop=1080:1920,setsar=1,eq=saturation=1.06:contrast=1.03"
 CER = "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,crop=490:872:420:840,scale=1080:1920:flags=lanczos,setsar=1,eq=saturation=1.06:contrast=1.03"

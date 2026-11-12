@@ -10,7 +10,7 @@ T = [
  ("fin2.mp4",  0.3,  2.2,  1,   False, "zoom", [], None),
  ("fin2.mp4",  2.5,  5.5,  1.4, False, "gen",  [(2.5,8.0,"guardas azules por dentro")], None),
  ("foto_cintas.mp4", 0.0, 2.4, 1, False, "gen",  [(0.0,2.4,"dos cintas para marcar tus días")], None),
- ("fin2.mp4", 11.5,  4.0,  1.2, False, "gen",  [(11.5,15.5,"un día por página, con horarios")], None),
+ ("formatos.mp4", 0.0, 5.5, 1, False, "gen", [], None),   # aclara formato y opciones a medida
  ("fin2.mp4", 19.0,  4.0,  1.2, False, "gen",  [(19.0,23.0,"y espacio para notas")], None),
  ("fin1.mp4", 31.9,  3.5,  1,   False, "gen",  [(31.9,35.4,"420 hojas cosidas a mano")], None),
 ]

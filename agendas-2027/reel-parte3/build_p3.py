@@ -19,8 +19,10 @@ TRAMOS = [
 FIN, FIN_T = 3.8, 91.0
 # voz cortada antes del final del tramo (segundos de audio que se usan); el resto queda en silencio
 VOZ_HASTA = {}   # cuadro final: primer plano del lomo encolado
-GEN = "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,setsar=1,eq=saturation=1.06:contrast=1.04"
-CER = "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,crop=490:872:420:840,scale=1080:1920:flags=lanczos,unsharp=5:5:0.6,setsar=1,eq=saturation=1.06:contrast=1.04"
+# corrección de color: esta parte se filmó con más luz y quedaba anaranjada; se suaviza para igualar las partes 1 y 2
+GRADE = "eq=brightness=-0.03:saturation=0.82:gamma=0.97,selectivecolor=reds=0 0.06 0.10 0:yellows=0 0.04 0.08 0,colorbalance=rm=0.02:bm=-0.02"
+GEN = "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,setsar=1," + GRADE
+CER = "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,crop=490:872:420:840,scale=1080:1920:flags=lanczos,unsharp=5:5:0.3,setsar=1," + GRADE
 def run(c): subprocess.run(c, check=True)
 def ts(t): return f"{int(t//3600)}:{int(t%3600//60):02d}:{t%60:05.2f}"
 tmp=tempfile.mkdtemp(); lst=open(f"{tmp}/l.txt","w"); t=0.0; ev=[]

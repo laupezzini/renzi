@@ -17,7 +17,7 @@ T = [
  ("fin1.mp4", 37.0,  6.0,  1, True,  "gen", [(41.4,43.0,"¡Qué hermosa está!")], None),
  ("fin1.mp4", 46.6,  5.6,  1, True,  "gen", [(46.8,50.3,"Este es un papel con motivo, unos pajaritos,"),(50.3,52.2,"pero también puede ser tela")], None),
  ("fin2.mp4",  0.3,  7.7,  1.6, False, "gen", [(0.3,3.4,"tapa dura ilustrada"),(3.4,8.0,"guardas azules y dos cintas")], None),
- ("fin2.mp4", 11.5,  4.0,  1.3, False, "gen", [(11.5,15.5,"un día por página")], None),
+ ("formatos.mp4", 0.0, 5.5, 1, False, "gen", [], None),   # aclara formato y opciones a medida
 ]
 FOTO, FIN = "fotos/abierta1.jpg", 4.0
 GEN = "scale=1080:1920:force_original_aspect_ratio=increase:flags=lanczos,crop=1080:1920,setsar=1,eq=saturation=1.06:contrast=1.03"

@@ -14,5 +14,12 @@ pages["end_wa"] = '''<div class="end"><div class="box"><div class="k">ÚLTIMOS D
 <div class="pr">Papel <em>$40.000</em> · Tela <em>$45.000</em> · Cuero <em>$65.000</em></div>
 <div class="cta">Respondé y <b>pedí la tuya</b></div>
 <div class="w">Renzi · cuadernos hechos a mano · 221 577-0018</div></div></div>'''
+pages["formatos"] = '''<div style="position:absolute;left:60px;right:60px;top:330px;background:rgba(20,30,25,.86);border-radius:40px;padding:44px 40px 48px;text-align:center;color:#fff;box-shadow:0 20px 50px rgba(0,0,0,.3)">
+<div style="font-family:D;font-size:34px;letter-spacing:3px;color:#ffb3c4">ESTA AGENDA ES</div>
+<div style="font-family:P;font-size:76px;line-height:1.05;margin-top:10px">Por día<br>con horarios</div>
+<div style="height:2px;background:rgba(255,255,255,.3);margin:30px 60px"></div>
+<div style="font-family:Pi;font-size:46px">También la hacemos</div>
+<div style="font-family:D;font-size:48px;line-height:1.45;margin-top:10px">por día sin horario<br>semanal · perpetua</div>
+<div style="display:inline-block;margin-top:28px;background:#fffdf8;color:#2f5d46;font-family:D;font-size:42px;padding:16px 30px 20px;border-radius:24px">o escribinos y armamos<br>la que buscás ✍️</div></div>'''
 for k,b in pages.items():
     open(f"{k}.html","w").write(f'<!doctype html><html><head><meta charset="utf-8"><style>{css}</style></head><body>{b}</body></html>')

@@ -1,0 +1,62 @@
+#!/usr/bin/env python3
+"""Reel final "La agenda terminada".
+Uso: python3 build_final.py CARPETA_CRUDOS SALIDA.mp4
+CARPETA_CRUDOS debe tener: p1_hojas.mov, p1_doblado.mov, p2.mp4, p3.mp4 (partes 1-3), fin1.mp4 (prensa), fin2.mp4 (hojeando).
+Tramo: (archivo, ini_video, duración_original, velocidad, con_voz, plano, [(ini, fin, subtítulo) en tiempo original], cartel)"""
+import subprocess, sys, tempfile
+RAW, OUT = sys.argv[1], sys.argv[2]
+T = [
+ ("p1_hojas.mov",   11.8, 1.3, 1, False, "gen", [(11.8,13.1,"De hojas sueltas…")], None),
+ ("p1_doblado.mov", 32.5, 1.3, 1, False, "gen", [(32.5,33.8,"dobladas a mano,")], None),
+ ("p2.mp4",        196.0, 2.6, 2, False, "gen", [(196.0,198.6,"cosidas una por una,")], None),
+ ("p3.mp4",         52.0, 1.3, 1, False, "cer", [(52.0,53.3,"encoladas…")], None),
+ ("fin1.mp4",  1.25, 5.35, 1, True,  "gen", [(1.4,4.4,"Vamos a ver cómo salieron la agenda y el cuaderno,"),(4.4,6.6,"que los vamos a sacar de la prensa. ¡Mirá!")], "LA AGENDA TERMINADA"),
+ ("fin1.mp4",  7.4,  2.8,  1.4, False, "gen", [], None),
+ ("fin1.mp4", 24.05, 3.6,  1, True,  "gen", [(24.1,25.7,"¡Mirá la agenda, mirá la agenda!")], None),
+ ("fin1.mp4", 31.9, 3.52, 1, True,  "gen", [(32.4,34.1,"420 hojas…"),(34.1,35.42,"¡420 hojas!")], None),
+ ("fin1.mp4", 37.0,  6.0,  1, True,  "gen", [(41.4,43.0,"¡Qué hermosa está!")], None),
+ ("fin1.mp4", 46.6,  5.6,  1, True,  "gen", [(46.8,50.3,"Este es un papel con motivo, unos pajaritos,"),(50.3,52.2,"pero también puede ser tela")], None),
+ ("fin2.mp4",  0.3,  7.7,  1.6, False, "gen", [(0.3,3.4,"tapa dura ilustrada"),(3.4,8.0,"guardas azules y dos cintas")], None),
+ ("fin2.mp4", 11.5,  4.0,  1.3, False, "gen", [(11.5,15.5,"un día por página")], None),
+]
+FOTO, FIN = "fotos/abierta1.jpg", 4.0
+GEN = "scale=1080:1920:force_original_aspect_ratio=increase:flags=lanczos,crop=1080:1920,setsar=1,eq=saturation=1.06:contrast=1.03"
+CER = "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,crop=490:872:420:840,scale=1080:1920:flags=lanczos,setsar=1,eq=saturation=1.06:contrast=1.03"
+def run(c): subprocess.run(c, check=True)
+def ts(t): return f"{int(t//3600)}:{int(t%3600//60):02d}:{t%60:05.2f}"
+tmp=tempfile.mkdtemp(); lst=open(f"{tmp}/l.txt","w"); t=0.0; ev=[]
+for n,(f,v,d,sp,voz,plano,subs,label) in enumerate(T):
+    od=d/sp; vf=(CER if plano=="cer" else GEN)
+    if f.startswith("fin"): vf+=",unsharp=5:5:0.5"
+    if voz:
+        af=f"aresample=48000,aformat=channel_layouts=stereo,highpass=f=80,afftdn=nf=-25,afade=t=in:d=0.03,afade=t=out:st={d-0.03:.3f}:d=0.03"
+        run(["ffmpeg","-v","error","-y","-ss",str(v),"-t",str(d),"-i",f"{RAW}/{f}","-vf",f"fps=30,{vf}","-af",af,
+             "-c:v","libx264","-crf","18","-preset","veryfast","-c:a","pcm_s16le","-t",f"{od:.3f}",f"{tmp}/s{n}.mov"])
+    else:
+        run(["ffmpeg","-v","error","-y","-ss",str(v),"-t",str(d),"-i",f"{RAW}/{f}","-f","lavfi","-t",f"{od:.3f}","-i","anullsrc=r=48000:cl=stereo",
+             "-map","0:v","-map","1:a","-vf",f"setpts=PTS/{sp},fps=30,{vf}","-c:v","libx264","-crf","18","-preset","veryfast","-c:a","pcm_s16le","-t",f"{od:.3f}",f"{tmp}/s{n}.mov"])
+    lst.write(f"file '{tmp}/s{n}.mov'\n")
+    for a,b,tx in subs: ev.append(f"Dialogue: 0,{ts(t+max(0,a-v)/sp)},{ts(t+min(d,b-v)/sp)},Sub,,0,0,0,,{tx}")
+    if label: ev.append(f"Dialogue: 1,{ts(t)},{ts(t+od)},Top,,0,0,0,,{label}")
+    t+=od
+run(["ffmpeg","-v","error","-y","-loop","1","-t",str(FIN),"-i",FOTO,"-loop","1","-t",str(FIN),"-i","overlays/end.png","-f","lavfi","-t",str(FIN),"-i","anullsrc=r=48000:cl=stereo",
+     "-filter_complex",f"[0:v]zoompan=z='1+0.0007*on':x='(iw-iw/zoom)/2':y='(ih-ih/zoom)/2':d={int(FIN*30)}:s=1080x1920:fps=30,setsar=1[v];[1:v]format=rgba,fade=in:st=0.2:d=0.4:alpha=1[o];[v][o]overlay=0:0,format=yuv420p[vo]",
+     "-map","[vo]","-map","2:a","-c:v","libx264","-crf","18","-preset","veryfast","-r","30","-c:a","pcm_s16le","-t",str(FIN),f"{tmp}/fin.mov"])
+lst.write(f"file '{tmp}/fin.mov'\n"); lst.close()
+ass="""[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Sub,Inter,64,&H00FFFFFF,&H00FFFFFF,&H00281E14,&H96000000,1,0,0,0,100,100,0,0,1,7,2,2,90,90,430,1
+Style: Top,Inter,46,&H00FFFFFF,&H00FFFFFF,&H006B45D6,&H006B45D6,1,0,0,0,100,100,3,0,3,18,0,8,90,90,230,1
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+"""+"\n".join(ev)+"\n"
+open(f"{tmp}/s.ass","w").write(ass)
+run(["ffmpeg","-v","error","-y","-f","concat","-safe","0","-i",f"{tmp}/l.txt","-c","copy",f"{tmp}/all.mov"])
+run(["ffmpeg","-v","error","-y","-i",f"{tmp}/all.mov","-vf",f"ass={tmp}/s.ass:fontsdir=/usr/share/fonts/opentype/inter,fps=30,format=yuv420p",
+     "-af","loudnorm=I=-16:TP=-1.5","-c:v","libx264","-profile:v","high","-level","4.0","-preset","slow","-crf","20","-maxrate","8M","-bufsize","16M","-g","60",
+     "-c:a","aac","-b:a","160k","-ar","44100","-ac","2","-movflags","+faststart",OUT])
+print(f"listo: {OUT} ({t+FIN:.1f} s)")

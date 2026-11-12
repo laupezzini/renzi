@@ -75,7 +75,11 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 """+"\n".join(ev)+"\n"
 open(f"{tmp}/s.ass","w").write(ass)
 run(["ffmpeg","-v","error","-y","-f","concat","-safe","0","-i",f"{tmp}/l.txt","-c","copy",f"{tmp}/all.mov"])
+# volumen general: una sola ganancia fija (no dinámica) para respetar las diferencias entre las voces
+_m = subprocess.run(["ffmpeg","-i",f"{tmp}/all.mov","-vn","-af","ebur128","-f","null","-"],capture_output=True,text=True).stderr
+_I = float([l for l in _m.splitlines() if l.strip().startswith("I:")][-1].split()[1])
+gain = -16.0 - _I
 run(["ffmpeg","-v","error","-y","-i",f"{tmp}/all.mov","-vf",f"ass={tmp}/s.ass:fontsdir=/usr/share/fonts/opentype/inter,fps=30,format=yuv420p",
-     "-af","loudnorm=I=-16:TP=-1.5","-c:v","libx264","-profile:v","high","-level","4.0","-preset","slow","-crf","20","-maxrate","8M","-bufsize","16M","-g","60",
+     "-af",f"volume={gain:.2f}dB,alimiter=limit=0.89","-c:v","libx264","-profile:v","high","-level","4.0","-preset","slow","-crf","20","-maxrate","8M","-bufsize","16M","-g","60",
      "-c:a","aac","-b:a","160k","-ar","44100","-ac","2","-movflags","+faststart",OUT])
 print(f"listo: {OUT} ({t+FIN:.1f} s)")

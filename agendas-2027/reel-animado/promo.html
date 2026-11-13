@@ -5,14 +5,14 @@
 @font-face{font-family:Dm;src:url(../reel-final/overlays/dmsans-500.woff2)}
 @font-face{font-family:H;src:url(../reel-final/overlays/dancing-700.woff2)}
 html,body{margin:0;width:1080px;height:1920px;overflow:hidden}
-#s{position:relative;width:1080px;height:1920px;background:radial-gradient(ellipse at 50% 40%,#e6c9a2 0%,#d4b083 60%,#b98f60 100%);overflow:hidden}
+#s{position:relative;width:1080px;height:1920px;background:radial-gradient(ellipse at 50% 42%,#f7f3ea 0%,#f1ebdf 65%,#e4dccb 100%);overflow:hidden}
 .g{position:absolute;inset:0}
-.tt{position:absolute;left:70px;right:70px;text-align:center;color:#2b2420}
-.k{font-family:D;letter-spacing:6px;font-size:38px;color:#7a3e4f}
+.tt{position:absolute;left:70px;right:70px;text-align:center;color:#1a1a1a}
+.k{font-family:D;letter-spacing:8px;font-size:38px;color:#1a1a1a}
 .big{font-family:P;font-size:118px;line-height:1.02}
 .mid{font-family:P;font-size:88px;line-height:1.05}
-.sub{font-family:Pi;font-size:58px;color:#4a3b30}
-</style></head><body><div id="s"><svg class="g" width="1080" height="1920" style="opacity:.18;mix-blend-mode:multiply"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2"/></filter><rect width="1080" height="1920" filter="url(#n)"/></svg><div id="c" class="g"></div></div>
+.sub{font-family:Pi;font-size:58px;color:#3a3a3a}
+</style></head><body><div id="s"><svg class="g" width="1080" height="1920" style="opacity:.09;mix-blend-mode:multiply"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2"/></filter><rect width="1080" height="1920" filter="url(#n)"/></svg><div id="c" class="g"></div></div>
 <script>
 const C=document.getElementById('c');
 const cl=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
@@ -20,25 +20,25 @@ const eo=x=>1-Math.pow(1-cl(x),3), eb=x=>{x=cl(x);const c=1.7;return 1+(c+1)*Mat
 const lerp=(a,b,x)=>a+(b-a)*x;
 function win(t,a,b,f=.35){return cl(Math.min((t-a)/f,(b-t)/f))} // opacidad de escena
 function pop(t,a,d=.45){const x=eb((t-a)/d);return `opacity:${cl((t-a)/.15)};transform:translateY(${(1-x)*40}px) scale(${.85+.15*x})`}
-function clock(cx,cy,r,ang,o=1){return `<g opacity="${o}"><circle cx="${cx}" cy="${cy}" r="${r}" fill="#fffdf8" stroke="#2b2420" stroke-width="14"/>`+
- [...Array(12)].map((_,i)=>{const a=i*Math.PI/6;return `<line x1="${cx+Math.sin(a)*(r-40)}" y1="${cy-Math.cos(a)*(r-40)}" x2="${cx+Math.sin(a)*(r-18)}" y2="${cy-Math.cos(a)*(r-18)}" stroke="#2b2420" stroke-width="${i%3?6:12}" stroke-linecap="round"/>`}).join('')+
- `<line x1="${cx}" y1="${cy}" x2="${cx+Math.sin(ang/12)*r*.45}" y2="${cy-Math.cos(ang/12)*r*.45}" stroke="#2b2420" stroke-width="16" stroke-linecap="round"/>`+
- `<line x1="${cx}" y1="${cy}" x2="${cx+Math.sin(ang)*r*.72}" y2="${cy-Math.cos(ang)*r*.72}" stroke="#c0485f" stroke-width="10" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="16" fill="#2b2420"/></g>`}
-function stack(n,cx,by){let s='';for(let i=0;i<n;i++){const y=by-i*15;s+=`<path d="M${cx-300} ${y} L${cx+200} ${y} L${cx+300} ${y-90} L${cx-200} ${y-90}Z" fill="${i%2?'#fffdf8':'#f4eee2'}" stroke="#cdbfa6" stroke-width="2"/>`}return s}
+function clock(cx,cy,r,ang,o=1){return `<g opacity="${o}"><circle cx="${cx}" cy="${cy}" r="${r}" fill="#fbf8f1" stroke="#1a1a1a" stroke-width="14"/>`+
+ [...Array(12)].map((_,i)=>{const a=i*Math.PI/6;return `<line x1="${cx+Math.sin(a)*(r-40)}" y1="${cy-Math.cos(a)*(r-40)}" x2="${cx+Math.sin(a)*(r-18)}" y2="${cy-Math.cos(a)*(r-18)}" stroke="#1a1a1a" stroke-width="${i%3?6:12}" stroke-linecap="round"/>`}).join('')+
+ `<line x1="${cx}" y1="${cy}" x2="${cx+Math.sin(ang/12)*r*.45}" y2="${cy-Math.cos(ang/12)*r*.45}" stroke="#1a1a1a" stroke-width="16" stroke-linecap="round"/>`+
+ `<line x1="${cx}" y1="${cy}" x2="${cx+Math.sin(ang)*r*.72}" y2="${cy-Math.cos(ang)*r*.72}" stroke="#1a1a1a" stroke-width="10" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="16" fill="#1a1a1a"/></g>`}
+function stack(n,cx,by){let s='';for(let i=0;i<n;i++){const y=by-i*15;s+=`<path d="M${cx-300} ${y} L${cx+200} ${y} L${cx+300} ${y-90} L${cx-200} ${y-90}Z" fill="${i%2?'#fbf8f1':'#efe9dc'}" stroke="#1a1a1a" stroke-width="2"/>`}return s}
 function scene(t){let h='';
  // 1 · gancho
- let o=win(t,0,2.8);if(o>0){h+=`<div class="g" style="opacity:${o}"><div class="tt" style="top:330px"><div class="mid" style="${pop(t,.1)}">¿Cuánto lleva</div><div class="mid" style="${pop(t,.45)}">hacer una agenda</div><div class="mid" style="${pop(t,.8)};color:#7a3e4f">a mano?</div></div>
+ let o=win(t,0,2.8);if(o>0){h+=`<div class="g" style="opacity:${o}"><div class="tt" style="top:330px"><div class="mid" style="${pop(t,.1)}">¿Cuánto lleva</div><div class="mid" style="${pop(t,.45)}">hacer una agenda</div><div class="mid" style="${pop(t,.8)};font-family:Pi">a mano?</div></div>
  <svg class="g" width="1080" height="1920"><g style="transform-origin:540px 1180px;transform:scale(${eb((t-.3)/.6)})">${clock(540,1180,250,t*4)}</g></svg></div>`}
  // 2 · 420 hojas
- o=win(t,2.6,5.8);if(o>0){const x=eo((t-2.8)/2.2),n=Math.round(420*x);h+=`<div class="g" style="opacity:${o}"><div class="tt" style="top:330px"><div class="big" style="font-size:230px;color:#7a3e4f">${n}</div><div class="mid">hojas</div></div>
+ o=win(t,2.6,5.8);if(o>0){const x=eo((t-2.8)/2.2),n=Math.round(420*x);h+=`<div class="g" style="opacity:${o}"><div class="tt" style="top:330px"><div class="big" style="font-size:230px">${n}</div><div class="mid">hojas</div></div>
  <svg class="g" width="1080" height="1920">${stack(Math.round(1+x*34),540,1500)}</svg></div>`}
  // 3 · dobladas una por una
  o=win(t,5.6,8.8);if(o>0){const ph=((t-5.8)/1.2)%1,f=Math.cos(cl(ph*1.4)*Math.PI),k=Math.floor(Math.max(0,t-5.8)/1.2)+1;
-  h+=`<div class="g" style="opacity:${o}"><div class="tt" style="top:330px"><div class="mid" style="${pop(t,5.8)}">dobladas</div><div class="mid" style="${pop(t,6.1)};color:#7a3e4f">una por una</div></div>
-  <svg class="g" width="1080" height="1920"><rect x="190" y="880" width="350" height="500" fill="#fffdf8" stroke="#cdbfa6" stroke-width="3"/>
-  <g transform="translate(540 0) scale(${f} 1)"><rect x="0" y="880" width="350" height="500" fill="${f>0?'#fffdf8':'#ebe2d0'}" stroke="#cdbfa6" stroke-width="3"/>${[...Array(9)].map((_,i)=>`<line x1="40" x2="310" y1="${960+i*45}" y2="${960+i*45}" stroke="#d9cfbd" stroke-width="3"/>`).join('')}</g>
-  ${[...Array(9)].map((_,i)=>`<line x1="230" x2="500" y1="${960+i*45}" y2="${960+i*45}" stroke="#d9cfbd" stroke-width="3"/>`).join('')}
-  <line x1="540" x2="540" y1="870" y2="1390" stroke="#b9a98d" stroke-width="3" stroke-dasharray="10 8"/>
+  h+=`<div class="g" style="opacity:${o}"><div class="tt" style="top:330px"><div class="mid" style="${pop(t,5.8)}">dobladas</div><div class="mid" style="${pop(t,6.1)};font-family:Pi">una por una</div></div>
+  <svg class="g" width="1080" height="1920"><rect x="190" y="880" width="350" height="500" fill="#fbf8f1" stroke="#1a1a1a" stroke-width="3"/>
+  <g transform="translate(540 0) scale(${f} 1)"><rect x="0" y="880" width="350" height="500" fill="${f>0?'#fbf8f1':'#e6dfd0'}" stroke="#1a1a1a" stroke-width="3"/>${[...Array(9)].map((_,i)=>`<line x1="40" x2="310" y1="${960+i*45}" y2="${960+i*45}" stroke="#8f897e" stroke-width="3"/>`).join('')}</g>
+  ${[...Array(9)].map((_,i)=>`<line x1="230" x2="500" y1="${960+i*45}" y2="${960+i*45}" stroke="#8f897e" stroke-width="3"/>`).join('')}
+  <line x1="540" x2="540" y1="870" y2="1390" stroke="#1a1a1a" stroke-width="3" stroke-dasharray="10 8"/>
   <text x="540" y="1500" text-anchor="middle" font-family="D" font-size="60" fill="#4a3b30">#${Math.min(k,99)}</text></svg></div>`}
  // 4 · cosidas hilo por hilo
  o=win(t,8.6,12);if(o>0){const N=7,w=90,gap=18,x0=540-(N*w+(N-1)*gap)/2,ys=[930,1110,1290,1470];let pts=[];
@@ -47,38 +47,41 @@ function scene(t){let h='';
   const tot=L[L.length-1],d=eo((t-9)/2.6)*tot;let path=`M${pts[0][0]} ${pts[0][1]}`,tip=pts[0],dir=[0,1];
   for(let i=1;i<pts.length;i++){if(L[i]<=d){path+=` L${pts[i][0]} ${pts[i][1]}`;tip=pts[i]}else{const r=(d-L[i-1])/(L[i]-L[i-1]);tip=[lerp(pts[i-1][0],pts[i][0],r),lerp(pts[i-1][1],pts[i][1],r)];dir=[pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]];path+=` L${tip[0]} ${tip[1]}`;break}}
   const an=Math.atan2(dir[1],dir[0])*180/Math.PI;
-  h+=`<div class="g" style="opacity:${o}"><div class="tt" style="top:330px"><div class="mid" style="${pop(t,8.8)}">cosidas a mano,</div><div class="mid" style="${pop(t,9.1)};color:#7a3e4f">hilo por hilo</div></div><svg class="g" width="1080" height="1920">`+
-  [...Array(N)].map((_,i)=>`<rect x="${x0+i*(w+gap)}" y="860" width="${w}" height="680" rx="22" fill="#fffdf8" stroke="#cdbfa6" stroke-width="3"/>`).join('')+
-  pts.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="6" fill="#b9a98d"/>`).join('')+
-  `<path d="${path}" fill="none" stroke="#c0485f" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-  <g transform="translate(${tip[0]} ${tip[1]}) rotate(${an})"><line x1="-10" y1="0" x2="110" y2="0" stroke="#6d6d6d" stroke-width="9" stroke-linecap="round"/><ellipse cx="96" cy="0" rx="9" ry="4" fill="#fffdf8"/></g></svg></div>`}
- // 5 · 3 horas
- o=win(t,11.8,14.6);if(o>0){const x=eo((t-12)/2);h+=`<div class="g" style="opacity:${o}"><div class="tt" style="top:330px"><div class="big" style="font-size:200px;color:#7a3e4f">${(x*3).toFixed(0)} h</div><div class="sub">de trabajo por cada agenda</div></div>
-  <svg class="g" width="1080" height="1920">${clock(540,1250,250,x*3*Math.PI*2*12/12*1)}</svg></div>`}
+  h+=`<div class="g" style="opacity:${o}"><div class="tt" style="top:330px"><div class="mid" style="${pop(t,8.8)}">cosidas a mano,</div><div class="mid" style="${pop(t,9.1)};font-family:Pi">hilo por hilo</div></div><svg class="g" width="1080" height="1920">`+
+  [...Array(N)].map((_,i)=>`<rect x="${x0+i*(w+gap)}" y="860" width="${w}" height="680" rx="22" fill="#fbf8f1" stroke="#1a1a1a" stroke-width="3"/>`).join('')+
+  pts.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="6" fill="#1a1a1a"/>`).join('')+
+  `<path d="${path}" fill="none" stroke="#1a1a1a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(${tip[0]} ${tip[1]}) rotate(${an})"><line x1="-10" y1="0" x2="110" y2="0" stroke="#6d6d6d" stroke-width="9" stroke-linecap="round"/><ellipse cx="96" cy="0" rx="9" ry="4" fill="#fbf8f1"/></g></svg></div>`}
+ // 5 · horas (3 de armado + 6 en la prensa)
+ o=win(t,11.8,14.6);if(o>0){const a=eo((t-12)/1),b=eo((t-13.1)/1),hrs=Math.round(3*a+6*b);h+=`<div class="g" style="opacity:${o}"><div class="tt" style="top:300px"><div class="big" style="font-size:200px">${hrs} h</div>
+  <div class="sub" style="${pop(t,12)}">3 h de armado</div><div class="sub" style="${pop(t,13.1)}">+ 6 h en la prensa</div></div>
+  <svg class="g" width="1080" height="1920">${clock(540,1300,230,(3*a+6*b)*Math.PI*2)}</svg></div>`}
  // 6 · para un solo año
- o=win(t,14.4,17.6);if(o>0){const x=eb((t-14.6)/.7);let leaves='';for(let i=0;i<16;i++){const lx=380+(i%4)*110+(Math.floor(i/4)%2)*50,ly=900+Math.floor(i/4)*140;leaves+=`<ellipse cx="${lx}" cy="${ly}" rx="34" ry="14" fill="#3e5a7a" transform="rotate(${(i*47)%180} ${lx} ${ly})" opacity=".8"/>`}
-  h+=`<div class="g" style="opacity:${o}"><div class="tt" style="top:300px"><div class="mid" style="${pop(t,14.6)}">para un solo año:</div><div class="big" style="${pop(t,15.2)};color:#7a3e4f">el tuyo.</div></div>
-  <svg class="g" width="1080" height="1920"><g style="transform-origin:540px 1150px;transform:scale(${x}) rotate(${(1-x)*-8}deg)"><rect x="352" y="812" width="396" height="560" rx="14" fill="#2b2420" opacity=".25" transform="translate(16 18)"/>
-  <defs><clipPath id="cv"><rect x="340" y="800" width="400" height="560" rx="14"/></clipPath></defs><rect x="340" y="800" width="400" height="560" rx="14" fill="#f2c9cf"/><g clip-path="url(#cv)">${leaves}</g><rect x="340" y="800" width="34" height="560" fill="#e3b0b8"/>
-  <rect x="430" y="1020" width="220" height="110" rx="10" fill="#fffdf8"/><text x="540" y="1098" text-anchor="middle" font-family="P" font-size="64" fill="#2b2420">2027</text>
-  <path d="M600 1360 l0 ${60+Math.sin(t*3)*6} l-10 -12" stroke="#c0485f" stroke-width="10" fill="none"/><path d="M630 1360 l0 ${80+Math.sin(t*3+1)*6}" stroke="#3e5a7a" stroke-width="10" fill="none"/></g></svg></div>`}
+ o=win(t,14.4,17.6);if(o>0){const x=eb((t-14.6)/.7);let leaves='';for(let i=0;i<16;i++){const lx=380+(i%4)*110+(Math.floor(i/4)%2)*50,ly=900+Math.floor(i/4)*140;leaves+=`<ellipse cx="${lx}" cy="${ly}" rx="34" ry="14" fill="none" stroke="#1a1a1a" stroke-width="4" transform="rotate(${(i*47)%180} ${lx} ${ly})" opacity=".8"/>`}
+  h+=`<div class="g" style="opacity:${o}"><div class="tt" style="top:300px"><div class="mid" style="${pop(t,14.6)}">para un solo año:</div><div class="big" style="${pop(t,15.2)};font-family:Pi">el tuyo.</div></div>
+  <svg class="g" width="1080" height="1920"><g style="transform-origin:540px 1150px;transform:scale(${x}) rotate(${(1-x)*-8}deg)"><rect x="352" y="812" width="396" height="560" rx="14" fill="#1a1a1a" opacity=".25" transform="translate(16 18)"/>
+  <defs><clipPath id="cv"><rect x="340" y="800" width="400" height="560" rx="14"/></clipPath></defs><rect x="340" y="800" width="400" height="560" rx="14" fill="#fbf8f1" stroke="#1a1a1a" stroke-width="6"/><g clip-path="url(#cv)">${leaves}</g><rect x="340" y="800" width="34" height="560" fill="#1a1a1a"/>
+  <rect x="430" y="1020" width="220" height="110" rx="10" fill="#fbf8f1"/><text x="540" y="1098" text-anchor="middle" font-family="P" font-size="64" fill="#1a1a1a">2027</text>
+  <path d="M600 1360 l0 ${60+Math.sin(t*3)*6} l-10 -12" stroke="#1a1a1a" stroke-width="10" fill="none"/><path d="M630 1360 l0 ${80+Math.sin(t*3+1)*6}" stroke="#1a1a1a" stroke-width="10" fill="none"/></g></svg></div>`}
  // 7 · libros usados
- o=win(t,17.4,20.8);if(o>0){const cols=['#7a3e4f','#2f5d46','#c9a227','#3e5a7a','#b5543a','#5b4a7a','#8a6d3b','#2b2420','#c0485f','#4f7a5b'];let b='';
+ o=win(t,17.4,20.8);if(o>0){const cols=['#1a1a1a','#fbf8f1','#1a1a1a','#fbf8f1','#fbf8f1','#1a1a1a','#fbf8f1','#1a1a1a','#fbf8f1','#1a1a1a'];let b='';
   cols.forEach((c,i)=>{const x=eo((t-17.7-i*.08)/.6),w=60+(i*23)%40,hh=380+(i*67)%160;const X=150+cols.slice(0,i).reduce((s,_,j)=>s+60+(j*23)%40+6,0);
-   b+=`<g transform="translate(${(1-x)*900} 0)"><rect x="${X}" y="${1420-hh}" width="${w}" height="${hh}" rx="6" fill="${c}"/><rect x="${X+10}" y="${1420-hh+40}" width="${w-20}" height="10" fill="#f1e6cf" opacity=".8"/><rect x="${X+10}" y="${1420-hh+60}" width="${w-20}" height="5" fill="#f1e6cf" opacity=".6"/></g>`});
-  h+=`<div class="g" style="opacity:${o}"><div class="tt" style="top:300px"><div class="sub" style="${pop(t,17.6)}">Y entre libro y libro…</div><div class="mid" style="${pop(t,18.4)};margin-top:20px">libros usados</div><div class="mid" style="${pop(t,18.7)};color:#7a3e4f">que buscan<br>nueva casa</div></div>
-  <svg class="g" width="1080" height="1920">${b}<rect x="110" y="1420" width="860" height="26" rx="6" fill="#6b4a2e"/></svg></div>`}
+   b+=`<g transform="translate(${(1-x)*900} 0)"><rect x="${X}" y="${1420-hh}" width="${w}" height="${hh}" rx="6" fill="${c}" stroke="#1a1a1a" stroke-width="4"/><rect x="${X+10}" y="${1420-hh+40}" width="${w-20}" height="8" fill="${c=='#1a1a1a'?'#fbf8f1':'#1a1a1a'}"/><rect x="${X+10}" y="${1420-hh+58}" width="${w-20}" height="4" fill="${c=='#1a1a1a'?'#fbf8f1':'#1a1a1a'}"/><rect x="${X+10}" y="${1420-60}" width="${w-20}" height="4" fill="${c=='#1a1a1a'?'#fbf8f1':'#1a1a1a'}"/></g>`});
+  h+=`<div class="g" style="opacity:${o}"><div class="tt" style="top:300px"><div class="sub" style="${pop(t,17.6)}">Y entre libro y libro…</div><div class="mid" style="${pop(t,18.4)};margin-top:20px">libros usados</div><div class="mid" style="${pop(t,18.7)};font-family:Pi">que buscan<br>nueva casa</div></div>
+  <svg class="g" width="1080" height="1920">${b}<rect x="110" y="1420" width="860" height="26" rx="6" fill="#1a1a1a"/></svg></div>`}
  // 8 · marca
- o=win(t,20.6,23);if(o>0){h+=`<div class="g" style="opacity:${o}"><div class="tt" style="top:700px"><div style="font-family:H;font-size:250px;color:#7a3e4f;${pop(t,20.8,.6)}">Renzi</div>
-  <div class="sub" style="${pop(t,21.4)}">libros usados</div><div class="sub" style="${pop(t,21.6)}">y encuadernación artesanal</div><div class="k" style="${pop(t,21.9)};margin-top:30px">LA PLATA</div></div></div>`}
+ o=win(t,20.6,23);if(o>0){const x=eb((t-20.7)/.7);h+=`<div class="g" style="opacity:${o}"><img src="logo_renzi.png" style="position:absolute;left:190px;top:560px;width:700px;mix-blend-mode:multiply;opacity:${cl((t-20.7)/.3)};transform:scale(${.8+.2*x}) rotate(${(1-x)*-10}deg)">
+  <div class="tt" style="top:1340px"><div class="k" style="${pop(t,21.5)}">· LIBROS USADOS ·</div><div class="k" style="${pop(t,21.7)};margin-top:14px">· CUADERNOS ARTESANALES ·</div><div class="sub" style="${pop(t,21.9)};margin-top:22px">La Plata</div></div></div>`}
  // 9 · llamado
- o=cl((t-22.8)/.35);if(o>0){h+=`<div class="g" style="opacity:${o};background:rgba(20,30,25,.92)"><div class="tt" style="top:330px;color:#fff">
-  <div style="${pop(t,23)};display:inline-block;background:#ffb3c4;color:#2b1d22;font-family:D;font-size:40px;letter-spacing:4px;padding:14px 30px;border-radius:40px">PREVENTA HASTA EL 20/11</div>
-  <div class="big" style="${pop(t,23.2)};margin-top:40px">Agendas 2027<br>hechas a mano</div>
-  <div style="${pop(t,23.5)};font-family:D;font-size:50px;margin-top:30px">Papel <span style="color:#ffb3c4">$40.000</span> · Tela <span style="color:#ffb3c4">$45.000</span></div>
-  <div style="${pop(t,23.7)};font-family:Pi;font-size:42px;margin-top:16px;color:#e8ddd0">por día, semanal, perpetua… o a tu medida</div>
-  <div style="${pop(t,24.1)};display:inline-block;margin-top:50px;background:#fffdf8;color:#2f5d46;font-family:D;font-size:60px;line-height:1.2;padding:26px 46px 30px;border-radius:30px">Escribinos <b style="color:#c0485f">AGENDA</b><br>por mensaje</div>
-  <div style="${pop(t,24.4)};font-family:Dm;font-size:38px;margin-top:40px;color:#e8ddd0">@renzi.librosusados · WhatsApp 221 577-0018</div></div></div>`}
+ o=cl((t-22.8)/.35);if(o>0){h+=`<div class="g" style="opacity:${o};background:radial-gradient(ellipse at 50% 42%,#f7f3ea 0%,#f1ebdf 65%,#e4dccb 100%)">
+  <svg class="g" width="1080" height="1920"><rect x="60" y="230" width="960" height="1380" rx="36" fill="none" stroke="#1a1a1a" stroke-width="5"/><rect x="80" y="250" width="920" height="1340" rx="26" fill="none" stroke="#1a1a1a" stroke-width="2"/></svg>
+  <div class="tt" style="top:330px;color:#1a1a1a">
+  <div class="k" style="${pop(t,23)}">· PREVENTA HASTA EL 20/11 ·</div>
+  <div class="big" style="${pop(t,23.2)};margin-top:40px">Agendas 2027</div><div class="big" style="${pop(t,23.35)};font-family:Pi">hechas a mano</div>
+  <div style="${pop(t,23.5)};font-family:D;font-size:50px;margin-top:40px">Papel $40.000 · Tela $45.000</div>
+  <div style="${pop(t,23.7)};font-family:Pi;font-size:44px;margin-top:16px;color:#3a3a3a">por día, semanal, perpetua… o a tu medida</div>
+  <div style="${pop(t,24.1)};display:inline-block;margin-top:60px;background:#1a1a1a;color:#f7f3ea;font-family:D;font-size:60px;line-height:1.2;padding:28px 50px 32px;border-radius:24px">Escribinos <span style="text-decoration:underline;text-underline-offset:10px">AGENDA</span><br>por mensaje</div>
+  <div style="${pop(t,24.4)};font-family:Dm;font-size:38px;margin-top:50px;color:#3a3a3a">@renzi.librosusados · WhatsApp 221 577-0018</div></div></div>`}
  C.innerHTML=h}
 window.render=scene; scene(0);
 </script></body></html>

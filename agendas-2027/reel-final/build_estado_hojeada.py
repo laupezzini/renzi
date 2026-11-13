@@ -15,13 +15,18 @@ TV = "../reel-venta/overlays/"
 T = [
  ("v","hojeada_r.mp4",0.0, 2.4,1,  FULL, None, "Agenda 2027", "hecha a mano en La Plata"),
  ("v","hojeada_r.mp4",3.6, 3.0,1.2,FULL, None, "Cosida a mano", "hilo por hilo"),
- ("v","hojeada_r.mp4",15.6,2.0,1,  FULL, None, "Guardas y dos cintas", None),
+ ("v","hojeada_r.mp4",10.1,1.8,1,  FULL, None, "Guardas azules", "y dos cintas"),
+ ("v","hojeada_r.mp4",15.6,2.0,1,  FULL, None, "Guardas azules", "y dos cintas"),
  ("v","hojeada_r.mp4",19.4,2.0,1,  FULL, None, "Adentro", "tus datos personales"),
  ("v","hojeada_r.mp4",25.0,1.8,1,  FULL, None, "Adentro", "calendario 2027"),
+ ("v","hojeada_r.mp4",27.6,1.8,1,  FULL, None, "Adentro", "el año de un vistazo"),
+ ("v","hojeada_r.mp4",35.2,1.8,1,  FULL, None, "Adentro", "páginas para planificar"),
  ("v","hojeada_r.mp4",49.0,1.8,1,  FULL, None, "Adentro", "calendario mensual"),
- ("v","hojeada_r.mp4",44.2,1.8,1,  FULL, None, "Adentro", "un día por página, con horarios"),
+ ("v","hojeada_r.mp4",44.2,1.8,1,  FULL, None, "Adentro", "un día por página"),
+ ("v","hojeada_r.mp4",65.4,2.2,1,  FULL, None, "Adentro", "todo el año, día por día"),
  ("v","hojeada_r.mp4",82.4,1.6,1,  FULL, None, "Adentro", "y hojas para notas"),
- ("o","hojeada_r.mp4",44.2,2.0,0.5,FULL, None, None, None),
+ ("o","hojeada_r.mp4",44.2,2.75,0.5,FULL, None, None, None),
+ ("v","hojeada_r.mp4",75.0,2.2,1,  FULL, None, "Tu 2027,\\Nen orden.", None),
 ]
 FIN_SRC, FIN = (90.0, 2.9), 5.0
 def run(c): subprocess.run(c, check=True)
@@ -38,7 +43,7 @@ for n,(tipo,src,a,d,sp,vf_,paso,big,lab) in enumerate(T):
     if tipo=="f":
         run(["ffmpeg","-v","error","-y","-loop","1","-t",str(od),"-i",src,"-vf",foto_vf(src,od)+",format=yuv420p","-t",str(od)]+enc+[o])
     elif tipo=="o":
-        run(["ffmpeg","-v","error","-y","-ss",str(a),"-t",str(d),"-i",f"{RAW}/{src}","-loop","1","-i","overlays/estado_formatos.png","-filter_complex",
+        run(["ffmpeg","-v","error","-y","-ss",str(a),"-t",str(d),"-i",f"{RAW}/{src}","-loop","1","-i","overlays/estado_interiores.png","-filter_complex",
              f"[0:v]setpts=PTS/{sp},fps=30,{vf_},setsar=1,{PIEL},gblur=sigma=8[v];[1:v]format=rgba,fade=in:st=0:d=0.3:alpha=1[o];[v][o]overlay=0:0,format=yuv420p",
              "-an","-t",f"{od:.3f}"]+enc+[o])
     else:

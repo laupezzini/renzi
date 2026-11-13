@@ -64,5 +64,17 @@ pages["estado_end"] = """<div class="end"><div class="box"><div class="k" style=
 <div class="cta" style="font-size:54px">Respondé este estado<br>y <b>pedí la tuya</b></div>
 <div class="w" style="font-family:Pi;font-size:36px;margin-top:6px">te ayudamos a elegir tapa e interior</div>
 <div class="w">Edición limitada · Renzi · 221 577-0018</div></div></div>"""
+
+def real(img, name, sub, star=False):
+    badge = '<div style="position:absolute;top:-14px;right:-8px;background:#ffb3c4;color:#2b1d22;font-family:D;font-size:22px;padding:6px 14px;border-radius:20px">la del video</div>' if star else ''
+    return (f'<div style="position:relative">{badge}<img src="interiores/{img}.png" style="width:100%;aspect-ratio:900/1272;object-fit:cover;background:#fff;border-radius:10px;box-shadow:0 10px 24px rgba(0,0,0,.4);display:block">'
+            f'<div style="font-family:D;font-size:36px;margin-top:12px">{name}</div><div style="font-family:Pi;font-size:27px;color:rgba(255,255,255,.78)">{sub}</div></div>')
+pages["estado_interiores"] = ('<div style="position:absolute;left:46px;right:46px;top:120px;background:rgba(20,30,25,.93);border-radius:40px;padding:34px 44px 40px;text-align:center;color:#fff;box-shadow:0 20px 50px rgba(0,0,0,.35)">'
+  '<div style="font-family:D;font-size:32px;letter-spacing:4px;color:#ffb3c4">INTERIORES</div><div style="font-family:P;font-size:70px;line-height:1.05;margin:4px 0 28px">Elegí el tuyo</div>'
+  '<div style="display:grid;grid-template-columns:1fr 1fr;gap:28px 48px;padding:0 20px">'
+  + real("floral","Floral","por día, con horarios",True) + real("moderna","Moderna","por día, con horarios")
+  + real("clasica","Clásica","por día, con renglones") + real("estrellas","Estrellas","por día, hoja libre") +
+  '</div><div style="font-family:D;font-size:38px;margin-top:30px">También <b style="color:#ffb3c4">semanal</b> o <b style="color:#ffb3c4">perpetua</b></div>'
+  '<div style="display:inline-block;margin-top:18px;background:#fffdf8;color:#2f5d46;font-family:D;font-size:42px;padding:16px 34px 20px;border-radius:24px">¿Otra idea? <b>La armamos a medida</b></div></div>')
 for k,b in pages.items():
     open(f"{k}.html","w").write(f'<!doctype html><html><head><meta charset="utf-8"><style>{css}</style></head><body>{b}</body></html>')

@@ -11,17 +11,21 @@ FULL = "scale=1080:1920:force_original_aspect_ratio=increase:flags=lanczos,crop=
 T = [
  ("v","costura.mp4",105.0,1.6,1,  macro(110,80), "Esto no es\nuna agenda más.", None),                       # hook: macro aguja
  ("v","costura.mp4",128.6,1.4,1,  macro(60,0),   None, "cosida a mano, hilo por hilo"),                       # aguja en el lomo
- ("v","postits.mp4",0.0,  4.0,1,  None,          None, None),                                                  # problema (animación)
- ("v","hojeada.mp4",8.2,  2.5,1,  FULL,          "Agenda 2027", "hecha a mano en La Plata"),                   # solución
+ ("v","postits.mp4",0.0,  4.0,1.33,None,         None, None),                                                  # problema (animación)
+ ("v","hojeada.mp4",8.2,  2.3,1,  FULL,          "Agenda 2027", "hecha a mano en La Plata"),                   # solución
+ ("f","fotos/kraft/foto14.jpg",0,1.8,1,None,     "Agenda 2027", "tapa dura ilustrada"),
  ("v","costura.mp4",509.0,5.0,2,  macro(200,0),  "Cosida hilo a hilo", "firme, para todo el año"),             # valor 1
- ("f","fotos/kraft/foto15.jpg",0,1.3,1,None,     "Papel de calidad", "un día por página, con horarios"),       # valor 2
- ("v","hojeada.mp4",42.5, 1.6,1.3,FULL,          "Papel de calidad", "un día por página, con horarios"),
+ ("v","hojeada.mp4",3.6,  3.0,1.2,FULL,          "Cosida hilo a hilo", "420 hojas, una por una"),
+ ("f","fotos/kraft/foto17.jpg",0,1.6,1,None,     "Papel de calidad", "con página de datos personales"),        # valor 2
+ ("f","fotos/kraft/foto15.jpg",0,1.4,1,None,     "Papel de calidad", "un día por página, con horarios"),
+ ("v","hojeada.mp4",55.0, 5.0,2,  FULL,          "Papel de calidad", "un día por página, con horarios"),
  ("v","hojeada.mp4",12.0, 3.0,1.5,FULL,          "Pieza única", "hecha con amor, de principio a fin"),         # valor 3
  ("f","fotos/kraft/foto13.jpg",0,1.5,1,None,     "Pieza única", "guardas azules y dos cintas"),
- ("f","fotos/kraft/foto18.jpg",0,3.0,1,None,     "Tu año, en orden.", "planificá con calma"),                  # emoción
- ("f","fotos/kraft/foto12.jpg",0,2.0,1,None,     None, "un ratito para vos, todos los días"),
+ ("f","fotos/kraft/foto18.jpg",0,2.4,1,None,     "Tu año, en orden.", "calendario mensual y diario"),          # emoción
+ ("f","fotos/kraft/foto11.jpg",0,1.8,1,None,     None, "un ratito para vos, todos los días"),
+ ("v","hojeada.mp4",88.6, 3.6,1.2,FULL,          "Tu 2027 empieza acá.", None),
 ]
-FIN_FOTO, FIN = "fotos/kraft/foto10.jpg", 5.0
+FIN_FOTO, FIN = "fotos/kraft/foto9.jpg", 5.0
 FIT = ("split[a][b];[a]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,boxblur=30:4[bg];"
        "[b]scale=1000:1800:force_original_aspect_ratio=decrease:flags=lanczos[fg];[bg][fg]overlay=(W-w)/2:(H-h)/2,setsar=1")
 def run(c): subprocess.run(c, check=True)

@@ -34,5 +34,28 @@ pages["end_venta"] = '''<div class="end"><div class="box"><div class="k" style="
 <div class="pr">Papel <em>$40.000</em> · Tela <em>$45.000</em> · preventa hasta el 20/11</div>
 <div class="cta" style="font-size:52px">Encargá la tuya<br>por <b>mensaje directo</b> 💌</div>
 <div class="w">@renzi.librosusados · WhatsApp 221 577-0018</div></div></div>'''
+
+def mini(kind):
+    hdr = '<div style="display:flex;align-items:baseline;gap:8px;border-bottom:2px solid #2f5d46;padding-bottom:6px;margin-bottom:8px"><b style="font-family:P;font-size:34px;color:#2f5d46">%s</b><span style="font-family:D;font-size:15px;color:#777">%s</span></div>'
+    line = lambda lab='': f'<div style="height:19px;border-bottom:1.5px dotted #b9b2a6;font-family:D;font-size:11px;color:#999;line-height:19px">{lab}</div>'
+    if kind=="hor":  body = hdr%("1","lunes") + "".join(line(f"{h}:00") for h in range(8,20))
+    if kind=="sin":  body = hdr%("1","lunes") + "".join(line() for _ in range(12))
+    if kind=="sem":  body = hdr%("S","semana") + '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">' + "".join(f'<div style="border:1.5px solid #cfc8bb;border-radius:6px;height:48px;font-family:D;font-size:12px;color:#888;padding:3px 5px">{d}</div>' for d in ["Lun","Mar","Mié","Jue","Vie","Sáb","Dom","Notas"]) + "</div>"
+    if kind=="per":  body = hdr%("__ / __","sin fecha") + "".join(line() for _ in range(12))
+    return f'<div style="background:#fffdf8;border-radius:14px;padding:16px 16px 18px;height:330px;text-align:left;box-shadow:0 10px 24px rgba(0,0,0,.35);overflow:hidden">{body}</div>'
+def tile(kind, name, sub, star=False):
+    badge = '<div style="position:absolute;top:-16px;right:-10px;background:#ffb3c4;color:#2b1d22;font-family:D;font-size:22px;padding:6px 14px;border-radius:20px">la del video</div>' if star else ''
+    return f'<div style="position:relative">{badge}{mini(kind)}<div style="font-family:D;font-size:36px;margin-top:14px">{name}</div><div style="font-family:Pi;font-size:26px;color:rgba(255,255,255,.75)">{sub}</div></div>'
+pages["armala_formatos"] = ('<div style="position:absolute;left:50px;right:50px;top:250px;background:rgba(20,30,25,.92);border-radius:40px;padding:40px 40px 46px;text-align:center;color:#fff;box-shadow:0 20px 50px rgba(0,0,0,.35)">'
+  '<div style="font-family:D;font-size:34px;letter-spacing:4px;color:#ffb3c4">PASO 2</div><div style="font-family:P;font-size:76px;line-height:1.05;margin:6px 0 34px">Elegí el interior</div>'
+  '<div style="display:grid;grid-template-columns:1fr 1fr;gap:34px 40px;text-align:center">'
+  + tile("hor","Por día","con horarios",True) + tile("sin","Por día","sin horario") + tile("sem","Semanal","una semana a la vista") + tile("per","Perpetua","sin fechas, arrancás cuando quieras") +
+  '</div><div style="display:inline-block;margin-top:38px;background:#fffdf8;color:#2f5d46;font-family:D;font-size:42px;line-height:1.25;padding:18px 34px 22px;border-radius:24px">¿Otra idea? <b>La armamos a medida</b></div></div>')
+pages["armala_end"] = """<div class="end"><div class="box"><div class="k" style="font-size:40px;letter-spacing:4px">PREVENTA HASTA EL 20/11</div>
+<div class="t">Armá la tuya</div>
+<div class="pr">Papel <em>$40.000</em> · Tela <em>$45.000</em></div>
+<div class="cta" style="font-size:54px">Escribinos <b>AGENDA</b><br>por mensaje</div>
+<div class="w" style="font-family:Pi;font-size:36px;margin-top:6px">y te ayudamos a elegir tapa e interior</div>
+<div class="w">Edición limitada<br>WhatsApp 221 577-0018 · @renzi.librosusados</div></div></div>"""
 for k,b in pages.items():
     open(f"{k}.html","w").write(f'<!doctype html><html><head><meta charset="utf-8"><style>{css}</style></head><body>{b}</body></html>')

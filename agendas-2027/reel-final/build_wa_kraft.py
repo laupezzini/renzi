@@ -10,7 +10,9 @@ T = [
  ("video", "hojeada.mp4",            8.2,  3.0, 1,   None,                                 None),
  ("video", "hojeada.mp4",           12.0,  6.0, 1.5, "guardas azules por dentro",         None),
  ("foto",  "fotos/kraft/foto13.jpg", 0,    2.4, 1,   "dos cintas para marcar las páginas", None),
- ("video", "hojeada.mp4",           42.5,  5.5, 1.3, "un día por página, con horarios",   None),
+ ("foto",  "fotos/kraft/foto17.jpg", 0,    2.4, 1,   "página de datos personales",        None),
+ ("foto",  "fotos/kraft/foto18.jpg", 0,    3.0, 1,   "calendario mensual y un día por página", None),
+ ("foto",  "fotos/kraft/foto15.jpg", 0,    2.2, 1,   "con horarios y espacio para notas", None),
  ("video", "hojeada.mp4",           55.0,  8.0, 2.0, "420 hojas cosidas a mano",          None),
 ]
 FIN_FOTO, FIN = "fotos/kraft/foto10.jpg", 4.5

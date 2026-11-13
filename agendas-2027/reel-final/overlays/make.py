@@ -79,7 +79,9 @@ pages["estado_interiores"] = ('<div style="position:absolute;left:46px;right:46p
 pages["cuaderno_end"] = """<div class="end" style="background:linear-gradient(180deg,rgba(0,0,0,0) 28%,rgba(20,30,25,.9) 55%)"><div class="box" style="bottom:400px">
 <div class="k" style="font-size:40px;letter-spacing:4px">PIEZA ÚNICA</div>
 <div class="t">Cuaderno de tela<br>hecho a mano</div>
-<div class="pr">guarda azul y violeta · hojas rayadas</div>
+<div class="pr" style="font-size:52px;margin-top:10px"><em>$28.000</em></div>
+<div class="pr">A5 · 100 hojas rayadas · papel Bookcel</div>
+<div class="pr" style="margin-top:6px">guardas azul y violeta</div>
 <div class="cta" style="font-size:54px">Escribinos <b>CUADERNO</b><br>por mensaje</div>
 <div class="w" style="font-family:Pi;font-size:36px;margin-top:6px">¿Buscás otro? Lo hacemos a tu medida</div>
 <div class="w">@renzi.librosusados · WhatsApp 221 577-0018</div></div></div>"""

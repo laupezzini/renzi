@@ -1,0 +1,26 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:Ds;src:url(dancing-700.woff2)}@font-face{font-family:D;src:url(dmsans-800.woff2)}@font-face{font-family:P;src:url(playfair-700.woff2)}
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden}
+body{background:radial-gradient(ellipse at 50% 40%,#c9a47b 0%,#b48c63 60%,#9c7651 100%)}
+body:before{content:"";position:absolute;inset:0;background:repeating-radial-gradient(circle at 30% 20%,rgba(255,255,255,.035) 0 2px,transparent 2px 5px),repeating-radial-gradient(circle at 70% 70%,rgba(0,0,0,.04) 0 2px,transparent 2px 6px)}
+.n{position:absolute;width:300px;height:280px;padding:34px 30px;box-sizing:border-box;font-family:Ds;font-size:54px;line-height:1.05;color:#333;box-shadow:0 14px 26px rgba(60,35,15,.35);opacity:0;transform:scale(.4) rotate(var(--r));animation:pop .35s cubic-bezier(.3,1.6,.6,1) forwards;animation-delay:var(--d)}
+.n:after{content:"";position:absolute;left:0;right:0;top:0;height:34px;background:rgba(0,0,0,.05)}
+@keyframes pop{to{opacity:1;transform:scale(1) rotate(var(--r))}}
+.y{background:#fde68a}.p{background:#fbcfe8}.g{background:#bbf7d0}.b{background:#bfdbfe}.o{background:#fed7aa}
+.t{position:absolute;left:60px;right:60px;text-align:center;color:#fff;font-family:D;font-size:78px;line-height:1.1;text-shadow:0 6px 24px rgba(0,0,0,.55);opacity:0;animation:fade .4s ease forwards;animation-delay:var(--d)}
+.t span{background:rgba(25,20,15,.72);padding:10px 26px 16px;border-radius:24px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+@keyframes fade{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.out{animation:fade .4s ease forwards, gone .3s ease forwards;animation-delay:var(--d),1.9s}
+@keyframes gone{to{opacity:0}}
+</style></head><body>
+<div class="n y" style="left:60px;top:300px;--r:-8deg;--d:.05s">pagar la luz!!</div>
+<div class="n p" style="left:700px;top:240px;--r:7deg;--d:.25s">turno médico 10 hs</div>
+<div class="n g" style="left:380px;top:520px;--r:-3deg;--d:.45s">cumple de mamá</div>
+<div class="n b" style="left:90px;top:860px;--r:6deg;--d:.65s">reunión... ¿jueves?</div>
+<div class="n o" style="left:680px;top:780px;--r:-9deg;--d:.85s">comprar regalo</div>
+<div class="n y" style="left:380px;top:1150px;--r:9deg;--d:1.05s">llamar a Caro</div>
+<div class="n p" style="left:40px;top:1380px;--r:-6deg;--d:1.25s">¿dónde lo anoté?</div>
+<div class="n g" style="left:720px;top:1330px;--r:4deg;--d:1.45s">vence el lunes!</div>
+<div class="t out" style="top:1010px;--d:.3s"><span>¿Post-its por todos lados?</span></div>
+<div class="t" style="top:960px;--d:2.15s"><span>¿Agendas que se<br>desarman en marzo?</span></div>
+</body></html>

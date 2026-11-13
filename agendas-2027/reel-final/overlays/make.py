@@ -22,5 +22,10 @@ pages["formatos"] = '''<div style="position:absolute;left:60px;right:60px;top:33
 <div style="font-family:Pi;font-size:46px">También la hacemos</div>
 <div style="font-family:D;font-size:48px;line-height:1.45;margin-top:10px">por día sin horario<br>semanal · perpetua</div>
 <div style="display:inline-block;margin-top:28px;background:#fffdf8;color:#2f5d46;font-family:D;font-size:42px;padding:16px 30px 20px;border-radius:24px">o escribinos y armamos<br>la que buscás ✍️</div></div>'''
+pages["end_venta"] = '''<div class="end"><div class="box"><div class="k" style="font-size:40px;letter-spacing:4px">EDICIÓN LIMITADA</div>
+<div class="t">Agendas 2027<br>hechas a mano</div>
+<div class="pr">Papel <em>$40.000</em> · Tela <em>$45.000</em> · preventa hasta el 20/11</div>
+<div class="cta" style="font-size:52px">Encargá la tuya<br>por <b>mensaje directo</b> 💌</div>
+<div class="w">@renzi.librosusados · WhatsApp 221 577-0018</div></div></div>'''
 for k,b in pages.items():
     open(f"{k}.html","w").write(f'<!doctype html><html><head><meta charset="utf-8"><style>{css}</style></head><body>{b}</body></html>')

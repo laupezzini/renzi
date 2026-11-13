@@ -76,5 +76,12 @@ pages["estado_interiores"] = ('<div style="position:absolute;left:46px;right:46p
   + real("clasica","Clásica","por día, con renglones") + real("estrellas","Estrellas","por día, hoja libre") +
   '</div><div style="font-family:D;font-size:38px;margin-top:30px">También <b style="color:#ffb3c4">semanal</b> o <b style="color:#ffb3c4">perpetua</b></div>'
   '<div style="display:inline-block;margin-top:18px;background:#fffdf8;color:#2f5d46;font-family:D;font-size:42px;padding:16px 34px 20px;border-radius:24px">¿Otra idea? <b>La armamos a medida</b></div></div>')
+pages["cuaderno_end"] = """<div class="end" style="background:linear-gradient(180deg,rgba(0,0,0,0) 28%,rgba(20,30,25,.9) 55%)"><div class="box" style="bottom:400px">
+<div class="k" style="font-size:40px;letter-spacing:4px">PIEZA ÚNICA</div>
+<div class="t">Cuaderno de tela<br>hecho a mano</div>
+<div class="pr">guarda azul y violeta · hojas rayadas</div>
+<div class="cta" style="font-size:54px">Escribinos <b>CUADERNO</b><br>por mensaje</div>
+<div class="w" style="font-family:Pi;font-size:36px;margin-top:6px">¿Buscás otro? Lo hacemos a tu medida</div>
+<div class="w">@renzi.librosusados · WhatsApp 221 577-0018</div></div></div>"""
 for k,b in pages.items():
     open(f"{k}.html","w").write(f'<!doctype html><html><head><meta charset="utf-8"><style>{css}</style></head><body>{b}</body></html>')

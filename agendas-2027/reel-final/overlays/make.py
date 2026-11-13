@@ -22,6 +22,13 @@ pages["formatos"] = '''<div style="position:absolute;left:60px;right:60px;top:33
 <div style="font-family:Pi;font-size:46px">También la hacemos</div>
 <div style="font-family:D;font-size:48px;line-height:1.45;margin-top:10px">por día sin horario<br>semanal · perpetua</div>
 <div style="display:inline-block;margin-top:28px;background:#fffdf8;color:#2f5d46;font-family:D;font-size:42px;padding:16px 30px 20px;border-radius:24px">o escribinos y armamos<br>la que buscás ✍️</div></div>'''
+pages["formatos_venta"] = '''<div style="position:absolute;left:60px;right:60px;top:300px;background:rgba(20,30,25,.88);border-radius:40px;padding:46px 40px 52px;text-align:center;color:#fff;box-shadow:0 20px 50px rgba(0,0,0,.3)">
+<div style="font-family:D;font-size:36px;letter-spacing:4px;color:#ffb3c4">ELEGÍ TU FORMATO</div>
+<div style="font-family:P;font-size:70px;line-height:1.05;margin-top:14px">Por día<br>con horarios</div>
+<div style="font-family:D;font-size:34px;color:rgba(255,255,255,.75);margin-top:8px">(la que ves en el video)</div>
+<div style="height:2px;background:rgba(255,255,255,.3);margin:30px 60px"></div>
+<div style="font-family:D;font-size:54px;line-height:1.5">Por día sin horario<br>Semanal<br>Perpetua</div>
+<div style="display:inline-block;margin-top:32px;background:#fffdf8;color:#2f5d46;font-family:D;font-size:44px;line-height:1.25;padding:20px 34px 24px;border-radius:24px">¿Buscás otro formato?<br><b>Consultanos:</b> la armamos<br>a medida ✍️</div></div>'''
 pages["end_venta"] = '''<div class="end"><div class="box"><div class="k" style="font-size:40px;letter-spacing:4px">EDICIÓN LIMITADA</div>
 <div class="t">Agendas 2027<br>hechas a mano</div>
 <div class="pr">Papel <em>$40.000</em> · Tela <em>$45.000</em> · preventa hasta el 20/11</div>

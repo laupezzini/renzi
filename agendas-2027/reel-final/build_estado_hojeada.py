@@ -69,7 +69,7 @@ PlayResY: 1920
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
 Style: Paso,Inter,46,&H00221D2B,&H00221D2B,&H00C4B3FF,&H00C4B3FF,1,0,0,0,100,100,6,0,3,14,0,8,90,90,230,1
 Style: Big,Inter,100,&H00FFFFFF,&H00FFFFFF,&H00281E14,&HA0000000,1,0,0,0,100,100,0,0,1,8,3,8,70,70,330,1
-Style: Lab,Inter,64,&H00FFFFFF,&H00FFFFFF,&H006B45D6,&H006B45D6,1,0,0,0,100,100,0,0,3,18,0,2,90,90,360,1
+Style: Lab,Inter,64,&H00FFFFFF,&H00FFFFFF,&H006B45D6,&H006B45D6,1,0,0,0,100,100,0,0,3,18,0,2,90,90,640,1
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 """+"\n".join(lines)+"\n"

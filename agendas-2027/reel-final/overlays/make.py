@@ -58,7 +58,7 @@ pages["armala_end"] = """<div class="end"><div class="box"><div class="k" style=
 <div class="w" style="font-family:Pi;font-size:36px;margin-top:6px">y te ayudamos a elegir tapa e interior</div>
 <div class="w">Edición limitada<br>WhatsApp 221 577-0018 · @renzi.librosusados</div></div></div>"""
 pages["estado_formatos"] = pages["armala_formatos"].replace('<div style="font-family:D;font-size:34px;letter-spacing:4px;color:#ffb3c4">PASO 2</div>','<div style="font-family:D;font-size:34px;letter-spacing:4px;color:#ffb3c4">FORMATOS</div>').replace("Elegí el interior","Elegí tu interior")
-pages["estado_end"] = """<div class="end"><div class="box"><div class="k" style="font-size:40px;letter-spacing:4px">PREVENTA HASTA EL 20/11</div>
+pages["estado_end"] = """<div class="end" style="background:linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(20,30,25,.88) 58%)"><div class="box" style="bottom:420px"><div class="k" style="font-size:40px;letter-spacing:4px">PREVENTA HASTA EL 20/11</div>
 <div class="t">Agendas 2027<br>hechas a mano</div>
 <div class="pr">Papel <em>$40.000</em> · Tela <em>$45.000</em></div>
 <div class="cta" style="font-size:54px">Respondé este estado<br>y <b>pedí la tuya</b></div>

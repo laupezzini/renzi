@@ -17,7 +17,7 @@ def top(name,l1,l2): page(name,f'<div class="top"><div class="card"><div class="
 def lab(name,t,p=None): page(name,f'<div class="lab"><div class="pill">{t}{f" · <span>{p}</span>" if p else ""}</div></div>')
 page("hook",'<div class="top hook"><div class="card"><div class="l1">Mandale esto</div><div class="l2">a quien te tiene<br>que regalar</div></div><br><div class="nav">en Navidad</div></div>')
 top("p1","Para la que anota","todo en post-its");            lab("p1l","Agenda 2027","desde $40.000")
-top("p2","Para el que dice","«no necesito nada»");           lab("p2l","Libreta artesanal, atada a mano")
+top("p2","Para el que dice","«no necesito nada»");           lab("p2l","Libreta de cuero","desde $35.000")
 top("p3","Para la que siempre","tiene una idea");            lab("p3l","Libretas y cuadernos","desde $8.000")
 top("p4","Para la empresa","que saluda a su equipo");       lab("p4l","Regalos corporativos","por cantidad")
 top("p5","Para saludar a alguien","por fin de año");         lab("p5l","Un presente hecho a mano")

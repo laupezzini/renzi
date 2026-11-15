@@ -14,7 +14,7 @@ while True:
 # parámetros de luz a partir de varios cuadros del clip
 ref = np.concatenate([frames[i].reshape(-1,3) for i in np.linspace(0, len(frames)-1, 5).astype(int)]).astype(np.float32)
 lum = ref.mean(1); wb = ref[lum > np.percentile(lum, 92)].mean(0); gain = wb.mean() / wb
-gain = 1 + (gain - 1) * 0.8                      # balance un poco más suave
+import os; gain = 1 + (gain - 1) * float(os.environ.get("WBF","0.8"))   # balance (WBF=0 lo desactiva)
 hi = np.percentile(ref * gain, 99.5)
 lut = [np.clip(np.power(np.clip(np.arange(256)*g/hi*245, 0, 255)/255, 0.85)*255, 0, 255).astype(np.uint8) for g in gain]
 for f in frames:
